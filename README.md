@@ -14,3 +14,9 @@
 > email: tctam | github: TAMTszChung | dev branch: tctam_dev
 
 > Task 2 & Task 5
+
+## 3. WU, Tsz Yeung
+
+> email: tywuab | github: tywuab | dev branch: tywuab_dev
+
+> Task 1 & Task 4
