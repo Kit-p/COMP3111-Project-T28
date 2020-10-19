@@ -8,3 +8,9 @@
 > email: kpangaa | github: Kit-p | dev branch: kpangaa_dev
 
 > Task 3 & Task 6
+
+## 2. TAM, Tsz Chung
+
+> email: tctam | github: TAMTszChung | dev branch: tctam_dev
+
+> Task 2 & Task 5
