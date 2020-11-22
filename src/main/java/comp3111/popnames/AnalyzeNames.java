@@ -93,5 +93,26 @@ public class AnalyzeNames {
 	     else
 	     	return "information on the name at the specified rank is not available";
 	 }
+	 
+	 public static int getCount(int year, String name, String gender) {
+	     for (CSVRecord rec : getFileParser(year)) {
+	         if (rec.get(0).equals(name) && rec.get(1).equals(gender)) {
+	        	 return Integer.parseInt(rec.get(2));
+	         }
+	     }
+	     
+	     return 0;
+	 }
+	 
+	 public static int getGenderBirth(int year, String gender) {
+		 int totalBoys = 0;
+	     for (CSVRecord rec : getFileParser(year)) {
+	         if (rec.get(1).equals(gender)) {
+	        	 totalBoys += Integer.parseInt(rec.get(2));
+	         }
+	     }
+	     
+	     return totalBoys;
+	 }
  
 }
