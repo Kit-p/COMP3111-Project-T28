@@ -154,6 +154,10 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
     
-
+    // Task 1 when report button is clicked
+    @FXML
+    void doReport(){
+            String oReport = "";
+    }
 }
 
