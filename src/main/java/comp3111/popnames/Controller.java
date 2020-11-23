@@ -4,7 +4,10 @@
 package comp3111.popnames;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -53,9 +56,24 @@ public class Controller {
 
     @FXML
     private Tab tabReport3;
+    
+    @FXML
+    private RadioButton task3_maleBtn;
+    
+    @FXML
+    private RadioButton task3_femaleBtn;
 
     @FXML
     private ToggleGroup T111;
+    
+    @FXML
+    private TextField task3_year1Field;
+    
+    @FXML
+    private TextField task3_year2Field;
+    
+    @FXML
+    private Button task3_reportBtn;
 
     @FXML
     private Tab tabApp1;
@@ -152,6 +170,34 @@ public class Controller {
     	for (int i=1; i<=topN; i++)
     		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i, "M"));
     	textAreaConsole.setText(oReport);
+    }
+    
+    
+    /**
+     *  Reporting 3
+     *  To be triggered by the "REPORT" button on the Reporting 3 Tab
+     */
+    @FXML
+    void doNameTrendQuery() {
+    	String gender = "M"; 
+    	if (task3_femaleBtn.isSelected()) {
+    		gender = "F";
+    	}
+    	int startYear, endYear;
+    	try {
+    		startYear = Integer.parseInt(task3_year1Field.getText());
+    		endYear = Integer.parseInt(task3_year2Field.getText());
+    		if (startYear < 1880 || startYear > 2019 || endYear < 1880 || endYear > 2019) {
+    			throw new NumberFormatException();
+    		}
+    	} catch (NumberFormatException e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setHeaderText("Invalid Input");
+    		alert.setContentText("Year must be between 1880 and 2019!");
+    		alert.showAndWait();
+    		return;
+    	}
+    	NameTrendQuery query = new NameTrendQuery(gender, startYear, endYear);
     }
     
 
