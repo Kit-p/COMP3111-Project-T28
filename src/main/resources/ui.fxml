@@ -133,6 +133,7 @@
                               <TextField layoutX="484.0" layoutY="198.0" prefHeight="18.0" prefWidth="96.0" text="1990" />
                               <Label layoutX="211.0" layoutY="247.0" prefHeight="18.0" prefWidth="103.0" text="Vintage Year" />
                               <TextField layoutX="311.0" layoutY="243.0" prefHeight="18.0" prefWidth="96.0" text="2019" />
+                              <Button layoutX="308.0" layoutY="281.0" mnemonicParsing="false" text="Start Query" />
                            </children>
                         </AnchorPane>
                     </content>
