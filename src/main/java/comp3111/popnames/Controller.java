@@ -265,5 +265,21 @@ public class Controller {
     }
 
 
+    /**
+     * Common helper function for popping alert
+     *
+     * @param type      type of the alert
+     * @param title     title of the alert
+     * @param header    header of the alert
+     * @param content   content of the alert
+     */
+    public static void popAlert(AlertType type, String title, String header, String content){
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 }
 
