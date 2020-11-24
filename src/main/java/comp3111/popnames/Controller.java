@@ -102,6 +102,43 @@ public class Controller {
     @FXML
     private Tab tabApp2;
 
+
+    @FXML
+    private TextField task5NameField;
+
+    @FXML
+    private TextField task5_YOB;
+
+    @FXML
+    private RadioButton task5_maleBtn;
+
+    @FXML
+    private ToggleGroup T51;
+
+    @FXML
+    private RadioButton task5_femaleBtn;
+
+    @FXML
+    private RadioButton task5_mateMaleBtn;
+
+    @FXML
+    private ToggleGroup T52;
+
+    @FXML
+    private RadioButton task5_mateFemaleBtn;
+
+    @FXML
+    private RadioButton task5_youngerBtn;
+
+    @FXML
+    private ToggleGroup T53;
+
+    @FXML
+    private RadioButton task5_olderBtn;
+
+    @FXML
+    private Button task5_predictBtn;
+
     @FXML
     private Tab tabApp3;
 
@@ -234,7 +271,7 @@ public class Controller {
     
 
     /**
-     *  Reporting 2
+     *  Reporting 2 (Task 2)
      *  To be triggered by the "Report" button on the Reporting 2 Tab,
      *  creating a table to show the popularity of a particular name over a given period,
      *  and provide a summary in the textAreaConsole.
@@ -251,6 +288,16 @@ public class Controller {
      */
     @FXML
     void doNameTrendQuery() {
+
+    }
+
+
+    /**
+     * Application 2 (Task 5)
+     * To be triggered by the "Get Prediction" button on the Application 2 Tab
+     */
+    @FXML
+    void doSoulmateRecommendation() {
 
     }
 
