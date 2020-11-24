@@ -5,6 +5,7 @@ package comp3111.popnames;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -49,8 +50,26 @@ public class Controller {
     private Tab tabReport2;
 
     @FXML
+    private TextField task2NameField;
+
+    @FXML
+    private RadioButton task2Male;
+
+    @FXML
     private ToggleGroup T11;
 
+    @FXML
+    private RadioButton task2Female;
+
+    @FXML
+    private TextField task2EndYear;
+
+    @FXML
+    private TextField task2StartYear;
+
+    @FXML
+    private Button NamePopularityQueryButton;
+    
     @FXML
     private Tab tabReport3;
 
@@ -154,6 +173,18 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
     
+    
+    /**
+     *  Reporting 2
+     *  To be triggered by the "Report" button on the Reporting 2 Tab,
+     *  creating a table to show the popularity of a particular name over a given period,
+     *  and provide a summary in the textAreaConsole.
+     */
+    @FXML
+    void doNamePopularityQuery() {
+
+       	
+    }
 
 }
 
