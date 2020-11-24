@@ -13,6 +13,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import java.awt.desktop.QuitEvent;
+
 public class Controller {
 
     @FXML
@@ -251,12 +253,42 @@ public class Controller {
      */
     @FXML
     void doNameTrendQuery() {
-
+        String gender = "M";
+        if (task3_femaleBtn.isSelected()) {
+            gender = "F";
+        }
+        int startYear, endYear, N;
+        try {
+            startYear = Integer.parseInt(task3_year1Field.getText());
+            endYear = Integer.parseInt(task3_year2Field.getText());
+            if (startYear < 1880 || startYear > 2019 || endYear < 1880 || endYear > 2019) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Year must be between 1880 and 2019!");
+            return;
+        }
+        if (startYear > endYear) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Start year must not be greater than end year!");
+            return;
+        }
+        try {
+            N = Integer.parseInt(task3_topNField.getText());
+            if (N < 1) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Must query at least top 1!");
+            return;
+        }
+        NameTrendQuery query = new NameTrendQuery(gender, startYear, endYear, N);
+        String oReport = query.getSummary();
+        textAreaConsole.setText(oReport);
     }
 
 
     /**
-     * Application 6
+     * Application 3
      * To be triggered by the "PREDICT" button on the Application 3 Tab
      */
     @FXML
