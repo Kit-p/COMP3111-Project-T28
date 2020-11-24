@@ -4,6 +4,8 @@
 package comp3111.popnames;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
@@ -69,12 +71,30 @@ public class Controller {
 
     @FXML
     private Button NamePopularityQueryButton;
-    
+
     @FXML
     private Tab tabReport3;
 
     @FXML
+    private RadioButton task3_maleBtn;
+
+    @FXML
+    private RadioButton task3_femaleBtn;
+
+    @FXML
     private ToggleGroup T111;
+
+    @FXML
+    private TextField task3_year1Field;
+
+    @FXML
+    private TextField task3_year2Field;
+
+    @FXML
+    private TextField task3_topNField;
+
+    @FXML
+    private Button task3_reportBtn;
 
     @FXML
     private Tab tabApp1;
@@ -84,6 +104,45 @@ public class Controller {
 
     @FXML
     private Tab tabApp3;
+
+    @FXML
+    private TextField task6_nameField;
+
+    @FXML
+    private RadioButton task6_maleBtn;
+
+    @FXML
+    private ToggleGroup T61;
+
+    @FXML
+    private RadioButton task6_femaleBtn;
+
+    @FXML
+    private TextField task6_yobField;
+
+    @FXML
+    private TextField task6_mateNameField;
+
+    @FXML
+    private RadioButton task6_mateMaleBtn;
+
+    @FXML
+    private ToggleGroup T62;
+
+    @FXML
+    private RadioButton task6_mateFemaleBtn;
+
+    @FXML
+    private RadioButton task6_youngerBtn;
+
+    @FXML
+    private ToggleGroup T63;
+
+    @FXML
+    private RadioButton task6_olderBtn;
+
+    @FXML
+    private Button task6_predictBtn;
 
     @FXML
     private TextArea textAreaConsole;
@@ -173,7 +232,7 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
     
-    
+
     /**
      *  Reporting 2
      *  To be triggered by the "Report" button on the Reporting 2 Tab,
@@ -183,8 +242,28 @@ public class Controller {
     @FXML
     void doNamePopularityQuery() {
 
-       	
     }
+
+
+    /**
+     *  Reporting 3
+     *  To be triggered by the "REPORT" button on the Reporting 3 Tab
+     */
+    @FXML
+    void doNameTrendQuery() {
+
+    }
+
+
+    /**
+     * Application 6
+     * To be triggered by the "PREDICT" button on the Application 3 Tab
+     */
+    @FXML
+    void doCompatabilityPrediction() {
+
+    }
+
 
 }
 
