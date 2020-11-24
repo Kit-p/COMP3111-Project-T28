@@ -52,29 +52,47 @@ public class Controller {
     private Tab tabReport2;
 
     @FXML
+    private TextField task2NameField;
+
+    @FXML
+    private RadioButton task2Male;
+
+    @FXML
     private ToggleGroup T11;
 
     @FXML
+    private RadioButton task2Female;
+
+    @FXML
+    private TextField task2EndYear;
+
+    @FXML
+    private TextField task2StartYear;
+
+    @FXML
+    private Button NamePopularityQueryButton;
+
+    @FXML
     private Tab tabReport3;
-    
+
     @FXML
     private RadioButton task3_maleBtn;
-    
+
     @FXML
     private RadioButton task3_femaleBtn;
 
     @FXML
     private ToggleGroup T111;
-    
+
     @FXML
     private TextField task3_year1Field;
-    
+
     @FXML
     private TextField task3_year2Field;
 
     @FXML
     private TextField task3_topNField;
-    
+
     @FXML
     private Button task3_reportBtn;
 
@@ -86,7 +104,7 @@ public class Controller {
 
     @FXML
     private Tab tabApp3;
-    
+
     @FXML
     private TextField task6_nameField;
 
@@ -214,7 +232,19 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
     
-    
+
+    /**
+     *  Reporting 2
+     *  To be triggered by the "Report" button on the Reporting 2 Tab,
+     *  creating a table to show the popularity of a particular name over a given period,
+     *  and provide a summary in the textAreaConsole.
+     */
+    @FXML
+    void doNamePopularityQuery() {
+
+    }
+
+
     /**
      *  Reporting 3
      *  To be triggered by the "REPORT" button on the Reporting 3 Tab
@@ -223,8 +253,8 @@ public class Controller {
     void doNameTrendQuery() {
 
     }
-    
-    
+
+
     /**
      * Application 6
      * To be triggered by the "PREDICT" button on the Application 3 Tab
@@ -234,6 +264,6 @@ public class Controller {
 
     }
 
-    
+
 }
 
