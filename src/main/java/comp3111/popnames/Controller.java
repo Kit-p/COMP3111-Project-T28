@@ -331,6 +331,56 @@ public class Controller {
      */
     @FXML
     void doSoulmateRecommendation() {
+        String name = task5NameField.getText();
+        if (name.isBlank()) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name is blank! Please enter a valid name");
+            return;
+        }
+
+        String usergender = "";
+        if (task5_maleBtn.isSelected()) {
+            usergender = "M";
+        }else if (task5_femaleBtn.isSelected()) {
+            usergender = "F";
+        }
+
+        int userYOB;
+        try {
+            userYOB = Integer.parseInt(task5_YOB.getText());
+        } catch (NumberFormatException e) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Format of Year of Birth is invalid! Please enter a valid year");
+            return;
+        }
+
+        if (userYOB < 1880 || userYOB > 2019){
+            popAlert(AlertType.ERROR, "Error", "Invalid Input",
+                    "Your Year of Birth is out of the specified range!\n Sorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
+            return;
+        }
+
+        String mategender = "";
+        if (task5_mateMaleBtn.isSelected()) {
+            mategender = "M";
+        }else if (task5_mateFemaleBtn.isSelected()) {
+            mategender = "F";
+        }
+
+        String mateAge = "";
+        if (task5_youngerBtn.isSelected()) {
+            mateAge = "younger";
+        }else if (task5_olderBtn.isSelected()) {
+            mateAge = "older";
+        }
+
+        if (userYOB == 1880 && mateAge.equals("younger")){
+            popAlert(AlertType.ERROR, "Error", "Unable to Make Prediction",
+                    "There is no data on name of people younger than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
+            return;
+        }else if (userYOB == 2019 && mateAge.equals("older")){
+            popAlert(AlertType.ERROR, "Error", "Unable to Make Prediction",
+                    "There is no data on name of people older than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
+            return;
+        }
 
     }
 
