@@ -278,6 +278,39 @@ public class Controller {
      */
     @FXML
     void doNamePopularityQuery() {
+        String name = task2NameField.getText();
+        if (name.isBlank()) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name is blank! Please enter a valid name");
+            return;
+        }
+
+        String gender = "";
+        if (task2Male.isSelected()) {
+            gender = "M";
+        }else if (task2Female.isSelected()) {
+            gender = "F";
+        }
+
+        int  startYear;
+        int endYear;
+
+        try {
+            startYear = Integer.parseInt(task2StartYear.getText());
+            endYear = Integer.parseInt(task2EndYear.getText());
+        } catch (NumberFormatException e) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Format of the inputted Period is invalid! Please enter a valid period");
+            return;
+        }
+
+        if (startYear<1880 || startYear>2019 || endYear<1880 || endYear>2019) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "The inputted Period is invalid! Please enter a period within the specified range");
+            return;
+        }
+
+        if (endYear < startYear) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Period to be Queried is invalid! End of period cannot be earlier than Start of period");
+            return;
+        }
 
     }
 
