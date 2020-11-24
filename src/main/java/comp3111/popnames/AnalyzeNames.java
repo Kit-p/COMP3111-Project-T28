@@ -95,6 +95,13 @@ public class AnalyzeNames {
 	 }
 	 
 	 
+     /**
+      * Get the occurrence of the name of the gender in the year
+      * @param year    target year
+      * @param name    target name
+      * @param gender  target gender
+      * @return occurrence
+      */
 	 public static int getCount(int year, String name, String gender) {
 	     for (CSVRecord rec : getFileParser(year)) {
 	         if (rec.get(0).equals(name) && rec.get(1).equals(gender)) {
@@ -105,7 +112,13 @@ public class AnalyzeNames {
 	     return 0;
 	 }
 	 
-
+	 
+     /**
+      * Get the birth count of the gender in the year
+      * @param year    target year
+      * @param gender  target gender
+      * @return birth count
+      */
 	 public static int getGenderBirth(int year, String gender) {
 		 int totalGenderBirth = 0;
 	     for (CSVRecord rec : getFileParser(year)) {
