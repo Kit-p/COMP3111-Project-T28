@@ -11,6 +11,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="679.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp3111.popnames.Controller">
   <children>
@@ -100,7 +101,7 @@
                            <children>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="719.0">
                                  <children>
-                                    <TextArea layoutX="112.0" layoutY="26.0" prefHeight="61.0" prefWidth="355.0" text="Generate a brief report in response to the queries on identifying the names that have shown the largest rise/fall in popularity over a given period.&#10;" wrapText="true" />
+                                    <TextArea layoutX="112.0" layoutY="26.0" prefHeight="61.0" prefWidth="355.0" text="Generate a brief report in response to the queries on identifying the names that have maintained a high level of popularity within Top N over a given period." wrapText="true" />
                                     <RadioButton fx:id="task3_femaleBtn" layoutX="290.0" layoutY="104.0" mnemonicParsing="false" text="Female">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="T111" />
@@ -112,7 +113,9 @@
                                     <TextField fx:id="task3_year2Field" layoutX="292.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
                                     <TextField fx:id="task3_year1Field" layoutX="226.0" layoutY="132.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                                     <Label layoutX="274.0" layoutY="136.0" text="to" />
-                                    <Button fx:id="task3_reportBtn" layoutX="110.0" layoutY="175.0" mnemonicParsing="false" onAction="#doNameTrendQuery" text="REPORT" />
+                                    <Button fx:id="task3_reportBtn" layoutX="112.0" layoutY="212.0" mnemonicParsing="false" onAction="#doNameTrendQuery" text="REPORT" />
+                                    <Label layoutX="112.0" layoutY="172.0" text="Level of Popularity:   TOP" />
+                                    <TextField fx:id="task3_topNField" layoutX="259.0" layoutY="168.0" prefHeight="26.0" prefWidth="43.0" text="100" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -141,7 +144,45 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea layoutX="40.0" layoutY="39.0" prefHeight="252.0" prefWidth="581.0" text="Develop and implement an online service using empirical data to help make informed decisions on predicting scores for compatible pairs.  Sample Scenario of Application: (i) A person seeking advices on the chance of engaging in love affairs with someone of a different gender; (ii) A person seeking advices on the chance of engaging in love affairs with someone of the same gender.&#10;&#10;Input&#10;* iName, iGender, iYOB: Particulars of the person seeking advices&#10;* iNameMate, iGenderMate: Specify the name and gender of the person to be matched&#10;* iPreference: Specify the preference on having a younger or older soulmate&#10;&#10;Output&#10;* oScore: Provide a score of compatibility (0%: Not Compatible; 100%: Perfect Match) according to the NK-T6 Algorithm&#10;* plus, WOW factor on user experience and algorithm design!" wrapText="true" />
+                              <TextArea layoutX="40.0" layoutY="14.0" prefHeight="56.0" prefWidth="642.0" text="Develop and implement an online service using empirical data to help make informed decisions on predicting scores for compatible pairs.  Sample Scenario of Application: (i) A person seeking advices on the chance of engaging in love affairs with someone of a different gender; (ii) A person seeking advices on the chance of engaging in love affairs with someone of the same gender.&#10;&#10;Input&#10;* iName, iGender, iYOB: Particulars of the person seeking advices&#10;* iNameMate, iGenderMate: Specify the name and gender of the person to be matched&#10;* iPreference: Specify the preference on having a younger or older soulmate&#10;&#10;Output&#10;* oScore: Provide a score of compatibility (0%: Not Compatible; 100%: Perfect Match) according to the NK-T6 Algorithm&#10;* plus, WOW factor on user experience and algorithm design!" wrapText="true" />
+                              <Label layoutX="60.0" layoutY="117.0" text="Name" />
+                              <TextField fx:id="task6_nameField" layoutX="108.0" layoutY="113.0" prefHeight="26.0" prefWidth="88.0" text="David" />
+                              <Label layoutX="241.0" layoutY="116.0" text="Gender" />
+                              <RadioButton fx:id="task6_maleBtn" layoutX="306.0" layoutY="117.0" mnemonicParsing="false" selected="true" text="Male">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="T61" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="task6_femaleBtn" layoutX="366.0" layoutY="116.0" mnemonicParsing="false" text="Female" toggleGroup="$T61" />
+                              <Label layoutX="471.0" layoutY="107.0" prefHeight="35.0" prefWidth="82.0" text="Year of Birth (1880-2019)" wrapText="true" />
+                              <TextField fx:id="task6_yobField" layoutX="559.0" layoutY="112.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
+                              <Label layoutX="306.0" layoutY="81.0" text="Yours">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="292.0" layoutY="161.0" text="Partner's">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="60.0" layoutY="211.0" text="Name" />
+                              <TextField fx:id="task6_mateNameField" layoutX="108.0" layoutY="206.0" prefHeight="26.0" prefWidth="88.0" text="Desire" />
+                              <Label layoutX="241.0" layoutY="211.0" text="Gender" />
+                              <RadioButton fx:id="task6_mateMaleBtn" layoutX="306.0" layoutY="211.0" mnemonicParsing="false" selected="true" text="Male">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="T62" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="task6_mateFemaleBtn" layoutX="366.0" layoutY="211.0" mnemonicParsing="false" text="Female" toggleGroup="$T62" />
+                              <Label layoutX="451.0" layoutY="211.0" text="Preference" />
+                              <RadioButton fx:id="task6_youngerBtn" layoutX="524.0" layoutY="211.0" mnemonicParsing="false" selected="true" text="Younger">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="T63" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="task6_olderBtn" layoutX="602.0" layoutY="211.0" mnemonicParsing="false" text="Older" toggleGroup="$T63" />
+                              <Button fx:id="task6_predictBtn" layoutX="299.0" layoutY="265.0" mnemonicParsing="false" onAction="#doCompatabilityPrediction" text="PREDICT" />
                            </children>
                         </AnchorPane>
                     </content>

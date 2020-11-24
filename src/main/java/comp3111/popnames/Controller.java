@@ -71,6 +71,9 @@ public class Controller {
     
     @FXML
     private TextField task3_year2Field;
+
+    @FXML
+    private TextField task3_topNField;
     
     @FXML
     private Button task3_reportBtn;
@@ -83,6 +86,45 @@ public class Controller {
 
     @FXML
     private Tab tabApp3;
+    
+    @FXML
+    private TextField task6_nameField;
+
+    @FXML
+    private RadioButton task6_maleBtn;
+
+    @FXML
+    private ToggleGroup T61;
+
+    @FXML
+    private RadioButton task6_femaleBtn;
+
+    @FXML
+    private TextField task6_yobField;
+
+    @FXML
+    private TextField task6_mateNameField;
+
+    @FXML
+    private RadioButton task6_mateMaleBtn;
+
+    @FXML
+    private ToggleGroup T62;
+
+    @FXML
+    private RadioButton task6_mateFemaleBtn;
+
+    @FXML
+    private RadioButton task6_youngerBtn;
+
+    @FXML
+    private ToggleGroup T63;
+
+    @FXML
+    private RadioButton task6_olderBtn;
+
+    @FXML
+    private Button task6_predictBtn;
 
     @FXML
     private TextArea textAreaConsole;
@@ -179,27 +221,19 @@ public class Controller {
      */
     @FXML
     void doNameTrendQuery() {
-    	String gender = "M"; 
-    	if (task3_femaleBtn.isSelected()) {
-    		gender = "F";
-    	}
-    	int startYear, endYear;
-    	try {
-    		startYear = Integer.parseInt(task3_year1Field.getText());
-    		endYear = Integer.parseInt(task3_year2Field.getText());
-    		if (startYear < 1880 || startYear > 2019 || endYear < 1880 || endYear > 2019) {
-    			throw new NumberFormatException();
-    		}
-    	} catch (NumberFormatException e) {
-    		Alert alert = new Alert(AlertType.ERROR);
-    		alert.setHeaderText("Invalid Input");
-    		alert.setContentText("Year must be between 1880 and 2019!");
-    		alert.showAndWait();
-    		return;
-    	}
-    	NameTrendQuery query = new NameTrendQuery(gender, startYear, endYear);
+
     }
     
+    
+    /**
+     * Application 6
+     * To be triggered by the "PREDICT" button on the Application 3 Tab
+     */
+    @FXML
+    void doCompatabilityPrediction() {
 
+    }
+
+    
 }
 
