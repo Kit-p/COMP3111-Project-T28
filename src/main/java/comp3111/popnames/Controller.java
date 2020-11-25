@@ -4,16 +4,8 @@
 package comp3111.popnames;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-
-import java.awt.desktop.QuitEvent;
 
 public class Controller {
 
@@ -284,6 +276,7 @@ public class Controller {
         NameTrendQuery query = new NameTrendQuery(gender, startYear, endYear, N);
         String oReport = query.getSummary();
         textAreaConsole.setText(oReport);
+        popTable(query.getTableView(), "Reporting 3", null, oReport);
     }
 
 
@@ -312,6 +305,25 @@ public class Controller {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
+    /**
+     * Common helper function for popping table after query
+     * @param table     table representation of query data
+     * @param title     title of dialog
+     * @param header    header of dialog
+     * @param content   content of dialog
+     */
+    public static void popTable(TableView<?> table, String title, String header, String content) {
+        Alert dialog = new Alert(AlertType.INFORMATION);
+        dialog.setTitle(title);
+        dialog.setHeaderText(header);
+        dialog.setContentText(content);
+        dialog.getDialogPane().setExpandableContent(table);
+        dialog.getDialogPane().setExpanded(true);
+        dialog.showAndWait();
+    }
+
 
 }
 
