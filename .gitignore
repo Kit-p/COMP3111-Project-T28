@@ -1,3 +1,6 @@
+# Ignore IDEA project setting directory
+.idea
+
 # Ignore Gradle project-specific cache directory
 .gradle
 

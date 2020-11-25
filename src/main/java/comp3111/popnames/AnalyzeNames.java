@@ -1,5 +1,9 @@
 package comp3111.popnames;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.commons.csv.*;
 import edu.duke.*;
 
@@ -111,7 +115,7 @@ public class AnalyzeNames {
 	     
 	     return 0;
 	 }
-	 
+
 	 
      /**
       * Get the birth count of the gender in the year
@@ -129,5 +133,83 @@ public class AnalyzeNames {
 	     
 	     return totalGenderBirth;
 	 }
- 
+
+
+	/**
+	 * Get the names that maintain in top N between start year and end year
+	 * @param startYear  target start year
+	 * @param endYear    target end year
+	 * @param gender     target gender
+	 * @param N          top N
+	 * @return array of names in top N between start year and end year
+	 */
+	 public static String[] getTopNNamesInRangeYears(String gender, int startYear, int endYear, int N) {
+	 	ArrayList<String> names = new ArrayList<>();
+	 	int rank = 1;
+	 	for (CSVRecord rec : getFileParser(startYear)) {
+	 		if (rank > N)
+	 			break;
+	 		if (rec.get(1).equals(gender)) {
+	 			names.add(rec.get(0));
+	 			rank++;
+			}
+		}
+	 	for (int year = endYear; year > startYear; year--) {
+	 		for (int i = names.size() - 1; i >= 0; i--) {
+	 			rank = getRank(year, names.get(i), gender);
+	 			if (rank <= 0 || rank > N) {
+	 				names.remove(i);
+				}
+			}
+		}
+	 	return names.toArray(String[]::new);
+	 }
+
+
+	/**
+	 * Get lowest rank of name between start year and end year with corresponding years
+	 * If multiple years share the lowest rank, the latest year is returned
+	 * @param name       target name
+	 * @param gender     target gender
+	 * @param startYear  target start year
+	 * @param endYear    target end year
+	 * @return Array of [rank, year]
+	 */
+	public static Integer[] getLowestRankInRangeYears(String name, String gender, int startYear, int endYear) {
+		int minRank = getRank(endYear, name, gender);
+		int minRankYear = endYear;
+		for (int year = startYear; year < endYear; year++) {
+			int rank = getRank(year, name, gender);
+			if (rank >= minRank) {
+				minRank = rank;
+				minRankYear = year;
+			}
+		}
+		return new Integer[]{minRank, minRankYear};
+	}
+
+
+	 /**
+	  * Get highest rank of name between start year and end year with the corresponding year
+	  * If multiple years share the highest rank, the latest year is returned
+	  * @param name       target name
+	  * @param gender     target gender
+	  * @param startYear  target start year
+	  * @param endYear    target end year
+	  * @return Array of [rank, year]
+	  */
+	 public static Integer[] getHighestRankInRangeYears(String name, String gender, int startYear, int endYear) {
+	 	int maxRank = getRank(endYear, name, gender);
+	 	int maxRankYear = endYear;
+	 	for (int year = startYear; year < endYear; year++) {
+	 		int rank = getRank(year, name, gender);
+	 		if (rank <= maxRank) {
+	 			maxRank = rank;
+	 			maxRankYear = year;
+			}
+		}
+	 	return new Integer[]{maxRank, maxRankYear};
+	 }
+
+
 }
