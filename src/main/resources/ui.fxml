@@ -217,7 +217,7 @@
                                     <ToggleGroup fx:id="T63" />
                                  </toggleGroup></RadioButton>
                               <RadioButton fx:id="task6_olderBtn" layoutX="602.0" layoutY="211.0" mnemonicParsing="false" text="Older" toggleGroup="$T63" />
-                              <Button fx:id="task6_predictBtn" layoutX="299.0" layoutY="265.0" mnemonicParsing="false" onAction="#doCompatabilityPrediction" text="PREDICT" />
+                              <Button fx:id="task6_predictBtn" layoutX="299.0" layoutY="265.0" mnemonicParsing="false" onAction="#doCompatibilityPrediction" text="PREDICT" />
                            </children>
                         </AnchorPane>
                     </content>

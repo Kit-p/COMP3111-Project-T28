@@ -415,8 +415,33 @@ public class Controller {
      * To be triggered by the "PREDICT" button on the Application 3 Tab
      */
     @FXML
-    void doCompatabilityPrediction() {
-
+    void doCompatibilityPrediction() {
+        String gender = "M";
+        if (task6_femaleBtn.isSelected()) {
+            gender = "F";
+        }
+        String mateGender = "M";
+        if (task6_mateFemaleBtn.isSelected()) {
+            mateGender = "F";
+        }
+        int yob;
+        try {
+            yob = Integer.parseInt(task6_yobField.getText());
+            if (yob < 1880 || yob > 2019) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Year of birth must be between 1880 and 2019!");
+            return;
+        }
+        int preference = -1;
+        if (task6_olderBtn.isSelected()) {
+            preference = 1;
+        }
+        CompatibilityPrediction query = new CompatibilityPrediction(task6_nameField.getText(), gender, yob
+                , task6_mateNameField.getText(),mateGender , preference);
+        double score = query.getPrediction();
+        textAreaConsole.setText(String.format("The compatibility is %.2f%%!", score));
     }
 
 
