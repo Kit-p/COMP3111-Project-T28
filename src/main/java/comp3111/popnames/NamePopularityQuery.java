@@ -141,7 +141,65 @@ public class NamePopularityQuery {
 	
 	
 	public String getSummary() {
-		return "";
+		String genderlongVer = "";
+		if (this.gender.equals("M")){
+			genderlongVer = "male";
+		}else{
+			genderlongVer = "female";
+		}
+
+		if (topYearRank == 99999999 || topYears.size() == 0){
+			return String.format("The name %s is out of rank in every year from %d to %d. There is no specific popularity data on the name queried!"
+					, this.name, this.startYear, this.endYear);
+		}
+
+		//there is rank for the name in the period
+		//handle data in the endYear
+		String summary = "";
+		NamePopularityQueryDataRow endYearEntry = popularityTable.get(popularityTable.size()-1);
+		if (endYearEntry.rank == -1){
+			String endYearNotRanked =
+					String.format("In the year %d, the name %s is out of rank, there is no corresponding data on the number of birth with this name & percentage of total %s birth this name represents. \n"
+					, this.endYear, this.name, genderlongVer);
+			summary += endYearNotRanked;
+		}else{
+			String subsummaryA = String.format("In the year %d, the number of birth with name %s is %d, which represents %s percent of total %s births in %d. \n",
+					endYear, this.name, endYearEntry.count, endYearEntry.getPercentageString(), genderlongVer, endYear);
+			summary += subsummaryA;
+		}
+
+		//handle max years
+		if (topYears.size() == 1){
+			NamePopularityQueryDataRow maxYear = topYears.get(0);
+			String subsummaryB = String.format("The year when the name %s was most popular is %d. In that year, the number of births is %d, which represents %s percent of the total %s birth in %d."
+					, this.name, maxYear.year.intValue(), maxYear.count, maxYear.getPercentageString(), genderlongVer, maxYear.year.intValue());
+			summary += subsummaryB;
+		}else {
+			//find all year with highest rank
+			StringBuilder subsummaryB = new StringBuilder();
+			subsummaryB.append(String.format("The years when the name %s was most popular are ", this.name));
+			for (int j=0; j<topYears.size(); j++){
+				subsummaryB.append(String.valueOf(topYears.get(j).year.intValue()));
+				if (j < topYears.size()-2){
+					subsummaryB.append(", ");
+				}else if (j == topYears.size()-2){
+					subsummaryB.append(" and ");
+				}else{
+					subsummaryB.append(". \n");
+				}
+			}
+
+			for (int j=0; j<topYears.size(); j++){
+				NamePopularityQueryDataRow eachmaxYear = topYears.get(j);
+				String eachMaxYearSummary = String.format("In year %d, the number of births is %d, which represents %s percent of the total %s birth in %d. \n"
+				, eachmaxYear.year.intValue(), eachmaxYear.count, eachmaxYear.getPercentageString(), genderlongVer, eachmaxYear.year.intValue());
+				subsummaryB.append(eachMaxYearSummary);
+			}
+
+			summary += subsummaryB.toString();
+		}
+
+		return summary;
 	}
 
 
