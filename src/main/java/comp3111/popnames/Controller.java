@@ -306,6 +306,10 @@ public class Controller {
             return;
         }
 
+        NamePopularityQuery query = new NamePopularityQuery(name, gender, startYear, endYear);
+        String summary = query.getSummary();
+        textAreaConsole.setText(summary);
+        popTable(query.getTableView(), "Reporting 2", null, summary);
     }
 
 
