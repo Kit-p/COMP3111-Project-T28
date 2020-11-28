@@ -40,6 +40,24 @@ public class Controller {
     private Tab tabReport1;
 
     @FXML
+    private TextField inputTopN;
+
+    //input fields for task1
+    @FXML
+    private RadioButton inputMale;
+
+    @FXML
+    private RadioButton inputFemale;
+
+    @FXML
+    private TextField inputStart;
+
+    @FXML
+    private TextField inputEnd;
+
+    //end input fields for task1
+
+    @FXML
     private ToggleGroup T1;
 
     @FXML
@@ -262,7 +280,29 @@ public class Controller {
     		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i, "M"));
     	textAreaConsole.setText(oReport);
     }
-    
+
+    /** Task 1 when report button is clicked
+    get all values from input fields
+    then call the query functions
+    */
+    @FXML
+    void doReport(){
+            String oReport = "";
+            int topN = Integer.parseInt(inputTopN.getText());
+            String gender;
+            if(inputMale.isSelected()){
+                gender = "M";
+            }else{
+                gender = "F";
+            }
+            int startYear = Integer.parseInt(inputStart.getText());
+            int endYear = Integer.parseInt(inputEnd.getText());
+            TopNamesQuery query = new TopNamesQuery(topN, gender, startYear,endYear);
+            query.getTopNames();
+            //query.getSummary();
+            oReport = query.getSummary()[1];
+            textAreaConsole.setText(oReport);
+    }
 
     /**
      *  Reporting 2 (Task 2)
