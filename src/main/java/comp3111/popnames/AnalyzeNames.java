@@ -1,8 +1,6 @@
 package comp3111.popnames;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.apache.commons.csv.*;
 import edu.duke.*;
@@ -97,6 +95,36 @@ public class AnalyzeNames {
 	     else
 	     	return "information on the name at the specified rank is not available";
 	 }
+
+
+	/**
+	 * Get rank but same rank for same occurrence
+	 * @param year		target year
+	 * @param name		target name
+	 * @param gender	target gender
+	 * @return	rank if found, otherwise -1
+	 */
+	public static int getRankEnhanced(int year, String name, String gender) {
+		String currentRankOccurrence = "";
+		int oRank = -1;
+		int rank = 0;
+		for (CSVRecord rec : getFileParser(year)) {
+		// Increment rank if gender matches param
+			if (rec.get(1).equals(gender)) {
+				if (!currentRankOccurrence.equals(rec.get(2))) {
+					currentRankOccurrence = rec.get(2);
+					rank++;
+				}
+
+			// Return rank if name matches param
+				if (rec.get(0).equals(name)) {
+					oRank = rank;
+					break;
+				}
+			}
+		}
+		return oRank;
+	}
 	 
 	 
      /**
@@ -145,13 +173,17 @@ public class AnalyzeNames {
 	 */
 	 public static String[] getTopNNamesInRangeYears(String gender, int startYear, int endYear, int N) {
 	 	ArrayList<String> names = new ArrayList<>();
+	 	String currentRankOccurrence = "";
 	 	int rank = 1;
 	 	for (CSVRecord rec : getFileParser(startYear)) {
 	 		if (rank > N)
 	 			break;
 	 		if (rec.get(1).equals(gender)) {
 	 			names.add(rec.get(0));
-	 			rank++;
+	 			if (!currentRankOccurrence.equals(rec.get(2))) {
+	 				currentRankOccurrence = rec.get(2);
+	 				rank++;
+				}
 			}
 		}
 	 	for (int year = endYear; year > startYear; year--) {
@@ -176,10 +208,10 @@ public class AnalyzeNames {
 	 * @return Array of [rank, year]
 	 */
 	public static Integer[] getLowestRankInRangeYears(String name, String gender, int startYear, int endYear) {
-		int minRank = getRank(endYear, name, gender);
+		int minRank = getRankEnhanced(endYear, name, gender);
 		int minRankYear = endYear;
 		for (int year = startYear; year < endYear; year++) {
-			int rank = getRank(year, name, gender);
+			int rank = getRankEnhanced(year, name, gender);
 			if (rank >= minRank) {
 				minRank = rank;
 				minRankYear = year;
@@ -199,10 +231,10 @@ public class AnalyzeNames {
 	  * @return Array of [rank, year]
 	  */
 	 public static Integer[] getHighestRankInRangeYears(String name, String gender, int startYear, int endYear) {
-	 	int maxRank = getRank(endYear, name, gender);
+	 	int maxRank = getRankEnhanced(endYear, name, gender);
 	 	int maxRankYear = endYear;
 	 	for (int year = startYear; year < endYear; year++) {
-	 		int rank = getRank(year, name, gender);
+	 		int rank = getRankEnhanced(year, name, gender);
 	 		if (rank <= maxRank) {
 	 			maxRank = rank;
 	 			maxRankYear = year;
