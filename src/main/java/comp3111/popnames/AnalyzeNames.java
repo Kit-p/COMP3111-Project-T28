@@ -107,18 +107,19 @@ public class AnalyzeNames {
 	public static int getRankEnhanced(int year, String name, String gender) {
 		String currentRankOccurrence = "";
 		int oRank = -1;
-		int rank = 1;
+		int rank = 0;
 		for (CSVRecord rec : getFileParser(year)) {
 		// Increment rank if gender matches param
 			if (rec.get(1).equals(gender)) {
+				if (!currentRankOccurrence.equals(rec.get(2))) {
+					currentRankOccurrence = rec.get(2);
+					rank++;
+				}
+
 			// Return rank if name matches param
 				if (rec.get(0).equals(name)) {
 					oRank = rank;
 					break;
-				}
-				if (!currentRankOccurrence.equals(rec.get(2))) {
-					currentRankOccurrence = rec.get(2);
-					rank++;
 				}
 			}
 		}
