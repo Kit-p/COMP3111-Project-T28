@@ -243,10 +243,11 @@ public class Controller {
     		oReport += String.format("#%d: %s\n", i, AnalyzeNames.getName(iYear, i, "M"));
     	textAreaConsole.setText(oReport);
     }
-    
-    // Task 1 when report button is clicked
-    //get all values from input fields
-    //then call the query functions
+
+    /** Task 1 when report button is clicked
+    get all values from input fields
+    then call the query functions
+    */
     @FXML
     void doReport(){
             String oReport = "";
@@ -261,8 +262,9 @@ public class Controller {
             int endYear = Integer.parseInt(inputEnd.getText());
             TopNamesQuery query = new TopNamesQuery(topN, gender, startYear,endYear);
             query.getTopNames();
-            query.getSummary();
-            oReport = "";
+            //query.getSummary();
+            oReport = query.getSummary()[1];
+            textAreaConsole.setText(oReport);
     }
 
     /**

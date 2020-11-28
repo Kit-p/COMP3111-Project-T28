@@ -15,6 +15,12 @@ public class TopNamesQuery {
     private int startYear;
     private int endYear;
 
+    /** constructor for TopNamesQuery instance
+         @param number
+         @param endYear
+         @param gender
+         @param startYear
+     */
     TopNamesQuery(int number, String gender, int startYear, int endYear){
         this.NumberOfNames = number;
         this.gender = gender;
@@ -34,7 +40,7 @@ public class TopNamesQuery {
         return result;
     }
 
-    public Object[] getSummary(){
+    public String[] getSummary(){
         HashMap<String, Integer> count = new HashMap<>();
         HashMap<Integer, String[]> source = getTopNames();
         for(Integer years: source.keySet()){
@@ -57,7 +63,7 @@ public class TopNamesQuery {
                 result.add(name);
             }
         }
-        return result.toArray();
+        return (String[]) result.toArray();
     }
 
 }
