@@ -411,6 +411,11 @@ public class Controller {
             return;
         }
 
+        SoulmateNameRecommendation query = new SoulmateNameRecommendation(name, usergender, userYOB, mategender, mateAge);
+        String soulmateName = query.getSoulmateName();
+        String result = "The result of name prediction for your compatible pairs (i.e. Soulmate) is the following: \n";
+        result += soulmateName;
+        textAreaConsole.setText(result);
     }
 
 
