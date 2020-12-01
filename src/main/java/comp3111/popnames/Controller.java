@@ -288,20 +288,42 @@ public class Controller {
     @FXML
     void doReport(){
             String oReport = "";
-            int topN = Integer.parseInt(inputTopN.getText());
             String gender;
             if(inputMale.isSelected()){
                 gender = "M";
             }else{
                 gender = "F";
             }
-            int startYear = Integer.parseInt(inputStart.getText());
-            int endYear = Integer.parseInt(inputEnd.getText());
+            int topN, startYear, endYear;
+            try{
+                topN = Integer.parseInt(inputTopN.getText());
+                startYear = Integer.parseInt(inputStart.getText());
+                endYear = Integer.parseInt(inputEnd.getText());
+
+            }catch(NumberFormatException e){
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "Format of the input is invalid! Please enter a valid period");
+                return;
+            }
+            if (startYear<1880 || startYear>2019 || endYear<1880 || endYear>2019) {
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "The inputted Period is invalid! Please enter a period within the specified range");
+                return;
+            }
+
+            if (topN < 1) {
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "The range of the rank of names is invalid! Please enter a range larger or equal to 1");
+                return;
+             }
+
+            if (endYear < startYear) {
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "Period to be Queried is invalid! End of period cannot be earlier than Start of period");
+                return;
+            }
             TopNamesQuery query = new TopNamesQuery(topN, gender, startYear,endYear);
             query.getTopNames();
             //query.getSummary();
-            oReport = query.getSummary()[1];
+            oReport = query.getSummary();
             textAreaConsole.setText(oReport);
+            popTable(query.getTableView(), "Top N names", null, oReport);
     }
 
     /**

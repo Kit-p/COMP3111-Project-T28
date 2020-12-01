@@ -55,8 +55,8 @@
                               </RadioButton>
                               <RadioButton fx:id="inputFemale" layoutX="360.0" layoutY="100.0" mnemonicParsing="false" text="Female" toggleGroup="$T1" />
                               <Label layoutX="96.0" layoutY="132.0" text="Period (1880 - 2019): " />
-                              <TextField fx:id="inputStart" layoutX="276.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
-                              <TextField fx:id="inputEnd" layoutX="210.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
+                              <TextField fx:id="inputEnd" layoutX="276.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
+                              <TextField fx:id="inputStart" layoutX="210.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                               <Label layoutX="258.0" layoutY="130.0" text="to" />
                               <Button layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#doReport" text="REPORT (yet to be implemented)" />
                               <Label layoutX="96.0" layoutY="100.0" text="Top N (N&gt;=1): " />
