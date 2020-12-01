@@ -281,4 +281,25 @@ public class AnalyzeNames {
 	 }
 
 
+	/**
+	 * Get a name with the lowest rank in the target year
+	 * If there is multiple names with the lowest rank, the first name with the lowest rank in the dataset is returned
+	 * @param year		target year
+	 * @param gender	target gender
+	 * @return	a name with the lowest rank in the target year
+	 */
+	 public static String getLowestName(int year, String gender){
+		 String oName = "";
+		 String currentRankOccurrence = "";
+		 // For every name entry in the CSV file
+		 for (CSVRecord rec : getFileParser(year)) {
+			 if (rec.get(1).equals(gender)) {
+				 if (!currentRankOccurrence.equals(rec.get(2))) {
+					 oName = rec.get(0);
+				 }
+			 }
+		 }
+
+		 return oName;
+	 }
 }

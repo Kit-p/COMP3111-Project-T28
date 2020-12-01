@@ -18,12 +18,7 @@ public class SoulmateNameRecommendation {
 		}
 		
 		public String getSoulmateName() {
-			//boolean noReasonableRecommand = false;
 			int oRank = AnalyzeNames.getRankEnhanced(userYOB, userName, userGender);
-			if (oRank == -1) {
-				//noReasonableRecommand = true;
-				oRank = 1;
-			}
 
 			int oYOB;
 			if (soulmateAgePreference.equals("younger")) {
@@ -32,10 +27,13 @@ public class SoulmateNameRecommendation {
 				oYOB = userYOB + 1;
 			}
 
+			if (oRank == -1) {
+				return AnalyzeNames.getLowestName(oYOB, this.soulmateGender);
+			}
+
 			String oName = AnalyzeNames.getNameEnhanced(oYOB, oRank, soulmateGender);
 			if (oName.contentEquals("information on the name at the specified rank is not available")) {
-				//noReasonableRecommand = true;
-				oName = AnalyzeNames.getNameEnhanced(oYOB, 1, soulmateGender);
+				return AnalyzeNames.getLowestName(oYOB, this.soulmateGender);
 			}
 
 			return oName;
