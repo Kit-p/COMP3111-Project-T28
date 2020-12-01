@@ -334,37 +334,32 @@ public class Controller {
      */
     @FXML
     void doNamePopularityQuery() {
+        textAreaConsole.setText("");
         String name = task2NameField.getText();
         if (name.isBlank()) {
-            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name is blank! Please enter a valid name");
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name is blank! Please enter a valid name!");
             return;
         }
 
-        String gender = "";
-        if (task2Male.isSelected()) {
-            gender = "M";
-        }else if (task2Female.isSelected()) {
+        String gender = "M";
+        if (task2Female.isSelected()) {
             gender = "F";
         }
 
         int  startYear;
         int endYear;
-
         try {
             startYear = Integer.parseInt(task2StartYear.getText());
             endYear = Integer.parseInt(task2EndYear.getText());
+            if (startYear<1880 || startYear>2019 || endYear<1880 || endYear>2019) {
+                throw new NumberFormatException();
+            }
         } catch (NumberFormatException e) {
-            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Format of the inputted Period is invalid! Please enter a valid period");
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "The queried period is invalid! Year inputs must be between 1880 and 2019!");
             return;
         }
-
-        if (startYear<1880 || startYear>2019 || endYear<1880 || endYear>2019) {
-            popAlert(AlertType.ERROR, "Error", "Invalid Input", "The inputted Period is invalid! Please enter a period within the specified range");
-            return;
-        }
-
-        if (endYear < startYear) {
-            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Period to be Queried is invalid! End of period cannot be earlier than Start of period");
+        if (startYear > endYear) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Period to be queried is invalid! Start year must not be greater than end year!");
             return;
         }
 
@@ -422,57 +417,54 @@ public class Controller {
      */
     @FXML
     void doSoulmateRecommendation() {
-        String name = task5NameField.getText();
-        if (name.isBlank()) {
-            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name is blank! Please enter a valid name");
+        textAreaConsole.setText("");
+        String username = task5NameField.getText();
+        if (username.isBlank()) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name is blank! Please enter a valid name!");
             return;
         }
 
-        String usergender = "";
-        if (task5_maleBtn.isSelected()) {
-            usergender = "M";
-        }else if (task5_femaleBtn.isSelected()) {
+        String usergender = "M";
+        if (task5_femaleBtn.isSelected()) {
             usergender = "F";
         }
 
         int userYOB;
         try {
             userYOB = Integer.parseInt(task5_YOB.getText());
+            if (userYOB < 1880 || userYOB > 2019){
+                throw new NumberFormatException();
+            }
         } catch (NumberFormatException e) {
-            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Format of Year of Birth is invalid! Please enter a valid year");
-            return;
-        }
-
-        if (userYOB < 1880 || userYOB > 2019){
             popAlert(AlertType.ERROR, "Error", "Invalid Input",
-                    "Your Year of Birth is out of the specified range!\n Sorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
+                    "Year of Birth must be between 1880 and 2019!\n Sorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
             return;
         }
 
-        String mategender = "";
-        if (task5_mateMaleBtn.isSelected()) {
-            mategender = "M";
-        }else if (task5_mateFemaleBtn.isSelected()) {
+        String mategender = "M";
+        if (task5_mateFemaleBtn.isSelected()) {
             mategender = "F";
         }
-
-        String mateAge = "";
-        if (task5_youngerBtn.isSelected()) {
-            mateAge = "younger";
-        }else if (task5_olderBtn.isSelected()) {
+        String mateAge = "younger";
+        if (task5_olderBtn.isSelected()) {
             mateAge = "older";
         }
 
         if (userYOB == 1880 && mateAge.equals("younger")){
             popAlert(AlertType.ERROR, "Error", "Unable to Make Prediction",
-                    "There is no data on name of people younger than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
+                    "There is no data on names of people younger than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
             return;
         }else if (userYOB == 2019 && mateAge.equals("older")){
             popAlert(AlertType.ERROR, "Error", "Unable to Make Prediction",
-                    "There is no data on name of people older than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
+                    "There is no data on names of people older than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)");
             return;
         }
 
+        SoulmateNameRecommendation query = new SoulmateNameRecommendation(username, usergender, userYOB, mategender, mateAge);
+        String soulmateName = query.getSoulmateName();
+        String result = "The result of name prediction for your compatible pairs (i.e. Soulmate) is the following: \n";
+        result += soulmateName;
+        textAreaConsole.setText(result);
     }
 
 

@@ -40,7 +40,7 @@ public class NamePopularityQuery {
 			this.percentage = percentage;
 			if (rank == -1)
 			{
-				this.rankString = new SimpleStringProperty("Out of Rank");
+				this.rankString = new SimpleStringProperty("Not Ranked");
 				this.countString = new SimpleStringProperty("-");
 				this.percentageString = new SimpleStringProperty("-");
 			}else{
@@ -149,7 +149,7 @@ public class NamePopularityQuery {
 		}
 
 		if (topYearRank == 99999999 || topYears.size() == 0){
-			return String.format("The name %s is out of rank in every year from %d to %d. There is no specific popularity data on the name queried!"
+			return String.format("The name %s is not ranked in every year from %d to %d. There is no popularity data available on the name queried!"
 					, this.name, this.startYear, this.endYear);
 		}
 
@@ -159,11 +159,11 @@ public class NamePopularityQuery {
 		NamePopularityQueryDataRow endYearEntry = popularityTable.get(popularityTable.size()-1);
 		if (endYearEntry.rank == -1){
 			String endYearNotRanked =
-					String.format("In the year %d, the name %s is out of rank, there is no corresponding data on the number of birth with this name & percentage of total %s birth this name represents. \n"
+					String.format("In the year %d, the name %s is not ranked, there is no corresponding data on the number of birth with this name & percentage of total %s birth this name represents. "
 					, this.endYear, this.name, genderlongVer);
 			summary += endYearNotRanked;
 		}else{
-			String subsummaryA = String.format("In the year %d, the number of birth with name %s is %d, which represents %s percent of total %s births in %d. \n",
+			String subsummaryA = String.format("In the year %d, the number of birth with name %s is %d, which represents %s percent of total %s births in %d. ",
 					endYear, this.name, endYearEntry.count, endYearEntry.getPercentageString(), genderlongVer, endYear);
 			summary += subsummaryA;
 		}

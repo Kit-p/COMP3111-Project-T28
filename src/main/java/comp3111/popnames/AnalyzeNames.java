@@ -125,9 +125,46 @@ public class AnalyzeNames {
 		}
 		return oRank;
 	}
-	 
-	 
-     /**
+
+	/**
+	 * Get name of the input gender with the input rank in the input year, return the first name found if names have same rank
+	 *
+	 * @param year		target year
+	 * @param rank		target rank
+	 * @param gender	target gender
+	 * @return	name if found, otherwise "information on the name at the specified rank is not available"
+	 */
+	public static String getNameEnhanced(int year, int rank, String gender) {
+		boolean found = false;
+		String oName = "";
+		int currentRank = 0;
+		String currentRankOccurrence = "";
+
+		// For every name entry in the CSV file
+		for (CSVRecord rec : getFileParser(year)) {
+			// Get its rank if gender matches param
+			if (rec.get(1).equals(gender)) {
+				// Get the name whose rank matches param
+				if (!currentRankOccurrence.equals(rec.get(2))) {
+					currentRankOccurrence = rec.get(2);
+					currentRank++;
+				}
+
+				if (currentRank == rank) {
+					found = true;
+					oName = rec.get(0);
+					break;
+				}
+			}
+		}
+		if (found)
+			return oName;
+		else
+			return "information on the name at the specified rank is not available";
+	}
+
+
+	/**
       * Get the occurrence of the name of the gender in the year
       * @param year    target year
       * @param name    target name
@@ -244,4 +281,26 @@ public class AnalyzeNames {
 	 }
 
 
+	/**
+	 * Get a name with the lowest rank in the target year
+	 * If there is multiple names with the lowest rank, the first name with the lowest rank in the dataset is returned
+	 * @param year		target year
+	 * @param gender	target gender
+	 * @return	a name with the lowest rank in the target year
+	 */
+	 public static String getLowestName(int year, String gender){
+		 String oName = "";
+		 String currentRankOccurrence = "";
+		 // For every name entry in the CSV file
+		 for (CSVRecord rec : getFileParser(year)) {
+			 if (rec.get(1).equals(gender)) {
+				 if (!currentRankOccurrence.equals(rec.get(2))) {
+					 currentRankOccurrence = rec.get(2);
+					 oName = rec.get(0);
+				 }
+			 }
+		 }
+
+		 return oName;
+	 }
 }
