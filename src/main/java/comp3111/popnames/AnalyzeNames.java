@@ -295,6 +295,7 @@ public class AnalyzeNames {
 		 for (CSVRecord rec : getFileParser(year)) {
 			 if (rec.get(1).equals(gender)) {
 				 if (!currentRankOccurrence.equals(rec.get(2))) {
+					 currentRankOccurrence = rec.get(2);
 					 oName = rec.get(0);
 				 }
 			 }
