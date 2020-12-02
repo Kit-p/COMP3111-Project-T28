@@ -403,6 +403,7 @@ public class Controller {
      */
     @FXML
     void doNameTrendQuery() {
+        textAreaConsole.setText("");
         String gender = "M";
         if (task3_femaleBtn.isSelected()) {
             gender = "F";
@@ -544,6 +545,7 @@ public class Controller {
      */
     @FXML
     void doCompatibilityPrediction() {
+        textAreaConsole.setText("");
         String gender = "M";
         if (task6_femaleBtn.isSelected()) {
             gender = "F";
@@ -567,7 +569,7 @@ public class Controller {
             preference = 1;
         }
         CompatibilityPrediction query = new CompatibilityPrediction(task6_nameField.getText(), gender, yob
-                , task6_mateNameField.getText(),mateGender , preference);
+                , task6_mateNameField.getText(), mateGender , preference);
         double score = query.getPrediction();
         textAreaConsole.setText(String.format("The compatibility is %.2f%%!", score));
     }
