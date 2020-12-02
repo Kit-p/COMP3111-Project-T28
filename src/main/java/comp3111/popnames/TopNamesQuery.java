@@ -23,7 +23,6 @@ public class TopNamesQuery {
 
         public IntegerProperty getYear(){ return this.year; }
         public StringProperty[] getNames(){return names;}
-
         /** constructor for TopNamesQueryRankRow instance
          @param year
          @param names
@@ -74,6 +73,9 @@ public class TopNamesQuery {
      * Get names with max occurrence
      */
     public String getSummary(){
+        if (queryData == null) {
+            getTopNames();
+        }
         HashMap<String, Integer> count = new HashMap<>();
         for(int i = 0; i < queryData.size(); i++){
             String currentName = queryData.get(i).getNames()[0].get();
