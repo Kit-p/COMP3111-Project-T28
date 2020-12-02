@@ -36,7 +36,7 @@ public class BabyNameRecommendation {
         if (girlName == "information on the name at the specified rank is not available") {
                 girlName = AnalyzeNames.getLowestName(vintageYear, "F");
             }
-            String result = String.format("Recommendation for a boy's name: %s \nRecommendation for a girl's name: %s", boyName, girlName);
+        String result = String.format("Recommendation for a boy's name: %s \nRecommendation for a girl's name: %s", boyName, girlName);
         return result;
     }
 
