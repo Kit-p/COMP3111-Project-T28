@@ -63,5 +63,116 @@ public class JavaFXTest extends ApplicationTest {
 		String s = t.getText();
 		assertTrue(s.equals("David"));
 	}
-		
+
+
+	@Test
+	public void task2blankname() {
+		clickOn("#tabReport2");
+		TextField task2NameField = (TextField) s.lookup("#task2NameField");
+		task2NameField.setText("");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task2TextstartYear() {
+		clickOn("#tabReport2");
+		TextField startYear = (TextField) s.lookup("#task2StartYear");
+		startYear.setText("abcd");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task2SmallInvalidstartYear() {
+		clickOn("#tabReport2");
+		TextField startYear = (TextField) s.lookup("#task2StartYear");
+		startYear.setText("1000");
+		TextField endYear = (TextField) s.lookup("#task2EndYear");
+		endYear.setText("2000");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task2LargeInvalidstartYear() {
+		clickOn("#tabReport2");
+		TextField startYear = (TextField) s.lookup("#task2StartYear");
+		startYear.setText("3000");
+		TextField endYear = (TextField) s.lookup("#task2EndYear");
+		endYear.setText("3500");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task2TextendYear() {
+		clickOn("#tabReport2");
+		TextField endYear = (TextField) s.lookup("#task2EndYear");
+		endYear.setText("abcd");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task2SmallInvalidendYear() {
+		clickOn("#tabReport2");
+		TextField startYear = (TextField) s.lookup("#task2StartYear");
+		startYear.setText("1999");
+		TextField endYear = (TextField) s.lookup("#task2EndYear");
+		endYear.setText("1000");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task2LargeInvalidendYear() {
+		clickOn("#tabReport2");
+		TextField startYear = (TextField) s.lookup("#task2StartYear");
+		startYear.setText("1999");
+		TextField endYear = (TextField) s.lookup("#task2EndYear");
+		endYear.setText("3000");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+	@Test
+	public void task2startLargerEnd() {
+		clickOn("#tabReport2");
+		TextField startYear = (TextField) s.lookup("#task2StartYear");
+		startYear.setText("2000");
+		TextField endYear = (TextField) s.lookup("#task2EndYear");
+		endYear.setText("1999");
+		clickOn("#NamePopularityQueryButton");
+		assertTrue(t.getText().isEmpty());
+	}
+
+	@Test
+	public void task2clickFemale() {
+		clickOn("#tabReport2");
+		clickOn("#task2Female");
+		clickOn("#NamePopularityQueryButton");
+		assertFalse(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task2normal() {
+		clickOn("#tabReport2");
+		TextField task2NameField = (TextField) s.lookup("#task2NameField");
+		task2NameField.setText("Oscar");
+		TextField startYear = (TextField) s.lookup("#task2StartYear");
+		startYear.setText("1990");
+		TextField endYear = (TextField) s.lookup("#task2EndYear");
+		endYear.setText("2000");
+		clickOn("#task2Male");
+		clickOn("#NamePopularityQueryButton");
+		assertFalse(t.getText().isEmpty());
+	}
 }
