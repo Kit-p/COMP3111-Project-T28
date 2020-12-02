@@ -303,4 +303,27 @@ public class AnalyzeNames {
 
 		 return oName;
 	 }
+
+
+	/**
+	 * Get the lowest rank of the gender in the year
+	 * @param gender  target gender
+	 * @param year    target year
+	 * @return lowest rank of the gender in the year
+	 */
+	public static int getGenderLowestRankOfYear(String gender, int year) {
+	 	int rank = 0;
+		String currentRankOccurrence = "";
+	 	for (CSVRecord rec : getFileParser(year)) {
+	 		if (rec.get(1).equals(gender)) {
+				if (!currentRankOccurrence.equals(rec.get(2))) {
+					currentRankOccurrence = rec.get(2);
+					rank++;
+				}
+			}
+		}
+	 	return rank;
+	 }
+
+
 }
