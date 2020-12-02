@@ -50,40 +50,16 @@ public class NamePopularityQuery {
 			}
 		}
 
-		public int getYear() {
-			return year.get();
-		}
-
 		public IntegerProperty yearProperty() {
 			return year;
-		}
-
-		public int getRank() {
-			return rank;
-		}
-
-		public String getRankString() {
-			return rankString.get();
 		}
 
 		public StringProperty rankStringProperty() {
 			return rankString;
 		}
 
-		public int getCount() {
-			return count;
-		}
-
-		public String getCountString() {
-			return countString.get();
-		}
-
 		public StringProperty countStringProperty() {
 			return countString;
-		}
-
-		public float getPercentage() {
-			return percentage;
 		}
 
 		public String getPercentageString() {
