@@ -39,10 +39,13 @@ public class Controller {
     @FXML
     private Tab tabReport1;
 
+    /**
+     *     input fields for task1
+     */
+
     @FXML
     private TextField inputTopN;
 
-    //input fields for task1
     @FXML
     private RadioButton inputMale;
 
@@ -55,7 +58,6 @@ public class Controller {
     @FXML
     private TextField inputEnd;
 
-    //end input fields for task1
 
     /**
      * input fields for Application 1
@@ -457,6 +459,9 @@ public class Controller {
         try{
             dadYOB = Integer.parseInt(inputDadYOB.getText());
             mumYOB = Integer.parseInt(inputMumYOB.getText());
+            if(dadYOB < 1880 || dadYOB > 2019 || mumYOB < 1880 || mumYOB > 2019){
+                throw new NumberFormatException();
+            }
         }catch(NumberFormatException e){
             popAlert(AlertType.ERROR, "Error", "Invalid Input", "Invalid date for YOB!");
             return;

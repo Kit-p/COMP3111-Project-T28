@@ -50,6 +50,7 @@ public class TopNamesQuery {
         this.startYear = startYear;
         this.endYear = endYear;
     }
+
     /**
      * get TopNames, using the N given by the user, iterate through all the years to get the topN names
      */
@@ -57,9 +58,7 @@ public class TopNamesQuery {
         queryData = new ArrayList<>();
         //iterate through every year
         for(int currentYear = this.startYear; currentYear <= this.endYear; currentYear++ ){
-            //create new string array of size N to store names, iterate through N ranks and assign names to array
             String names[] = new String[numberOfNames];
-            //System.out.println(currentYear);
             for(int j = 1; j <= numberOfNames; j++){
                 names[j-1] = AnalyzeNames.getName(currentYear, j, this.gender);
             }
@@ -69,12 +68,12 @@ public class TopNamesQuery {
         return queryData;
     }
 
+    /**
+     * Create hashmap and store Name and occurrence of the name in rank 1
+     * Iterate thorough hash map and find max occurrence
+     * Get names with max occurrence
+     */
     public String getSummary(){
-        /**
-         * Create hashmap and store Name and occurrence of the name in rank 1
-         * Iterate thorough hash map and find max occurrence
-         * Get names with max occurrence
-         */
         HashMap<String, Integer> count = new HashMap<>();
         for(int i = 0; i < queryData.size(); i++){
             String currentName = queryData.get(i).getNames()[0].get();
@@ -109,15 +108,16 @@ public class TopNamesQuery {
         return summary;
     }
 
+    /**
+     * Create new table view, create column for year
+     * For each rank, create a new column
+     */
     public TableView<TopNamesQuery.TopNamesQueryRankRow> getTableView() {
         //check if query is done
         if (queryData == null) {
             getTopNames();
         }
-        /**
-         * Create new table view, create column for year
-         * For each rank, create a new column
-         */
+
         TableView<TopNamesQuery.TopNamesQueryRankRow> table = new TableView<>();
         table.setItems(FXCollections.observableArrayList(queryData));
         table.setEditable(false);
@@ -138,7 +138,6 @@ public class TopNamesQuery {
             NameCols[i] = tempNameCol;
             table.getColumns().add(NameCols[i]);
         }
-
         return table;
     }
 

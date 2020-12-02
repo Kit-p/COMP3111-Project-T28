@@ -58,7 +58,7 @@
                               <TextField fx:id="inputEnd" layoutX="276.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1945" />
                               <TextField fx:id="inputStart" layoutX="210.0" layoutY="126.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                               <Label layoutX="258.0" layoutY="130.0" text="to" />
-                              <Button layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#doReport" text="REPORT (yet to be implemented)" />
+                              <Button fx:id="task1ReportBtn" layoutX="96.0" layoutY="169.0" mnemonicParsing="false" onAction="#doReport" text="REPORT" />
                               <Label layoutX="96.0" layoutY="100.0" text="Top N (N&gt;=1): " />
                            </children>
                         </AnchorPane>
@@ -133,7 +133,7 @@
                               <TextField fx:id="inputMumYOB" layoutX="484.0" layoutY="198.0" prefHeight="18.0" prefWidth="96.0" text="1990" />
                               <Label layoutX="211.0" layoutY="247.0" prefHeight="18.0" prefWidth="103.0" text="Vintage Year" />
                               <TextField fx:id="inputVintageYear"  layoutX="311.0" layoutY="243.0" prefHeight="18.0" prefWidth="96.0" text="2019" />
-                              <Button layoutX="308.0" layoutY="281.0" mnemonicParsing="false" text="Start Query" onAction="#doBabyNameRecommendation"/>
+                              <Button fx:id="application1Run" layoutX="308.0" layoutY="281.0" mnemonicParsing="false" text="Start Query" onAction="#doBabyNameRecommendation"/>
                            </children>
                         </AnchorPane>
                     </content>
