@@ -311,6 +311,7 @@ public class Controller {
     */
     @FXML
     void doReport(){
+            textAreaConsole.setText("");
             String oReport = "";
             String gender;
             if(inputMale.isSelected()){
