@@ -79,6 +79,7 @@ public class NamePopularityQuery {
 
 		/**
 		 * Construct an NamePopularityQueryDataRow object storing popularity data of a name in a year
+		 *
 		 * @param year	year of the data retrieved
 		 * @param rank	rank of the name
 		 * @param count	occurrence of the name
@@ -103,6 +104,7 @@ public class NamePopularityQuery {
 
 		/**
 		 * Get the year of the data corresponds to
+		 *
 		 * @return year of the data corresponds to
 		 */
 		public IntegerProperty yearProperty() {
@@ -111,6 +113,7 @@ public class NamePopularityQuery {
 
 		/**
 		 * Get the string representation of rank of the name
+		 *
 		 * @return	string representation of rank of the name
 		 */
 		public StringProperty rankStringProperty() {
@@ -119,6 +122,7 @@ public class NamePopularityQuery {
 
 		/**
 		 * Get the string representation of occurrence of the name
+		 *
 		 * @return	string representation of occurrence of the name
 		 */
 		public StringProperty countStringProperty() {
@@ -127,6 +131,7 @@ public class NamePopularityQuery {
 
 		/**
 		 * Get the string of percentage of gender birth with the name
+		 *
 		 * @return	string of percentage of gender birth with the name
 		 */
 		public String getPercentageString() {
@@ -135,6 +140,7 @@ public class NamePopularityQuery {
 
 		/**
 		 * Get the StringProperty of percentage of gender birth with the name
+		 *
 		 * @return	StringProperty of percentage of gender birth with the name
 		 */
 		public StringProperty percentageStringProperty() {
@@ -145,6 +151,7 @@ public class NamePopularityQuery {
 
 	/**
 	 * Construct a NamePopularityQuery object for processing the popularity data of the queried name
+	 *
 	 * @param inputName	name to be queried
 	 * @param inputGender	gender of name to be queried
 	 * @param inputStartYear	start of the period to be queried
@@ -162,6 +169,7 @@ public class NamePopularityQuery {
 
 	/**
 	 * Get the popularity data of the queried name of each year in the period, and store the data in the current object.
+	 *
 	 * Populate the array storing popularity data of each year in the period.
 	 * Process the highest rank the name achieved in the period,
 	 * and populate the array storing the year the name achieved that rank
@@ -202,6 +210,7 @@ public class NamePopularityQuery {
 
 	/**
 	 * Get the summary text of the queried result of the popularity of a name
+	 *
 	 * @return	the summary text
 	 */
 	public String getSummary() {
@@ -269,6 +278,7 @@ public class NamePopularityQuery {
 
 	/**
 	 * Get the table representation of the queried result of the popularity of a name
+	 *
 	 * @return the table view of the queried result
 	 */
 	public TableView<NamePopularityQuery.NamePopularityQueryDataRow> getTableView(){

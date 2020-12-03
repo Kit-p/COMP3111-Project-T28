@@ -31,6 +31,7 @@ public class SoulmateNameRecommendation {
 
 	/**
 	 * Construct a SoulmateNameRecommendation object for soulmate name prediction
+	 *
 	 * @param inputname	the user name
 	 * @param inputuserGender	the user gender
 	 * @param inputuserYOB	the user year of birth
@@ -102,6 +103,7 @@ public class SoulmateNameRecommendation {
 	 * <br>
 	 * Therefore, modified algorithm gives justifiable and coherent prediction of soulmate name in all cases.
 	 * </p>
+	 *
 	 * @return the predicted name for the soulmate
 	 */
 	public String getSoulmateName() {

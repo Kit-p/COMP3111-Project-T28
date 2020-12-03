@@ -355,6 +355,7 @@ public class Controller {
 
     /**
      *  Reporting 2 (Task 2) Report the popularity of a particular name over a given period.
+     *
      *  <p>
      *  To be triggered by the "Report" button on the Reporting 2 Tab.
      *  Perform input validation on user inputs on Reporting 2 tab,
@@ -496,6 +497,7 @@ public class Controller {
 
     /**
      * Application 2 (Task 5) Predict name of a compatible pairs (i.e. soulmate name).
+     *
      * <p>
      * To be triggered by the "Get Prediction" button on the Application 2 Tab.
      * Perform input validation on user inputs on Application 1 tab,

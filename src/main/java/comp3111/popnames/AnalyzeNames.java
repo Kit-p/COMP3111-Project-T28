@@ -12,6 +12,7 @@ public class AnalyzeNames {
 
 	/**
 	 * Get the data set of the target year.
+	 *
 	 * @param year	target year
 	 * @return records on names in the target year
 	 */
@@ -23,6 +24,7 @@ public class AnalyzeNames {
 
 	/**
 	 * Get the summary of data on names and birth in a year.
+	 *
 	 * @param year	target year
 	 * @return	a summary of data on names and birth in a year
 	 */
@@ -65,6 +67,7 @@ public class AnalyzeNames {
 	/**
 	 * Get rank of a name of the target gender and year,
 	 * names with same occurrence have different rank according to alphabetical order.
+	 *
 	 * @param year target year
 	 * @param name	target name
 	 * @param gender	target gender
@@ -96,6 +99,7 @@ public class AnalyzeNames {
 	/**
 	 * Get the name of the target gender and rank in the target year,
 	 * name with same occurrence have different rank.
+	 *
 	 * @param year	target year
 	 * @param rank	target rank
 	 * @param gender	target gender
