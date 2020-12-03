@@ -10,7 +10,7 @@ public class NamePopularityQueryTest {
     public void task2Normaltest1() {
         NamePopularityQuery query = new NamePopularityQuery("David", "M", 1941, 2000);
         String summary = query.getSummary();
-        assertFalse(summary.isEmpty());
+        assertFalse(summary.isBlank());
     }
 
 
@@ -18,7 +18,7 @@ public class NamePopularityQueryTest {
     public void task2Normaltest2() {
         NamePopularityQuery query = new NamePopularityQuery("Angel", "F", 1940, 2000);
         String summary = query.getSummary();
-        assertFalse(summary.isEmpty());
+        assertFalse(summary.isBlank());
     }
 
 
@@ -26,7 +26,7 @@ public class NamePopularityQueryTest {
     public void task2OneTopYear() {
         NamePopularityQuery query = new NamePopularityQuery("David", "M", 1949, 1950);
         String summary = query.getSummary();
-        assertFalse(summary.isEmpty());
+        assertFalse(summary.isBlank());
     }
 
 
@@ -34,27 +34,27 @@ public class NamePopularityQueryTest {
     public void task2MultipleTopYear() {
         NamePopularityQuery query = new NamePopularityQuery("David", "M", 1941, 1945);
         String summary = query.getSummary();
-        assertFalse(summary.isEmpty());
+        assertFalse(summary.isBlank());
     }
 
     @Test
     public void task2endYearNotRanked() {
         NamePopularityQuery query = new NamePopularityQuery("Zeferino", "M", 1949, 1950);
         String summary = query.getSummary();
-        assertFalse(summary.isEmpty());
+        assertFalse(summary.isBlank());
     }
 
     @Test
     public void task2allnotRanked() {
         NamePopularityQuery query = new NamePopularityQuery("adsgfafsdf", "M", 1949, 1950);
         String summary = query.getSummary();
-        assertFalse(summary.isEmpty());
+        assertFalse(summary.isBlank());
     }
 
     @Test
     public void task2getTableView() {
         NamePopularityQuery query = new NamePopularityQuery("Angel", "F", 1940, 2000);
         TableView<NamePopularityQuery.NamePopularityQueryDataRow> table = query.getTableView();
-        assertNotNull(table);
+        assertTrue(table != null && table.getItems() != null && table.getItems().size() > 0);
     }
 }
