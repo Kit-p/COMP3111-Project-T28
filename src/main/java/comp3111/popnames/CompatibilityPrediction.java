@@ -25,8 +25,18 @@ public class CompatibilityPrediction {
      * @return the compatibility scaled by 100 (for percentage)
      */
     public double getPrediction() {
-        double oRank = AnalyzeNames.getRankEnhanced(yob, name, gender);
-        double oRankMate = AnalyzeNames.getRankEnhanced(yob + preference, mateName, mateGender);
-        return (Math.abs((oRank - oRankMate) / oRank) - 1) * 100;
+        double rank = AnalyzeNames.getRankEnhanced(yob, name, gender);
+        double mateRank = AnalyzeNames.getRankEnhanced(yob + preference, mateName, mateGender);
+        double lowestRank = AnalyzeNames.getGenderLowestRankOfYear(gender, yob);
+        double mateLowestRank = AnalyzeNames.getGenderLowestRankOfYear(mateGender, yob + preference);
+        if (rank < 1) {
+            rank = lowestRank;
+        }
+        if (mateRank < 1) {
+            mateRank = mateLowestRank;
+        }
+        double difference = Math.abs(rank - mateRank);
+        double maxDifference = Math.max(lowestRank, mateLowestRank) - 1;
+        return Math.round((1 - difference / maxDifference) * 10000) / 100.0;
     }
 }
