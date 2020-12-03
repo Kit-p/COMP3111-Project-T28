@@ -237,11 +237,12 @@ public class AnalyzeNames {
 
 	/**
 	 * Get the names that maintain in top N between start year and end year
+	 *
 	 * @param startYear  target start year
 	 * @param endYear    target end year
 	 * @param gender     target gender
 	 * @param N          top N
-	 * @return array of names in top N between start year and end year
+	 * @return array of top N names
 	 */
 	 public static String[] getTopNNamesInRangeYears(String gender, int startYear, int endYear, int N) {
 	 	ArrayList<String> names = new ArrayList<>();
@@ -272,7 +273,11 @@ public class AnalyzeNames {
 
 	/**
 	 * Get lowest rank of name between start year and end year with corresponding years
+	 *
+	 * <p>
 	 * If multiple years share the lowest rank, the latest year is returned
+	 * </p>
+	 *
 	 * @param name       target name
 	 * @param gender     target gender
 	 * @param startYear  target start year
@@ -295,7 +300,11 @@ public class AnalyzeNames {
 
 	 /**
 	  * Get highest rank of name between start year and end year with the corresponding year
+	  *
+	  * <p>
 	  * If multiple years share the highest rank, the latest year is returned
+	  * </p>
+	  *
 	  * @param name       target name
 	  * @param gender     target gender
 	  * @param startYear  target start year
@@ -343,9 +352,10 @@ public class AnalyzeNames {
 
 	/**
 	 * Get the lowest rank of the gender in the year
+	 *
 	 * @param gender  target gender
 	 * @param year    target year
-	 * @return lowest rank of the gender in the year
+	 * @return lowest rank
 	 */
 	public static int getGenderLowestRankOfYear(String gender, int year) {
 	 	int rank = 0;
