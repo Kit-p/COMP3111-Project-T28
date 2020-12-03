@@ -58,7 +58,7 @@ public class JavaFXTest extends ApplicationTest {
 	
 	
 	@Test
-	public void testTextAreaConsole() {	
+	public void testTextAreaConsoleTask1() {
 		t.setText("David");
 		String s = t.getText();
 		assertTrue(s.equals("David"));
@@ -68,7 +68,7 @@ public class JavaFXTest extends ApplicationTest {
 	 * UI Test for task 1
 	 */
 	@Test
-	public void testTopNInvalid(){
+	public void testTopNInvalidTask1(){
 		clickOn("#tabReport1");
 		TextField inputN = (TextField) s.lookup("#inputTopN");
 		inputN.setText("");
@@ -77,7 +77,7 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testTopNValid(){
+	public void testTopNValidTask1(){
 		clickOn("#tabReport1");
 		TextField inputN = (TextField) s.lookup("#inputTopN");
 		inputN.setText("15");
@@ -87,7 +87,7 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testGenderM(){
+	public void testGenderMTask1(){
 		clickOn("#tabReport1");
 		RadioButton inputMale = (RadioButton) s.lookup("#inputMale");
 		inputMale.setSelected(true);
@@ -96,7 +96,7 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testGenderF(){
+	public void testGenderFTask1(){
 		clickOn("#tabReport1");
 		RadioButton inputFemale = (RadioButton) s.lookup("#inputFemale");
 		inputFemale.setSelected(true);
@@ -105,7 +105,7 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testStartYearInvalid(){
+	public void testStartYearInvalidTask1(){
 		clickOn("#tabReport1");
 		TextField startYear = (TextField) s.lookup("#inputStart");
 		startYear.setText("aaa");
@@ -115,7 +115,7 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testStartYearValid(){
+	public void testStartYearValidTask1(){
 		clickOn("#tabReport1");
 		TextField startYear = (TextField) s.lookup("#inputStart");
 		startYear.setText("1880");
@@ -125,7 +125,7 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testYearsInvalid(){
+	public void testYearsInvalidTask1(){
 		clickOn("#tabReport1");
 		TextField startYear = (TextField) s.lookup("#inputStart");
 		startYear.setText("1960");
@@ -140,18 +140,19 @@ public class JavaFXTest extends ApplicationTest {
  	* Test for application 1
  	*/
 	@Test
-	public void testInputFatherName(){
-		clickOn("#tabReport1");
+	public void testInputFatherNameApp1(){
+		clickOn("#tabApp1");
 		TextField fatherName = (TextField) s.lookup("#inputFatherName");
 		fatherName.setText("zzzz");
 		clickOn("#application1Run");
-		assertEquals("",
+		assertEquals("Recommendation for a boy's name: Aadav \n" +
+						"Recommendation for a girl's name: Kahlani",
 				t.getText());
 	}
 
 	@Test
-	public void testInputFatherNameBlank(){
-		clickOn("#tabReport1");
+	public void testInputFatherNameBlankApp1(){
+		clickOn("#tabApp1");
 		TextField fatherName = (TextField) s.lookup("#inputFatherName");
 		fatherName.setText("");
 		clickOn("#application1Run");
@@ -160,18 +161,19 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testInputMotherName(){
-		clickOn("#tabReport1");
+	public void testInputMotherNameApp1(){
+		clickOn("#tabApp1");
 		TextField motherName = (TextField) s.lookup("#inputMotherName");
 		motherName.setText("zzzz");
 		clickOn("#application1Run");
-		assertEquals("",
+		assertEquals("Recommendation for a boy's name: James \n" +
+						"Recommendation for a girl's name: Aabha",
 				t.getText());
 	}
 
 	@Test
-	public void testInputMotherNameBlank(){
-		clickOn("#tabReport1");
+	public void testInputMotherNameBlankApp1(){
+		clickOn("#tabApp1");
 		TextField motherName = (TextField) s.lookup("#inputMotherName");
 		motherName.setText("");
 		clickOn("#application1Run");
@@ -180,8 +182,8 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void vintageYearBlank(){
-		clickOn("#tabReport1");
+	public void vintageYearBlankApp1(){
+		clickOn("#tabApp1");
 		TextField vintageYear = (TextField) s.lookup("#inputVintageYear");
 		vintageYear.setText("");
 		clickOn("#application1Run");
@@ -190,8 +192,8 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testInputDadYOBString(){
-		clickOn("#tabReport1");
+	public void testInputDadYOBStringApp1(){
+		clickOn("#tabApp1");
 		TextField dadYOB = (TextField) s.lookup("#inputDadYOB");
 		dadYOB.setText("aaa");
 		clickOn("#application1Run");
@@ -200,8 +202,8 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testInputDadYOBInvalid(){
-		clickOn("#tabReport1");
+	public void testInputDadYOBInvalidApp1(){
+		clickOn("#tabApp1");
 		TextField dadYOB = (TextField) s.lookup("#inputDadYOB");
 		dadYOB.setText("1879");
 		clickOn("#application1Run");
@@ -210,8 +212,8 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testInputMumYOBString(){
-		clickOn("#tabReport1");
+	public void testInputMumYOBStringApp1(){
+		clickOn("#tabApp1");
 		TextField dadYOB = (TextField) s.lookup("#inputMumYOB");
 		dadYOB.setText("aaa");
 		clickOn("#application1Run");
@@ -220,8 +222,8 @@ public class JavaFXTest extends ApplicationTest {
 	}
 
 	@Test
-	public void testInputMumYOBInvalid(){
-		clickOn("#tabReport1");
+	public void testInputMumYOBInvalidApp1(){
+		clickOn("#tabApp1");
 		TextField dadYOB = (TextField) s.lookup("#inputMumYOB");
 		dadYOB.setText("1879");
 		clickOn("#application1Run");
@@ -231,7 +233,7 @@ public class JavaFXTest extends ApplicationTest {
 
 	@Test
 	public void application1Test(){
-		clickOn("#tabReport1");
+		clickOn("#tabApp1");
 		TextField fatherName = (TextField) s.lookup("#inputMotherName");
 		fatherName.setText("Jonathan");
 		TextField motherName = (TextField) s.lookup("#inputMotherName");
@@ -243,7 +245,8 @@ public class JavaFXTest extends ApplicationTest {
 		TextField vintageYear = (TextField) s.lookup("#inputVintageYear");
 		vintageYear.setText("1880");
 		clickOn("#application1Run");
-		assertEquals("",
+		assertEquals("Recommendation for a boy's name: Frank \n" +
+						"Recommendation for a girl's name: Adelle",
 				t.getText());
 	}
 
