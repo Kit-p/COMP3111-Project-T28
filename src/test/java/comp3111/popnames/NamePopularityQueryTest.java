@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class NamePopularityQueryTest {
     @Test
-    public void task2Normaltest1() {
+    public void task2NormalTest1() {
         NamePopularityQuery query = new NamePopularityQuery("David", "M", 1941, 2000);
         String summary = query.getSummary();
         assertFalse(summary.isBlank());
@@ -15,7 +15,7 @@ public class NamePopularityQueryTest {
 
 
     @Test
-    public void task2Normaltest2() {
+    public void task2NormalTest2() {
         NamePopularityQuery query = new NamePopularityQuery("Angel", "F", 1940, 2000);
         String summary = query.getSummary();
         assertFalse(summary.isBlank());
@@ -38,21 +38,21 @@ public class NamePopularityQueryTest {
     }
 
     @Test
-    public void task2endYearNotRanked() {
+    public void task2EndYearNotRanked() {
         NamePopularityQuery query = new NamePopularityQuery("Zeferino", "M", 1949, 1950);
         String summary = query.getSummary();
         assertFalse(summary.isBlank());
     }
 
     @Test
-    public void task2allnotRanked() {
+    public void task2AllNotRanked() {
         NamePopularityQuery query = new NamePopularityQuery("adsgfafsdf", "M", 1949, 1950);
         String summary = query.getSummary();
         assertFalse(summary.isBlank());
     }
 
     @Test
-    public void task2getTableView() {
+    public void task2GetTableView() {
         NamePopularityQuery query = new NamePopularityQuery("Angel", "F", 1940, 2000);
         TableView<NamePopularityQuery.NamePopularityQueryDataRow> table = query.getTableView();
         assertTrue(table != null && table.getItems() != null && table.getItems().size() > 0);

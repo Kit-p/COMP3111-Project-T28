@@ -253,7 +253,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2blankname() {
+	public void task2BlankName() {
 		clickOn("#tabReport2");
 		TextField task2NameField = (TextField) s.lookup("#task2NameField");
 		task2NameField.setText("");
@@ -263,7 +263,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2TextstartYear() {
+	public void task2TextStartYear() {
 		clickOn("#tabReport2");
 		TextField startYear = (TextField) s.lookup("#task2StartYear");
 		startYear.setText("abcd");
@@ -273,7 +273,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2SmallInvalidstartYear() {
+	public void task2SmallInvalidStartYear() {
 		clickOn("#tabReport2");
 		TextField startYear = (TextField) s.lookup("#task2StartYear");
 		startYear.setText("1000");
@@ -285,7 +285,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2LargeInvalidstartYear() {
+	public void task2LargeInvalidStartYear() {
 		clickOn("#tabReport2");
 		TextField startYear = (TextField) s.lookup("#task2StartYear");
 		startYear.setText("3000");
@@ -297,7 +297,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2TextendYear() {
+	public void task2TextEndYear() {
 		clickOn("#tabReport2");
 		TextField endYear = (TextField) s.lookup("#task2EndYear");
 		endYear.setText("abcd");
@@ -307,7 +307,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2SmallInvalidendYear() {
+	public void task2SmallInvalidEndYear() {
 		clickOn("#tabReport2");
 		TextField startYear = (TextField) s.lookup("#task2StartYear");
 		startYear.setText("1999");
@@ -319,7 +319,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2LargeInvalidendYear() {
+	public void task2LargeInvalidEndYear() {
 		clickOn("#tabReport2");
 		TextField startYear = (TextField) s.lookup("#task2StartYear");
 		startYear.setText("1999");
@@ -331,7 +331,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2startLargerEnd() {
+	public void task2StartLargerEnd() {
 		clickOn("#tabReport2");
 		TextField startYear = (TextField) s.lookup("#task2StartYear");
 		startYear.setText("2000");
@@ -343,7 +343,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2clickFemale() {
+	public void task2ClickFemale() {
 		clickOn("#tabReport2");
 		clickOn("#task2Female");
 		clickOn("#NamePopularityQueryButton");
@@ -352,7 +352,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task2normal() {
+	public void task2Normal() {
 		clickOn("#tabReport2");
 		TextField task2NameField = (TextField) s.lookup("#task2NameField");
 		task2NameField.setText("Oscar");
@@ -367,7 +367,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5blankName() {
+	public void task5BlankName() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("");
@@ -379,7 +379,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5textYear() {
+	public void task5TextYear() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("David");
@@ -391,7 +391,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5smallYear() {
+	public void task5SmallYear() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("James");
@@ -403,7 +403,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5largeYear() {
+	public void task5LargeYear() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("James");
@@ -415,7 +415,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5younger1880() {
+	public void task5Younger1880() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("James");
@@ -427,7 +427,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5older2019() {
+	public void task5Older2019() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("James");
@@ -440,7 +440,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5noraml1() {
+	public void task5Normal1() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("Angel");
@@ -455,7 +455,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5noraml2() {
+	public void task5Normal2() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("Angel");
@@ -470,7 +470,7 @@ public class JavaFXTest extends ApplicationTest {
 
 
 	@Test
-	public void task5noraml3() {
+	public void task5Normal3() {
 		clickOn("#tabApp2");
 		TextField task5NameField = (TextField) s.lookup("#task5NameField");
 		task5NameField.setText("James");
