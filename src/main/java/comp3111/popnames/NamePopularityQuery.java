@@ -61,7 +61,7 @@ public class NamePopularityQuery {
 		 */
 		private final StringProperty countString;
 		/**
-		 * processed representation of percentage
+		 * processed representation of percentage (corrected to 2 d.p.)
 		 */
 		private final StringProperty percentageString;
 		/**
@@ -103,7 +103,7 @@ public class NamePopularityQuery {
 		}
 
 		/**
-		 * Get the year of the data corresponds to
+		 * Get the year that the data corresponds to
 		 *
 		 * @return year of the data corresponds to
 		 */
