@@ -2,33 +2,33 @@ package comp3111.popnames;
 
 
 /**
- * Task 6 (Application 3)
+ * Task 6 (Application 3) Class that predicts the compatibility of a pair
  */
 public class CompatibilityPrediction {
     /**
      * name queried
      */
-    String name;
+    private final String name;
     /**
      * gender queried
      */
-    String gender;
+    private final String gender;
     /**
      * year of birth queried
      */
-    int yob;
+    private final int yob;
     /**
      * name of mate queried
      */
-    String mateName;
+    private final String mateName;
     /**
      * gender of mate queried
      */
-    String mateGender;
+    private final String mateGender;
     /**
      * age preference of mate queried (+1 / -1)
      */
-    int preference;
+    private final int preference;
 
 
     /**
