@@ -39,10 +39,13 @@ public class Controller {
     @FXML
     private Tab tabReport1;
 
+    /**
+     *     input fields for task1
+     */
+
     @FXML
     private TextField inputTopN;
 
-    //input fields for task1
     @FXML
     private RadioButton inputMale;
 
@@ -55,7 +58,28 @@ public class Controller {
     @FXML
     private TextField inputEnd;
 
-    //end input fields for task1
+
+    /**
+     * input fields for Application 1
+     */
+    @FXML
+    private TextField inputFatherName;
+
+    @FXML
+    private TextField inputMotherName;
+
+    @FXML
+    private TextField inputDadYOB;
+
+    @FXML
+    private TextField inputMumYOB;
+
+    @FXML
+    private TextField inputVintageYear;
+
+    /**
+     * end input fields for application 1
+     */
 
     @FXML
     private ToggleGroup T1;
@@ -281,27 +305,52 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
 
-    /** Task 1 when report button is clicked
-    get all values from input fields
-    then call the query functions
+    /**
+     * Task 1
+     * when report button is clicked
+     * get all values from input fields
+     * then call the query functions
     */
     @FXML
     void doReport(){
+            textAreaConsole.setText("");
             String oReport = "";
-            int topN = Integer.parseInt(inputTopN.getText());
             String gender;
             if(inputMale.isSelected()){
                 gender = "M";
             }else{
                 gender = "F";
             }
-            int startYear = Integer.parseInt(inputStart.getText());
-            int endYear = Integer.parseInt(inputEnd.getText());
+            int topN, startYear, endYear;
+            try{
+                topN = Integer.parseInt(inputTopN.getText());
+                startYear = Integer.parseInt(inputStart.getText());
+                endYear = Integer.parseInt(inputEnd.getText());
+
+            }catch(NumberFormatException e){
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "Format of the input is invalid! Please enter a valid period");
+                return;
+            }
+            if (startYear<1880 || startYear>2019 || endYear<1880 || endYear>2019) {
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "The inputted Period is invalid! Please enter a period within the specified range");
+                return;
+            }
+
+            if (topN < 1) {
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "The range of the rank of names is invalid! Please enter a range larger or equal to 1");
+                return;
+             }
+
+            if (endYear < startYear) {
+                popAlert(AlertType.ERROR, "Error", "Invalid Input", "Period to be Queried is invalid! End of period cannot be earlier than Start of period");
+                return;
+            }
             TopNamesQuery query = new TopNamesQuery(topN, gender, startYear,endYear);
             query.getTopNames();
             //query.getSummary();
-            oReport = query.getSummary()[1];
+            oReport = query.getSummary();
             textAreaConsole.setText(oReport);
+            popTable(query.getTableView(), "Top N names", null, oReport);
     }
 
     /**
@@ -387,7 +436,50 @@ public class Controller {
         textAreaConsole.setText(oReport);
         popTable(query.getTableView(), "Reporting 3", null, oReport);
     }
+    /**
+     * Task 4
+     * when report button is clicked
+     * get all values from input fields
+     * then call the query functions
+     */
+    @FXML
+    void doBabyNameRecommendation(){
+        textAreaConsole.setText("");
+        String dadName = inputFatherName.getText();
+        String mumName = inputMotherName.getText();
+        if(dadName.isBlank()){
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "The father's name cannot be blank!");
+            return;
+        }
+        if(mumName.isBlank()){
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "The mother's name cannot be blank!");
+            return;
+        }
+        int dadYOB, mumYOB, vintageYear;
+        try{
+            dadYOB = Integer.parseInt(inputDadYOB.getText());
+            mumYOB = Integer.parseInt(inputMumYOB.getText());
+            if(dadYOB < 1880 || dadYOB > 2019 || mumYOB < 1880 || mumYOB > 2019){
+                throw new NumberFormatException();
+            }
+        }catch(NumberFormatException e){
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Invalid date for YOB!");
+            return;
+        }
+        try{
+            vintageYear = Integer.parseInt(inputVintageYear.getText());
+        }catch(NumberFormatException e){
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Invalid input for vintage year!");
+            return;
+        }
+        if(vintageYear < 1880 || vintageYear > 2019){
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Vintage year is out of range!");
+            return;
+        }
+        BabyNameRecommendation recommendation = new BabyNameRecommendation(dadYOB, mumYOB, dadName, mumName, vintageYear);
+        textAreaConsole.setText(recommendation.getBabiesNames());
 
+    }
 
     /**
      * Application 2 (Task 5)
