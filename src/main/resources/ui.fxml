@@ -85,6 +85,8 @@
                                     <TextField fx:id="task2StartYear" layoutX="223.0" layoutY="123.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                                     <Label layoutX="271.0" layoutY="127.0" text="to" />
                                     <Button fx:id="NamePopularityQueryButton" layoutX="108.0" layoutY="169.0" mnemonicParsing="false" onAction="#doNamePopularityQuery" text="REPORT" />
+                                    <Label layoutX="107.0" layoutY="245.0" prefHeight="17.0" prefWidth="514.0" text="Percentage representation in the resulted table and summary is corrected to 2 decimal places" />
+                                    <Label layoutX="107.0" layoutY="225.0" prefHeight="17.0" prefWidth="43.0" text="Note:" />
                                  </children>
                               </AnchorPane>
                            </children>
