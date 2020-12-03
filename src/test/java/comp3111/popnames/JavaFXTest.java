@@ -432,7 +432,6 @@ public class JavaFXTest extends ApplicationTest {
 		yob.setText("2019");
 		clickOn("#task5_olderBtn");
 		clickOn("#task5_predictBtn");
-		sleep(5000);
 		assertTrue(t.getText().isEmpty());
 	}
 
