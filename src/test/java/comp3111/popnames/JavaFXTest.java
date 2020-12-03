@@ -145,7 +145,8 @@ public class JavaFXTest extends ApplicationTest {
 		TextField fatherName = (TextField) s.lookup("#inputFatherName");
 		fatherName.setText("zzzz");
 		clickOn("#application1Run");
-		assertEquals("",
+		assertEquals("Recommendation for a boy's name: Aadav \n" +
+						"Recommendation for a girl's name: Kahlani",
 				t.getText());
 	}
 
@@ -165,7 +166,8 @@ public class JavaFXTest extends ApplicationTest {
 		TextField motherName = (TextField) s.lookup("#inputMotherName");
 		motherName.setText("zzzz");
 		clickOn("#application1Run");
-		assertEquals("",
+		assertEquals("Recommendation for a boy's name: James \n" +
+						"Recommendation for a girl's name: Aabha",
 				t.getText());
 	}
 
@@ -243,7 +245,8 @@ public class JavaFXTest extends ApplicationTest {
 		TextField vintageYear = (TextField) s.lookup("#inputVintageYear");
 		vintageYear.setText("1880");
 		clickOn("#application1Run");
-		assertEquals("",
+		assertEquals("Recommendation for a boy's name: Frank \n" +
+						"Recommendation for a girl's name: Adelle",
 				t.getText());
 	}
 
