@@ -142,6 +142,7 @@ public class JavaFXTest extends ApplicationTest {
 		assertTrue(t.getText().isEmpty());
 	}
 
+
 	@Test
 	public void task2startLargerEnd() {
 		clickOn("#tabReport2");
@@ -152,6 +153,7 @@ public class JavaFXTest extends ApplicationTest {
 		clickOn("#NamePopularityQueryButton");
 		assertTrue(t.getText().isEmpty());
 	}
+
 
 	@Test
 	public void task2clickFemale() {
@@ -174,5 +176,121 @@ public class JavaFXTest extends ApplicationTest {
 		clickOn("#task2Male");
 		clickOn("#NamePopularityQueryButton");
 		assertFalse(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task5blankName() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("1990");
+		clickOn("#task5_predictBtn");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task5textYear() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("David");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("asdf");
+		clickOn("#task5_predictBtn");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task5smallYear() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("James");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("1879");
+		clickOn("#task5_predictBtn");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task5largeYear() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("James");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("2020");
+		clickOn("#task5_predictBtn");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task5younger1880() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("James");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("1880");
+		clickOn("#task5_predictBtn");
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task5older2019() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("James");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("2019");
+		clickOn("#task5_olderBtn");
+		clickOn("#task5_predictBtn");
+		sleep(5000);
+		assertTrue(t.getText().isEmpty());
+	}
+
+
+	@Test
+	public void task5noraml1() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("Angel");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("1880");
+		clickOn("#task5_femaleBtn");
+		clickOn("#task5_mateFemaleBtn");
+		clickOn("#task5_olderBtn");
+		clickOn("#task5_predictBtn");
+		assertFalse(t.getText().isBlank());
+	}
+
+
+	@Test
+	public void task5noraml2() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("Angel");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("2019");
+		clickOn("#task5_femaleBtn");
+		clickOn("#task5_mateFemaleBtn");
+		clickOn("#task5_youngerBtn");
+		clickOn("#task5_predictBtn");
+		assertFalse(t.getText().isBlank());
+	}
+
+
+	@Test
+	public void task5noraml3() {
+		clickOn("#tabApp2");
+		TextField task5NameField = (TextField) s.lookup("#task5NameField");
+		task5NameField.setText("James");
+		TextField yob = (TextField) s.lookup("#task5_YOB");
+		yob.setText("1990");
+		clickOn("#task5_predictBtn");
+		assertFalse(t.getText().isBlank());
 	}
 }
