@@ -2,7 +2,7 @@ package comp3111.popnames;
 
 
 /**
- * Task 6 (Application 3)
+ * Task 6 (Application 3) Class that predicts the compatibility of a pair
  */
 public class CompatibilityPrediction {
     /**

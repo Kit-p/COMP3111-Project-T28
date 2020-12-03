@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 
 /**
- * Task 3 (Reporting 3)
+ * Task 3 (Reporting 3) Class that generate a report describing trend of names
  */
 public class NameTrendQuery {
 	/**
@@ -38,6 +38,9 @@ public class NameTrendQuery {
 	private ArrayList<NameTrendQueryDataRow> queryData = null;
 
 
+	/**
+	 * Inner-class to store each row of the query result
+	 */
 	public static class NameTrendQueryDataRow {
 		/**
 		 * name in the current row
