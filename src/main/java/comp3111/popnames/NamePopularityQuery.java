@@ -2,7 +2,6 @@ package comp3111.popnames;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -11,28 +10,80 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.apache.commons.csv.CSVRecord;
 
+/**
+ * Class that generate a report on the popularity of a particular name over a given period
+ */
 public class NamePopularityQuery {
+	/**
+	 * name queried
+	 */
 	private final String name;
+	/**
+	 * gender of the name queried
+	 */
 	private final String gender;
+	/**
+	 * the year of the start of the queried period
+	 */
 	private final int startYear;
+	/**
+	 * the year of the end of the queried period
+	 */
 	private final int endYear;
+	/**
+	 * arraylist storing the popularity data (rank, count, percentage) of each year in the period
+	 */
 	private ArrayList<NamePopularityQueryDataRow> popularityTable = new ArrayList<>();
+	/**
+	 * the highest rank of the name in the period
+	 */
 	private int topYearRank;
+	/**
+	 * arraylist storing the years that the name have the highest rank in the period
+	 */
 	private ArrayList<NamePopularityQueryDataRow> topYears = new ArrayList<>();
 
-
+	/**
+	 * Class storing popularity data (rank, count, percentage) of a name in a year for constructing report table
+	 */
 	public static class NamePopularityQueryDataRow{
+		/**
+		 * the year of the data retrieved
+		 */
 		private final IntegerProperty year;
+		/**
+		 * processed representation of rank
+		 */
 		private final StringProperty rankString;
+		/**
+		 * processed representation of count
+		 */
 		private final StringProperty countString;
+		/**
+		 * processed representation of percentage
+		 */
 		private final StringProperty percentageString;
+		/**
+		 * rank of the name
+		 */
 		private final int rank;
+		/**
+		 * occurrence of the name
+		 */
 		private final int count;
+		/**
+		 * percentage of gender birth with the name
+		 */
 		private final float percentage;
 
-
+		/**
+		 * Construct an NamePopularityQueryDataRow object storing popularity data of a name in a year
+		 * @param year	year of the data retrieved
+		 * @param rank	rank of the name
+		 * @param count	occurrence of the name
+		 * @param percentage	percentage of gender birth with the name
+		 */
 		public NamePopularityQueryDataRow(int year, int rank, int count, float percentage) {
 			this.year = new SimpleIntegerProperty(year);
 			this.rank = rank;
@@ -50,28 +101,55 @@ public class NamePopularityQuery {
 			}
 		}
 
+		/**
+		 * Get the year of the data corresponds to
+		 * @return year of the data corresponds to
+		 */
 		public IntegerProperty yearProperty() {
 			return year;
 		}
 
+		/**
+		 * Get the string representation of rank of the name
+		 * @return	string representation of rank of the name
+		 */
 		public StringProperty rankStringProperty() {
 			return rankString;
 		}
 
+		/**
+		 * Get the string representation of occurrence of the name
+		 * @return	string representation of occurrence of the name
+		 */
 		public StringProperty countStringProperty() {
 			return countString;
 		}
 
+		/**
+		 * Get the string of percentage of gender birth with the name
+		 * @return	string of percentage of gender birth with the name
+		 */
 		public String getPercentageString() {
 			return percentageString.get();
 		}
 
+		/**
+		 * Get the StringProperty of percentage of gender birth with the name
+		 * @return	StringProperty of percentage of gender birth with the name
+		 */
 		public StringProperty percentageStringProperty() {
 			return percentageString;
 		}
 	}
 
 
+	/**
+	 * Construct a NamePopularityQuery object for processing the popularity data of the queried name
+	 * @param inputName	name to be queried
+	 * @param inputGender	gender of name to be queried
+	 * @param inputStartYear	start of the period to be queried
+	 * @param inputEndYear	end of the period to be queried
+	 */
 	public NamePopularityQuery(String inputName, String inputGender, int inputStartYear, int inputEndYear) {
 		this.name = inputName;
 		this.gender = inputGender;
@@ -81,7 +159,13 @@ public class NamePopularityQuery {
 		getNamePopularity();
 	}
 
-	
+
+	/**
+	 * Get the popularity data of the queried name of each year in the period, and store the data in the current object.
+	 * Populate the array storing popularity data of each year in the period.
+	 * Process the highest rank the name achieved in the period,
+	 * and populate the array storing the year the name achieved that rank
+	 */
 	private void getNamePopularity() {
 		for (int i=this.startYear; i<=endYear; i++) {
 			//rank of name in year
@@ -114,8 +198,12 @@ public class NamePopularityQuery {
 			popularityTable.add(tempRow);
 		}
 	}
-	
-	
+
+
+	/**
+	 * Get the summary text of the queried result of the popularity of a name
+	 * @return	the summary text
+	 */
 	public String getSummary() {
 		String genderlongVer = "";
 		if (this.gender.equals("M")){
@@ -179,6 +267,10 @@ public class NamePopularityQuery {
 	}
 
 
+	/**
+	 * Get the table representation of the queried result of the popularity of a name
+	 * @return the table view of the queried result
+	 */
 	public TableView<NamePopularityQuery.NamePopularityQueryDataRow> getTableView(){
 		TableView<NamePopularityQuery.NamePopularityQueryDataRow> table = new TableView<>();
 		table.setEditable(false);

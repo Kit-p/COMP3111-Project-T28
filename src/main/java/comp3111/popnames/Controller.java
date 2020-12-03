@@ -354,10 +354,15 @@ public class Controller {
     }
 
     /**
-     *  Reporting 2 (Task 2)
-     *  To be triggered by the "Report" button on the Reporting 2 Tab,
-     *  creating a table to show the popularity of a particular name over a given period,
+     *  Reporting 2 (Task 2) Report the popularity of a particular name over a given period.
+     *  <p>
+     *  To be triggered by the "Report" button on the Reporting 2 Tab.
+     *  Perform input validation on user inputs on Reporting 2 tab,
+     *  pop alert with reason if inputs are invalid.
+     *
+     *  Otherwise, pop out a table to show the popularity of a particular name over a given period,
      *  and provide a summary in the textAreaConsole.
+     *  </p>
      */
     @FXML
     void doNamePopularityQuery() {
@@ -483,8 +488,14 @@ public class Controller {
     }
 
     /**
-     * Application 2 (Task 5)
-     * To be triggered by the "Get Prediction" button on the Application 2 Tab
+     * Application 2 (Task 5) Predict name of a compatible pairs (i.e. soulmate name).
+     * <p>
+     * To be triggered by the "Get Prediction" button on the Application 2 Tab.
+     * Perform input validation on user inputs on Application 1 tab,
+     * pop alert with reason if user inputs are invalid.
+     *
+     * Otherwise, show a name of a compatible pairs (i.e. soulmate) according to the inputs.
+     * </p>
      */
     @FXML
     void doSoulmateRecommendation() {
