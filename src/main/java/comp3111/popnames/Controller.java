@@ -293,6 +293,7 @@ public class Controller {
     	textAreaConsole.setText(oReport);
     }
 
+
     /**
      * Task 1
      * when report button is clicked
@@ -341,11 +342,12 @@ public class Controller {
             popTable(query.getTableView(), "Top N names", null, oReport);
     }
 
+
     /**
      *  Reporting 2 (Task 2) Report the popularity of a particular name over a given period.
      *
      *  <p>
-     *  To be triggered by the "Report" button on the Reporting 2 Tab.
+     *  To be triggered by the "REPORT" button on the Reporting 2 Tab.
      *  Perform input validation on user inputs on Reporting 2 tab,
      *  pop alert with reason if inputs are invalid.
      *
@@ -438,6 +440,8 @@ public class Controller {
         textAreaConsole.setText(oReport);
         popTable(query.getTableView(), "Reporting 3", null, oReport);
     }
+
+
     /**
      * Task 4
      * when report button is clicked
@@ -483,12 +487,13 @@ public class Controller {
 
     }
 
+
     /**
      * Application 2 (Task 5) Predict name of a compatible pairs (soulmate name).
      *
      * <p>
      * To be triggered by the "Get Prediction" button on the Application 2 Tab.
-     * Perform input validation on user inputs on Application 1 tab,
+     * Perform input validation on user inputs on Application 2 tab,
      * pop alert with reason if user inputs are invalid.
      *
      * Otherwise, show a name of a compatible pairs (soulmate) according to the inputs.
