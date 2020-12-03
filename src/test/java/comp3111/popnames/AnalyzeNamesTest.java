@@ -1,9 +1,7 @@
 package comp3111.popnames;
 
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class AnalyzeNamesTest {
 	
@@ -40,6 +38,38 @@ public class AnalyzeNamesTest {
     	AnalyzeNames a = new AnalyzeNames();
     	String name = a.getName(2019, 2192, "F");
     	assertTrue(name.equals("Desire"));
+    }
+
+    @Test
+    public void testGetNameEnhanced() {
+        String name = AnalyzeNames.getNameEnhanced(1949, 599, "M");
+        assertEquals("Abundio", name);
+        String notRankName = AnalyzeNames.getNameEnhanced(1949, 600, "M");
+        assertEquals("information on the name at the specified rank is not available", notRankName);
+    }
+
+    @Test
+    public void testGetCount() {
+        int count = AnalyzeNames.getCount(1949, "Whitman", "M");
+        assertEquals(5, count);
+        int count2 = AnalyzeNames.getCount(1949, "adsfas", "M");
+        assertEquals(0, count2);
+    }
+
+    @Test
+    public void testGetGenderBirth() {
+        int maleBirth = AnalyzeNames.getGenderBirth(2018, "M");
+        assertEquals(1809166, maleBirth);
+        int femaleBirth = AnalyzeNames.getGenderBirth(2018, "F");
+        assertEquals(1694640, femaleBirth);
+    }
+
+    @Test
+    public void testGetLowestName() {
+        String maleName = AnalyzeNames.getLowestName(1949, "M");
+        assertEquals("Abundio", maleName);
+        String femaleName = AnalyzeNames.getLowestName(1949, "F");
+        assertEquals("Abbe", femaleName);
     }
 
     @Test
