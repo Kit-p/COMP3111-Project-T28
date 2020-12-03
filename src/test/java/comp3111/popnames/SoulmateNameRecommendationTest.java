@@ -16,7 +16,7 @@ public class SoulmateNameRecommendationTest {
     }
 
     @Test
-    public void task5rankNotFound() {
+    public void task5RankNotFound() {
         SoulmateNameRecommendation query =
                 new SoulmateNameRecommendation("Adra", "F", 1901, "M","younger");
         String soulmateName = query.getSoulmateName();
