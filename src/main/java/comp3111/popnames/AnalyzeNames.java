@@ -5,14 +5,29 @@ import java.util.ArrayList;
 import org.apache.commons.csv.*;
 import edu.duke.*;
 
+/**
+ * Class containing helpers functions used by Task 0-6
+ */
 public class AnalyzeNames {
 
+	/**
+	 * Get the data set of the target year.
+	 *
+	 * @param year	target year
+	 * @return records on names in the target year
+	 */
 	public static CSVParser getFileParser(int year) {
      FileResource fr = new FileResource(String.format("dataset/yob%s.csv", year));
      return fr.getCSVParser(false);
 	}
- 
-	
+
+
+	/**
+	 * Get the summary of data on names and birth in a year.
+	 *
+	 * @param year	target year
+	 * @return	a summary of data on names and birth in a year
+	 */
 	public static String getSummary(int year) {
 		String oReport = "";	
 		int totalBirths = 0;
@@ -47,8 +62,17 @@ public class AnalyzeNames {
 		
 		return oReport;
 	}
-	
-	
+
+
+	/**
+	 * Get rank of a name of the target gender and year,
+	 * names with same occurrence have different rank according to alphabetical order.
+	 *
+	 * @param year target year
+	 * @param name	target name
+	 * @param gender	target gender
+	 * @return	rank of the name if found, otherwise -1
+	 */
 	 public static int getRank(int year, String name, String gender) {
 	     boolean found = false;
 	     int oRank = 0;
@@ -70,8 +94,17 @@ public class AnalyzeNames {
 	     else
 	     	return -1;
 	 }
-	 
- 
+
+
+	/**
+	 * Get the name of the target gender and rank in the target year,
+	 * name with same occurrence have different rank.
+	 *
+	 * @param year	target year
+	 * @param rank	target rank
+	 * @param gender	target gender
+	 * @return	name of the target gender and rank in the target year, under condition that name with same occurrence have different rank
+	 */
 	 public static String getName(int year, int rank, String gender) {
 	 	boolean found = false;
 	     String oName = "";
@@ -98,11 +131,13 @@ public class AnalyzeNames {
 
 
 	/**
-	 * Get rank but same rank for same occurrence
+	 * Get rank of a name of the target gender and year,
+	 * names with same occurrence have same rank.
+	 *
 	 * @param year		target year
 	 * @param name		target name
 	 * @param gender	target gender
-	 * @return	rank if found, otherwise -1
+	 * @return	a rank if the name is found, otherwise -1
 	 */
 	public static int getRankEnhanced(int year, String name, String gender) {
 		String currentRankOccurrence = "";
@@ -126,13 +161,15 @@ public class AnalyzeNames {
 		return oRank;
 	}
 
+
 	/**
-	 * Get name of the input gender with the input rank in the input year, return the first name found if names have same rank
+	 * Get the name of the target gender and rank(same rank for same occurrence) in the target year,
+	 * return the first name found if multiple names satisfy this requirement.
 	 *
 	 * @param year		target year
 	 * @param rank		target rank
 	 * @param gender	target gender
-	 * @return	name if found, otherwise "information on the name at the specified rank is not available"
+	 * @return a name if name satisfying the inputs is found, otherwise "information on the name at the specified rank is not available"
 	 */
 	public static String getNameEnhanced(int year, int rank, String gender) {
 		boolean found = false;
@@ -165,11 +202,12 @@ public class AnalyzeNames {
 
 
 	/**
-      * Get the occurrence of the name of the gender in the year
+      * Get the occurrence of a target name of the target gender in the target year
+	  *
       * @param year    target year
       * @param name    target name
       * @param gender  target gender
-      * @return occurrence
+      * @return occurrence of the name if the name is found, otherwise 0
       */
 	 public static int getCount(int year, String name, String gender) {
 	     for (CSVRecord rec : getFileParser(year)) {
@@ -183,10 +221,11 @@ public class AnalyzeNames {
 
 	 
      /**
-      * Get the birth count of the gender in the year
+      * Get the birth count of the target gender in the target year
+	  *
       * @param year    target year
       * @param gender  target gender
-      * @return birth count
+      * @return birth count of the target gender in the target year
       */
 	 public static int getGenderBirth(int year, String gender) {
 		 int totalGenderBirth = 0;
@@ -291,11 +330,12 @@ public class AnalyzeNames {
 
 
 	/**
-	 * Get a name with the lowest rank in the target year
-	 * If there is multiple names with the lowest rank, the first name with the lowest rank in the dataset is returned
+	 * Get a name with the lowest rank of the target gender in the target year,
+	 * if there is multiple names with the lowest rank, the first name found is returned
+	 *
 	 * @param year		target year
 	 * @param gender	target gender
-	 * @return	a name with the lowest rank in the target year
+	 * @return	a name with the lowest rank of the target gender in the target year
 	 */
 	 public static String getLowestName(int year, String gender){
 		 String oName = "";
