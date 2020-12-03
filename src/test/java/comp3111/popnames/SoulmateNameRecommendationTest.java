@@ -8,7 +8,7 @@ import static org.junit.Assert.assertFalse;
 public class SoulmateNameRecommendationTest {
 
     @Test
-    public void task5userNotRanked() {
+    public void task5UserNotRanked() {
         SoulmateNameRecommendation query =
                 new SoulmateNameRecommendation("tasdfasfd", "M", 2010, "F","younger");
         String soulmateName = query.getSoulmateName();
@@ -16,7 +16,7 @@ public class SoulmateNameRecommendationTest {
     }
 
     @Test
-    public void task5rankNotfound() {
+    public void task5rankNotFound() {
         SoulmateNameRecommendation query =
                 new SoulmateNameRecommendation("Adra", "F", 1901, "M","younger");
         String soulmateName = query.getSoulmateName();
