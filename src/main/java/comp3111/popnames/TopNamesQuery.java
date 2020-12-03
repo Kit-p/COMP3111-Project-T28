@@ -23,7 +23,6 @@ public class TopNamesQuery {
 
         public IntegerProperty getYear(){ return this.year; }
         public StringProperty[] getNames(){return names;}
-
         /** constructor for TopNamesQueryRankRow instance
          @param year
          @param names
@@ -74,6 +73,9 @@ public class TopNamesQuery {
      * Get names with max occurrence
      */
     public String getSummary(){
+        if (queryData == null) {
+            getTopNames();
+        }
         HashMap<String, Integer> count = new HashMap<>();
         for(int i = 0; i < queryData.size(); i++){
             String currentName = queryData.get(i).getNames()[0].get();
@@ -127,16 +129,14 @@ public class TopNamesQuery {
         TableColumn<TopNamesQuery.TopNamesQueryRankRow, String> yearCol = new TableColumn<>("Name");
         yearCol.setCellValueFactory(row ->  new SimpleStringProperty(Integer.toString(row.getValue().getYear().getValue())));
         yearCol.setStyle("-fx-alignment: CENTER;");
-        TableColumn<TopNamesQuery.TopNamesQueryRankRow, String>[] NameCols = new TableColumn[numberOfNames];
         table.getColumns().add(yearCol);
 
         for(int i = 0; i < numberOfNames; i++){
-            TableColumn<TopNamesQuery.TopNamesQueryRankRow, String> tempNameCol = new TableColumn<>("Top" + (i+1));
+            TableColumn<TopNamesQuery.TopNamesQueryRankRow, String> nameCol = new TableColumn<>("Top" + (i+1));
             int finalI = i;
-            tempNameCol.setCellValueFactory(row -> row.getValue().getNames()[finalI]);
-            tempNameCol.setStyle("-fx-alignment: CENTER;");
-            NameCols[i] = tempNameCol;
-            table.getColumns().add(NameCols[i]);
+            nameCol.setCellValueFactory(row -> row.getValue().getNames()[finalI]);
+            nameCol.setStyle("-fx-alignment: CENTER;");
+            table.getColumns().add(nameCol);
         }
         return table;
     }
