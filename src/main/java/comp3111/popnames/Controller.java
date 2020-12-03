@@ -568,6 +568,9 @@ public class Controller {
         if (task6_olderBtn.isSelected()) {
             preference = 1;
         }
+        if (task6_nameField.getText().isBlank() || task6_mateNameField.getText().isBlank()) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name must not be empty!");
+        }
         CompatibilityPrediction query = new CompatibilityPrediction(task6_nameField.getText(), gender, yob
                 , task6_mateNameField.getText(), mateGender , preference);
         double score = query.getPrediction();
