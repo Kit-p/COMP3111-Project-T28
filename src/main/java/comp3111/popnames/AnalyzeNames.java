@@ -96,10 +96,10 @@ public class AnalyzeNames {
 	/**
 	 * Get the name of the target gender and rank in the target year,
 	 * name with same occurrence have different rank.
-	 * @param year
-	 * @param rank
-	 * @param gender
-	 * @return
+	 * @param year	target year
+	 * @param rank	target rank
+	 * @param gender	target gender
+	 * @return	name of the target gender and rank in the target year, under condition that name with same occurrence have different rank
 	 */
 	 public static String getName(int year, int rank, String gender) {
 	 	boolean found = false;
