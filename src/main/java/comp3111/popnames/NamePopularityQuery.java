@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 /**
- * Class that generate a report on the popularity of a particular name over a given period
+ * Task 2 (Reporting 2) Class that generate a report on the popularity of a particular name over a given period
  */
 public class NamePopularityQuery {
 	/**
@@ -45,7 +45,7 @@ public class NamePopularityQuery {
 	private ArrayList<NamePopularityQueryDataRow> topYears = new ArrayList<>();
 
 	/**
-	 * Class storing popularity data (rank, count, percentage) of a name in a year for constructing report table
+	 * Task 2 Inner class storing popularity data of a name in a year for constructing report table
 	 */
 	public static class NamePopularityQueryDataRow{
 		/**

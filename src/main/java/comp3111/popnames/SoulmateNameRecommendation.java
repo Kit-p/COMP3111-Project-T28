@@ -3,7 +3,7 @@ package comp3111.popnames;
 import javafx.scene.control.Alert;
 
 /**
- * Class that predict the name of the compatible pairs (Soulmate) of the user
+ * Task 5 (Application 2) Class that predict the name of the compatible pairs (Soulmate) of the user
  */
 public class SoulmateNameRecommendation {
 
