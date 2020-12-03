@@ -10,23 +10,23 @@ public class SoulmateNameRecommendation {
 	/**
 	 * name of the user
 	 */
-	private String userName;
+	private final String userName;
 	/**
 	 * gender of the user
 	 */
-	private String userGender;
+	private final String userGender;
 	/**
 	 * year of birth of the user
 	 */
-	private int userYOB;
+	private final int userYOB;
 	/**
 	 * the preferred gender of the compatible pair (soulmate)
 	 */
-	private String soulmateGender;
+	private final String soulmateGender;
 	/**
 	 * the preference of having a younger or older soulmate
 	 */
-	private String soulmateAgePreference;
+	private final String soulmateAgePreference;
 
 
 	/**
