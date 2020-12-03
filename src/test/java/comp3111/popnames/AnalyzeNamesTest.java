@@ -53,7 +53,7 @@ public class AnalyzeNamesTest {
 
     @Test
     public void testGetTopNNamesInRangeYears() {
-        String[] result = AnalyzeNames.getTopNNamesInRangeYears("M", 1881, 1882, 1935);
+        String[] result = AnalyzeNames.getTopNNamesInRangeYears("M", 1881, 1882, 187);
         assertTrue(result.length > 0);
         result = AnalyzeNames.getTopNNamesInRangeYears("F", 1881, 1882, 0);
         assertEquals(0, result.length);
