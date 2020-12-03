@@ -82,7 +82,7 @@ public class NamePopularityQuery {
 	}
 
 	
-	public void getNamePopularity() {
+	private void getNamePopularity() {
 		for (int i=this.startYear; i<=endYear; i++) {
 			//rank of name in year
 			int rank = AnalyzeNames.getRankEnhanced(i, this.name, this.gender);
