@@ -77,7 +77,7 @@ public class NamePopularityQuery {
 		this.gender = inputGender;
 		this.startYear = inputStartYear;
 		this.endYear = inputEndYear;
-		this.topYearRank = 99999999;
+		this.topYearRank = 999999999;
 		getNamePopularity();
 	}
 
@@ -124,7 +124,7 @@ public class NamePopularityQuery {
 			genderlongVer = "female";
 		}
 
-		if (topYearRank == 99999999 || topYears.size() == 0){
+		if (topYearRank == 999999999 || topYears.size() == 0){
 			return String.format("The name %s is not ranked in every year from %d to %d. There is no popularity data available on the name queried!"
 					, this.name, this.startYear, this.endYear);
 		}
@@ -180,9 +180,6 @@ public class NamePopularityQuery {
 
 
 	public TableView<NamePopularityQuery.NamePopularityQueryDataRow> getTableView(){
-		if (popularityTable.isEmpty()){
-			getNamePopularity();
-		}
 		TableView<NamePopularityQuery.NamePopularityQueryDataRow> table = new TableView<>();
 		table.setEditable(false);
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
