@@ -398,8 +398,15 @@ public class Controller {
 
 
     /**
-     *  Reporting 3
-     *  To be triggered by the "REPORT" button on the Reporting 3 Tab
+     *  Reporting 3 (Task 3) Get trend of Top N names between two years
+     *
+     *  <p>
+     *  To be triggered by the "REPORT" button on the Reporting 3 Tab.
+     *  Perform input validation on user inputs on Reporting 3 tab,
+     *  pop alert with reason if user inputs are invalid.
+     *
+     *  Otherwise, show a summary of the name trend and pop table with detailed data.
+     *  </p>
      */
     @FXML
     void doNameTrendQuery() {
@@ -540,8 +547,15 @@ public class Controller {
 
 
     /**
-     * Application 3
-     * To be triggered by the "PREDICT" button on the Application 3 Tab
+     * Application 3 (Task 6) Predict compatibility of a pair
+     *
+     * <p>
+     * To be triggered by the "PREDICT" button on the Application 3 Tab.
+     * Perform input validation on user inputs on Application 3 Tab,
+     * pop alert with reason if user inputs are invalid.
+     *
+     * Otherwise, show the compatibility in percentage (correct to 2 d.p.).
+     * </p>
      */
     @FXML
     void doCompatibilityPrediction() {
@@ -598,6 +612,7 @@ public class Controller {
 
     /**
      * Common helper function for popping table after query
+     *
      * @param table     table representation of query data
      * @param title     title of dialog
      * @param header    header of dialog
