@@ -40,4 +40,37 @@ public class AnalyzeNamesTest {
     	assertTrue(name.equals("Desire"));
     }
 
+    @Test
+    public void testgetNameEnhanced() {
+        String name = AnalyzeNames.getNameEnhanced(1949, 599, "M");
+        assertEquals("Abundio", name);
+        String notrankname = AnalyzeNames.getNameEnhanced(1949, 600, "M");
+        assertEquals("information on the name at the specified rank is not available", notrankname);
+    }
+
+    @Test
+    public void testgetCount() {
+        int count = AnalyzeNames.getCount(1949, "Whitman", "M");
+        assertEquals(5, count);
+        int count2 = AnalyzeNames.getCount(1949, "adsfas", "M");
+        assertEquals(0, count2);
+    }
+
+
+    @Test
+    public void testgetGenderBirth() {
+        int malebirth = AnalyzeNames.getGenderBirth(2018, "M");
+        assertEquals(1809166, malebirth);
+        int femalebirth = AnalyzeNames.getGenderBirth(2018, "F");
+        assertEquals(1694640, femalebirth);
+    }
+
+    @Test
+    public void testgetLowestName() {
+        String malename = AnalyzeNames.getLowestName(1949, "M");
+        assertEquals("Abundio", malename);
+        String femalename = AnalyzeNames.getLowestName(1949, "F");
+        assertEquals("Abbe", femalename);
+    }
+
 }
