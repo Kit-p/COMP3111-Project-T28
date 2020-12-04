@@ -125,15 +125,15 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="719.0">
                            <children>
-                              <TextArea layoutX="40.0" layoutY="26.0" prefHeight="114.0" prefWidth="638.0" text="Develop and implement an online service using empirical data to help make informed decisions on naming their newborn babies.  Sample Scenario of Application: (i) Parents seeking advices on naming their babies; (ii) A couple seeking advices on naming their pets&#10;&#10;Input&#10;* iDadName, iMomName: Names of the baby’s dad and mom&#10;* iDadYOB, iMomYOB: Years of birth of the baby’s dad and mom&#10;* iVintageYear (optional): A year to be chosen from 1880 to 2019; If not chosen, set the value of iVintageYear to 2019&#10;&#10;Output&#10;* oBoyName: Recommended name for baby boy according to the NK-T4 Algorithm&#10;* oGirlName: Recommended name for baby girl according to the NK-T4 Algorithm&#10;* plus, WOW factor on user experience and algorithm design!" wrapText="true" />
-                              <TextField fx:id="inputFatherName" layoutX="238.0" layoutY="160.0" prefHeight="18.0" prefWidth="96.0" text="David" />
-                              <Label layoutX="128.0" layoutY="164.0" prefHeight="18.0" prefWidth="110.0" text="Name of the Father" />
-                              <Label layoutX="368.0" layoutY="163.0" prefHeight="18.0" prefWidth="116.0" text="Name of the Mother" />
-                              <TextField fx:id="inputMotherName" layoutX="484.0" layoutY="160.0" prefHeight="18.0" prefWidth="96.0" text="Desire" />
-                              <Label layoutX="135.0" layoutY="203.0" prefHeight="18.0" prefWidth="103.0" text="YOB of the Father" />
-                              <TextField fx:id="inputDadYOB" layoutX="238.0" layoutY="199.0" prefHeight="18.0" prefWidth="96.0" text="1990" />
-                              <Label layoutX="368.0" layoutY="202.0" prefHeight="18.0" prefWidth="116.0" text="YOB of Mother" />
-                              <TextField fx:id="inputMumYOB" layoutX="484.0" layoutY="198.0" prefHeight="18.0" prefWidth="96.0" text="1990" />
+                              <TextArea layoutX="40.0" layoutY="26.0" prefHeight="114.0" prefWidth="638.0" text="Recommend a name for your child based on the ranking of the name of the parents in their year of birth.&#10;Vintage year is the year where you want your child's name to be based off of." wrapText="true" />
+                              <TextField fx:id="inputFatherName" layoutX="228.0" layoutY="160.0" prefHeight="18.0" prefWidth="96.0" text="David" />
+                              <Label layoutX="118.0" layoutY="164.0" prefHeight="18.0" prefWidth="110.0" text="Name of the Father" />
+                              <Label layoutX="403.0" layoutY="163.0" prefHeight="18.0" prefWidth="116.0" text="Name of the Mother" />
+                              <TextField fx:id="inputMotherName" layoutX="519.0" layoutY="160.0" prefHeight="18.0" prefWidth="96.0" text="Desire" />
+                              <Label layoutX="84.0" layoutY="203.0" prefHeight="18.0" prefWidth="145.0" text="Year of Birth of the Father" />
+                              <TextField fx:id="inputDadYOB" layoutX="228.0" layoutY="199.0" prefHeight="18.0" prefWidth="96.0" text="1990" />
+                              <Label layoutX="365.0" layoutY="202.0" prefHeight="18.0" prefWidth="154.0" text="Year of Birth of thw Mother" />
+                              <TextField fx:id="inputMumYOB" layoutX="519.0" layoutY="198.0" prefHeight="18.0" prefWidth="96.0" text="1990" />
                               <Label layoutX="211.0" layoutY="247.0" prefHeight="18.0" prefWidth="103.0" text="Vintage Year" />
                               <TextField fx:id="inputVintageYear" layoutX="311.0" layoutY="243.0" prefHeight="18.0" prefWidth="96.0" text="2019" />
                               <Button fx:id="application1Run" layoutX="308.0" layoutY="281.0" mnemonicParsing="false" onAction="#doBabyNameRecommendation" text="Start Query" />
