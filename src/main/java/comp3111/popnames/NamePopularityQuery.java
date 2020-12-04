@@ -61,7 +61,7 @@ public class NamePopularityQuery {
 		 */
 		private final StringProperty countString;
 		/**
-		 * processed representation of percentage (corrected to 2 d.p.)
+		 * processed representation of percentage (corrected to 3 d.p.)
 		 */
 		private final StringProperty percentageString;
 		/**
@@ -98,7 +98,7 @@ public class NamePopularityQuery {
 			}else{
 				this.rankString = new SimpleStringProperty(String.valueOf(rank));
 				this.countString = new SimpleStringProperty(String.valueOf(count));
-				this.percentageString = new SimpleStringProperty(String.format("%.2f%%", percentage));
+				this.percentageString = new SimpleStringProperty(String.format("%.3f%%", percentage));
 			}
 		}
 
@@ -191,7 +191,7 @@ public class NamePopularityQuery {
 
 				//total gender birth in the year
 				int totalGenderBirth = AnalyzeNames.getGenderBirth(i, this.gender);
-				percentage = Math.round((((float) count / (float) totalGenderBirth)*100)*100) / (float) 100;
+				percentage = Math.round((((float) count / (float) totalGenderBirth)*100)*1000) / (float) 1000;
 			}
 
 			NamePopularityQueryDataRow tempRow = new NamePopularityQueryDataRow(i, rank, count, percentage);
