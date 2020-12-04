@@ -99,6 +99,8 @@ public class TopNamesQuery {
 
     /**
      * Iterate through all the years to get the top N names
+     *
+     * @return array list storing all the rows of the query result
      */
     public ArrayList<TopNamesQueryRankRow> getTopNames(){
         queryData = new ArrayList<>();
@@ -122,6 +124,8 @@ public class TopNamesQuery {
      * <br>
      * Get names with max occurrence
      * </p>
+     *
+     * @return the summary text
      */
     public String getSummary(){
         if (queryData == null) {
@@ -150,10 +154,10 @@ public class TopNamesQuery {
         }
         String summary = String.format("Over the period %d to %d", startYear, endYear);
         for(int i = 0; i < result.size(); i++){
-            summary +=  String.format(", %s", result.get(i));
+            summary += String.format(", %s", result.get(i));
         }
         String outputGender = "Male";
-        if(gender == "F"){
+        if(gender.equals("F")){
             outputGender = "Female";
         }
         summary += String.format(" for %s has hold the top spot most often for a total of %d times",outputGender, max);
@@ -167,6 +171,8 @@ public class TopNamesQuery {
      * <p>
      * For each rank, create a new column
      * </p>
+     *
+     * @return the table representation of the query result
      */
     public TableView<TopNamesQuery.TopNamesQueryRankRow> getTableView() {
         //check if query is done
