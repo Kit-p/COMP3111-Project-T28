@@ -157,7 +157,6 @@ public class TopNamesQuery {
             outputGender = "Female";
         }
         summary += String.format(" for %s has hold the top spot most often for a total of %d times",outputGender, max);
-        System.out.println(summary);
         return summary;
     }
 
