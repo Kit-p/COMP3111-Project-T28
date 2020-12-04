@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NamePopularityQuery.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PopNames3111</a> &gt; <a href="index.source.html" class="el_package">comp3111.popnames</a> &gt; <span class="el_source">NamePopularityQuery.java</span></div><h1>NamePopularityQuery.java</h1><pre class="source lang-java linenums">package comp3111.popnames;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
+/**
+ * Task 2 (Reporting 2) Class that generate a report on the popularity of a particular name over a given period
+ */
+public class NamePopularityQuery {
+	/**
+	 * name queried
+	 */
+	private final String name;
+	/**
+	 * gender of the name queried
+	 */
+	private final String gender;
+	/**
+	 * the year of the start of the queried period
+	 */
+	private final int startYear;
+	/**
+	 * the year of the end of the queried period
+	 */
+	private final int endYear;
+	/**
+	 * arraylist storing the popularity data (rank, count, percentage) of each year in the period
+	 */
+<span class="fc" id="L37">	private ArrayList&lt;NamePopularityQueryDataRow&gt; popularityTable = new ArrayList&lt;&gt;();</span>
+	/**
+	 * the highest rank of the name in the period
+	 */
+	private int topYearRank;
+	/**
+	 * arraylist storing the years that the name have the highest rank in the period
+	 */
+<span class="fc" id="L45">	private ArrayList&lt;NamePopularityQueryDataRow&gt; topYears = new ArrayList&lt;&gt;();</span>
+
+	/**
+	 * Task 2 Inner class storing popularity data of a name in a year for constructing report table
+	 */
+	public static class NamePopularityQueryDataRow{
+		/**
+		 * the year of the data retrieved
+		 */
+		private final IntegerProperty year;
+		/**
+		 * processed representation of rank
+		 */
+		private final StringProperty rankString;
+		/**
+		 * processed representation of count
+		 */
+		private final StringProperty countString;
+		/**
+		 * processed representation of percentage (corrected to 3 d.p.)
+		 */
+		private final StringProperty percentageString;
+		/**
+		 * rank of the name
+		 */
+		private final int rank;
+		/**
+		 * occurrence of the name
+		 */
+		private final int count;
+		/**
+		 * percentage of gender birth with the name
+		 */
+		private final float percentage;
+
+		/**
+		 * Construct an NamePopularityQueryDataRow object storing popularity data of a name in a year
+		 *
+		 * @param year	year of the data retrieved
+		 * @param rank	rank of the name
+		 * @param count	occurrence of the name
+		 * @param percentage	percentage of gender birth with the name
+		 */
+<span class="fc" id="L88">		public NamePopularityQueryDataRow(int year, int rank, int count, float percentage) {</span>
+<span class="fc" id="L89">			this.year = new SimpleIntegerProperty(year);</span>
+<span class="fc" id="L90">			this.rank = rank;</span>
+<span class="fc" id="L91">			this.count = count;</span>
+<span class="fc" id="L92">			this.percentage = percentage;</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">			if (rank == -1)</span>
+			{
+<span class="fc" id="L95">				this.rankString = new SimpleStringProperty(&quot;Not Ranked&quot;);</span>
+<span class="fc" id="L96">				this.countString = new SimpleStringProperty(&quot;-&quot;);</span>
+<span class="fc" id="L97">				this.percentageString = new SimpleStringProperty(&quot;-&quot;);</span>
+			}else{
+<span class="fc" id="L99">				this.rankString = new SimpleStringProperty(String.valueOf(rank));</span>
+<span class="fc" id="L100">				this.countString = new SimpleStringProperty(String.valueOf(count));</span>
+<span class="fc" id="L101">				this.percentageString = new SimpleStringProperty(String.format(&quot;%.3f%%&quot;, percentage));</span>
+			}
+<span class="fc" id="L103">		}</span>
+
+		/**
+		 * Get the year that the data corresponds to
+		 *
+		 * @return year of the data corresponds to
+		 */
+		public IntegerProperty yearProperty() {
+<span class="fc" id="L111">			return year;</span>
+		}
+
+		/**
+		 * Get the string representation of rank of the name
+		 *
+		 * @return	string representation of rank of the name
+		 */
+		public StringProperty rankStringProperty() {
+<span class="fc" id="L120">			return rankString;</span>
+		}
+
+		/**
+		 * Get the string representation of occurrence of the name
+		 *
+		 * @return	string representation of occurrence of the name
+		 */
+		public StringProperty countStringProperty() {
+<span class="fc" id="L129">			return countString;</span>
+		}
+
+		/**
+		 * Get the string of percentage of gender birth with the name
+		 *
+		 * @return	string of percentage of gender birth with the name
+		 */
+		public String getPercentageString() {
+<span class="fc" id="L138">			return percentageString.get();</span>
+		}
+
+		/**
+		 * Get the StringProperty of percentage of gender birth with the name
+		 *
+		 * @return	StringProperty of percentage of gender birth with the name
+		 */
+		public StringProperty percentageStringProperty() {
+<span class="fc" id="L147">			return percentageString;</span>
+		}
+	}
+
+
+	/**
+	 * Construct a NamePopularityQuery object for processing the popularity data of the queried name
+	 *
+	 * @param inputName	name to be queried
+	 * @param inputGender	gender of name to be queried
+	 * @param inputStartYear	start of the period to be queried
+	 * @param inputEndYear	end of the period to be queried
+	 */
+<span class="fc" id="L160">	public NamePopularityQuery(String inputName, String inputGender, int inputStartYear, int inputEndYear) {</span>
+<span class="fc" id="L161">		this.name = inputName;</span>
+<span class="fc" id="L162">		this.gender = inputGender;</span>
+<span class="fc" id="L163">		this.startYear = inputStartYear;</span>
+<span class="fc" id="L164">		this.endYear = inputEndYear;</span>
+<span class="fc" id="L165">		this.topYearRank = 999999999;</span>
+<span class="fc" id="L166">		getNamePopularity();</span>
+<span class="fc" id="L167">	}</span>
+
+
+	/**
+	 * Get the popularity data of the queried name of each year in the period, and store the data in the current object.
+	 *
+	 * Populate the array storing popularity data of each year in the period.
+	 * Process the highest rank the name achieved in the period,
+	 * and populate the array storing the year the name achieved that rank
+	 */
+	private void getNamePopularity() {
+<span class="fc bfc" id="L178" title="All 2 branches covered.">		for (int i=this.startYear; i&lt;=endYear; i++) {</span>
+			//rank of name in year
+<span class="fc" id="L180">			int rank = AnalyzeNames.getRankEnhanced(i, this.name, this.gender);</span>
+
+			//count of the name: not ranked -&gt; 0
+<span class="fc" id="L183">			int count = 0;</span>
+			//percentage of the name compare to total gender birth: not ranked -&gt; 0
+<span class="fc" id="L185">			float percentage = 0;</span>
+
+<span class="fc bfc" id="L187" title="All 2 branches covered.">			if (rank==-1) {</span>
+<span class="fc" id="L188">				count = 0;</span>
+			}else {
+<span class="fc" id="L190">				count = AnalyzeNames.getCount(i, this.name, this.gender);</span>
+
+				//total gender birth in the year
+<span class="fc" id="L193">				int totalGenderBirth = AnalyzeNames.getGenderBirth(i, this.gender);</span>
+<span class="fc" id="L194">				percentage = Math.round((((float) count / (float) totalGenderBirth)*100)*1000) / (float) 1000;</span>
+			}
+
+<span class="fc" id="L197">			NamePopularityQueryDataRow tempRow = new NamePopularityQueryDataRow(i, rank, count, percentage);</span>
+<span class="fc bfc" id="L198" title="All 4 branches covered.">			if (rank != -1 &amp;&amp; rank &lt; topYearRank){</span>
+<span class="fc" id="L199">				topYearRank = rank;</span>
+<span class="fc" id="L200">				topYears.clear();</span>
+<span class="fc" id="L201">				topYears.add(tempRow);</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">			}else if (rank == topYearRank){</span>
+<span class="fc" id="L203">				topYears.add(tempRow);</span>
+			}
+
+<span class="fc" id="L206">			popularityTable.add(tempRow);</span>
+		}
+<span class="fc" id="L208">	}</span>
+
+
+	/**
+	 * Get the summary text of the queried result of the popularity of a name
+	 *
+	 * @return	the summary text
+	 */
+	public String getSummary() {
+<span class="fc" id="L217">		String genderlongVer = &quot;&quot;;</span>
+<span class="fc bfc" id="L218" title="All 2 branches covered.">		if (this.gender.equals(&quot;M&quot;)){</span>
+<span class="fc" id="L219">			genderlongVer = &quot;male&quot;;</span>
+		}else{
+<span class="fc" id="L221">			genderlongVer = &quot;female&quot;;</span>
+		}
+
+<span class="pc bpc" id="L224" title="1 of 4 branches missed.">		if (topYearRank == 999999999 || topYears.size() == 0){</span>
+<span class="fc" id="L225">			return String.format(&quot;The name %s is not ranked in every year from %d to %d. There is no popularity data available on the name queried!&quot;</span>
+<span class="fc" id="L226">					, this.name, this.startYear, this.endYear);</span>
+		}
+
+		//there is rank for the name in the period
+		//handle data in the endYear
+<span class="fc" id="L231">		String summary = &quot;&quot;;</span>
+<span class="fc" id="L232">		NamePopularityQueryDataRow endYearEntry = popularityTable.get(popularityTable.size()-1);</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">		if (endYearEntry.rank == -1){</span>
+<span class="fc" id="L234">			String endYearNotRanked =</span>
+<span class="fc" id="L235">					String.format(&quot;In the year %d, the name %s is not ranked, there is no corresponding data on the number of birth with this name &amp; percentage of total %s birth this name represents. &quot;</span>
+<span class="fc" id="L236">					, this.endYear, this.name, genderlongVer);</span>
+<span class="fc" id="L237">			summary += endYearNotRanked;</span>
+<span class="fc" id="L238">		}else{</span>
+<span class="fc" id="L239">			String subsummaryA = String.format(&quot;In the year %d, the number of birth with name %s is %d, which represents %s percent of total %s births in %d. &quot;,</span>
+<span class="fc" id="L240">					endYear, this.name, endYearEntry.count, endYearEntry.getPercentageString(), genderlongVer, endYear);</span>
+<span class="fc" id="L241">			summary += subsummaryA;</span>
+		}
+
+		//handle max years
+<span class="fc bfc" id="L245" title="All 2 branches covered.">		if (topYears.size() == 1){</span>
+<span class="fc" id="L246">			NamePopularityQueryDataRow maxYear = topYears.get(0);</span>
+<span class="fc" id="L247">			String subsummaryB = String.format(&quot;The year when the name %s was most popular is %d. In that year, the number of births is %d, which represents %s percent of the total %s birth in %d.&quot;</span>
+<span class="fc" id="L248">					, this.name, maxYear.year.intValue(), maxYear.count, maxYear.getPercentageString(), genderlongVer, maxYear.year.intValue());</span>
+<span class="fc" id="L249">			summary += subsummaryB;</span>
+<span class="fc" id="L250">		}else {</span>
+			//find all year with highest rank
+<span class="fc" id="L252">			StringBuilder subsummaryB = new StringBuilder();</span>
+<span class="fc" id="L253">			subsummaryB.append(String.format(&quot;The years when the name %s was most popular are &quot;, this.name));</span>
+<span class="fc bfc" id="L254" title="All 2 branches covered.">			for (int j=0; j&lt;topYears.size(); j++){</span>
+<span class="fc" id="L255">				subsummaryB.append(String.valueOf(topYears.get(j).year.intValue()));</span>
+<span class="fc bfc" id="L256" title="All 2 branches covered.">				if (j &lt; topYears.size()-2){</span>
+<span class="fc" id="L257">					subsummaryB.append(&quot;, &quot;);</span>
+<span class="fc bfc" id="L258" title="All 2 branches covered.">				}else if (j == topYears.size()-2){</span>
+<span class="fc" id="L259">					subsummaryB.append(&quot; and &quot;);</span>
+				}else{
+<span class="fc" id="L261">					subsummaryB.append(&quot;. \n&quot;);</span>
+				}
+			}
+
+<span class="fc bfc" id="L265" title="All 2 branches covered.">			for (int j=0; j&lt;topYears.size(); j++){</span>
+<span class="fc" id="L266">				NamePopularityQueryDataRow eachmaxYear = topYears.get(j);</span>
+<span class="fc" id="L267">				String eachMaxYearSummary = String.format(&quot;In year %d, the number of births is %d, which represents %s percent of the total %s birth in %d. \n&quot;</span>
+<span class="fc" id="L268">				, eachmaxYear.year.intValue(), eachmaxYear.count, eachmaxYear.getPercentageString(), genderlongVer, eachmaxYear.year.intValue());</span>
+<span class="fc" id="L269">				subsummaryB.append(eachMaxYearSummary);</span>
+			}
+
+<span class="fc" id="L272">			summary += subsummaryB.toString();</span>
+		}
+
+<span class="fc" id="L275">		return summary;</span>
+	}
+
+
+	/**
+	 * Get the table representation of the queried result of the popularity of a name
+	 *
+	 * @return the table view of the queried result
+	 */
+	public TableView&lt;NamePopularityQuery.NamePopularityQueryDataRow&gt; getTableView(){
+<span class="fc" id="L285">		TableView&lt;NamePopularityQuery.NamePopularityQueryDataRow&gt; table = new TableView&lt;&gt;();</span>
+<span class="fc" id="L286">		table.setEditable(false);</span>
+<span class="fc" id="L287">		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);</span>
+<span class="fc" id="L288">		table.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+
+<span class="fc" id="L290">		TableColumn&lt;NamePopularityQuery.NamePopularityQueryDataRow, Number&gt; yearCol = new TableColumn&lt;&gt;(&quot;Year&quot;);</span>
+<span class="fc" id="L291">		yearCol.setCellValueFactory(row -&gt; row.getValue().yearProperty());</span>
+<span class="fc" id="L292">		yearCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+
+<span class="fc" id="L294">		TableColumn&lt;NamePopularityQuery.NamePopularityQueryDataRow, String&gt; rankCol = new TableColumn&lt;&gt;(&quot;Rank&quot;);</span>
+<span class="fc" id="L295">		rankCol.setCellValueFactory(row -&gt; row.getValue().rankStringProperty());</span>
+<span class="fc" id="L296">		rankCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+
+<span class="fc" id="L298">		TableColumn&lt;NamePopularityQuery.NamePopularityQueryDataRow, String&gt; countCol = new TableColumn&lt;&gt;(&quot;Count&quot;);</span>
+<span class="fc" id="L299">		countCol.setCellValueFactory(row -&gt; row.getValue().countStringProperty());</span>
+<span class="fc" id="L300">		countCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+
+<span class="fc" id="L302">		TableColumn&lt;NamePopularityQuery.NamePopularityQueryDataRow, String&gt; percentCol = new TableColumn&lt;&gt;(&quot;Percentage&quot;);</span>
+<span class="fc" id="L303">		percentCol.setCellValueFactory(row -&gt; row.getValue().percentageStringProperty());</span>
+<span class="fc" id="L304">		percentCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+
+<span class="fc" id="L306">		table.setItems(FXCollections.observableArrayList(popularityTable));</span>
+<span class="fc" id="L307">		table.getColumns().addAll(Arrays.asList(yearCol, rankCol, countCol, percentCol));</span>
+<span class="fc" id="L308">		return table;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
