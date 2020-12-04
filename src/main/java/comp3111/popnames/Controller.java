@@ -605,6 +605,11 @@ public class Controller {
         if (task6_olderBtn.isSelected()) {
             preference = 1;
         }
+        int mateYob = yob + preference;
+        if (mateYob < 1880 || mateYob > 2019) {
+            popAlert(AlertType.ERROR, "Error", "Invalid Input", "There is no data for this age preference!");
+            return;
+        }
         if (task6_nameField.getText().isBlank() || task6_mateNameField.getText().isBlank()) {
             popAlert(AlertType.ERROR, "Error", "Invalid Input", "Name must not be empty!");
             return;
