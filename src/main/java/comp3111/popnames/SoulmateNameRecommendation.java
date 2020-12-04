@@ -62,7 +62,7 @@ public class SoulmateNameRecommendation {
 	 * else if the preference is "older", the soulmate's year of birth is (user's year of birth + 1).
 	 * <br>
 	 * Finally, the algorithm finds the name in the soulmate's year of birth that has the same rank as the user's name rank,
-	 * which the closest possible rank to the user's name rank, and returns that name.
+	 * which has the closest possible rank to the user's name rank, and returns that name.
 	 * <br>
 	 * If there do not exist that has the same rank as the user's name rank, either due to the user's name is not ranked, or
 	 * the user's name rank is too low that there is not a name in the soulmate's year of birth with that rank,
@@ -121,7 +121,7 @@ public class SoulmateNameRecommendation {
 		}
 
 		String oName = AnalyzeNames.getNameEnhanced(oYOB, oRank, soulmateGender);
-		if (oName.contentEquals("information on the name at the specified rank is not available")) {
+		if (oName.equals("information on the name at the specified rank is not available")) {
 			return AnalyzeNames.getLowestName(oYOB, this.soulmateGender);
 		}
 
