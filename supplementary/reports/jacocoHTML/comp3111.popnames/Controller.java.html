@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PopNames3111</a> &gt; <a href="index.source.html" class="el_package">comp3111.popnames</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">package comp3111.popnames;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+
+/**
+ * Controller Class of the Application
+ */
+<span class="fc" id="L10">public class Controller {</span>
+
+    @FXML
+    private Tab tabTaskZero;
+
+    @FXML
+    private TextField textfieldNameF;
+
+    @FXML
+    private TextField textfieldYear;
+
+    @FXML
+    private Button buttonRankM;
+
+    @FXML
+    private TextField textfieldNameM;
+
+    @FXML
+    private Button buttonRankF;
+
+    @FXML
+    private Button buttonTopM;
+
+    @FXML
+    private Button buttonTopF;
+
+    @FXML
+    private Button buttonSummary;
+    
+    @FXML
+    private Tab tabReport1;
+
+    @FXML
+    private TextField inputTopN;
+
+    @FXML
+    private RadioButton inputMale;
+
+    @FXML
+    private RadioButton inputFemale;
+
+    @FXML
+    private TextField inputStart;
+
+    @FXML
+    private TextField inputEnd;
+
+    @FXML
+    private TextField inputFatherName;
+
+    @FXML
+    private TextField inputMotherName;
+
+    @FXML
+    private TextField inputDadYOB;
+
+    @FXML
+    private TextField inputMumYOB;
+
+    @FXML
+    private TextField inputVintageYear;
+
+    @FXML
+    private ToggleGroup T1;
+
+    @FXML
+    private Tab tabReport2;
+
+    @FXML
+    private TextField task2NameField;
+
+    @FXML
+    private RadioButton task2Male;
+
+    @FXML
+    private ToggleGroup T11;
+
+    @FXML
+    private RadioButton task2Female;
+
+    @FXML
+    private TextField task2EndYear;
+
+    @FXML
+    private TextField task2StartYear;
+
+    @FXML
+    private Button NamePopularityQueryButton;
+
+    @FXML
+    private Tab tabReport3;
+
+    @FXML
+    private RadioButton task3_maleBtn;
+
+    @FXML
+    private RadioButton task3_femaleBtn;
+
+    @FXML
+    private ToggleGroup T111;
+
+    @FXML
+    private TextField task3_year1Field;
+
+    @FXML
+    private TextField task3_year2Field;
+
+    @FXML
+    private TextField task3_topNField;
+
+    @FXML
+    private Button task3_reportBtn;
+
+    @FXML
+    private Tab tabApp1;
+
+    @FXML
+    private Tab tabApp2;
+
+
+    @FXML
+    private TextField task5NameField;
+
+    @FXML
+    private TextField task5_YOB;
+
+    @FXML
+    private RadioButton task5_maleBtn;
+
+    @FXML
+    private ToggleGroup T51;
+
+    @FXML
+    private RadioButton task5_femaleBtn;
+
+    @FXML
+    private RadioButton task5_mateMaleBtn;
+
+    @FXML
+    private ToggleGroup T52;
+
+    @FXML
+    private RadioButton task5_mateFemaleBtn;
+
+    @FXML
+    private RadioButton task5_youngerBtn;
+
+    @FXML
+    private ToggleGroup T53;
+
+    @FXML
+    private RadioButton task5_olderBtn;
+
+    @FXML
+    private Button task5_predictBtn;
+
+    @FXML
+    private Tab tabApp3;
+
+    @FXML
+    private TextField task6_nameField;
+
+    @FXML
+    private RadioButton task6_maleBtn;
+
+    @FXML
+    private ToggleGroup T61;
+
+    @FXML
+    private RadioButton task6_femaleBtn;
+
+    @FXML
+    private TextField task6_yobField;
+
+    @FXML
+    private TextField task6_mateNameField;
+
+    @FXML
+    private RadioButton task6_mateMaleBtn;
+
+    @FXML
+    private ToggleGroup T62;
+
+    @FXML
+    private RadioButton task6_mateFemaleBtn;
+
+    @FXML
+    private RadioButton task6_youngerBtn;
+
+    @FXML
+    private ToggleGroup T63;
+
+    @FXML
+    private RadioButton task6_olderBtn;
+
+    @FXML
+    private Button task6_predictBtn;
+
+    @FXML
+    private TextArea textAreaConsole;
+    
+
+    /**
+     *  Task Zero
+     *  To be triggered by the &quot;Summary&quot; button on the Task Zero Tab 
+     *  
+     */
+    @FXML
+    void doSummary() {
+<span class="nc" id="L219">    	int year = Integer.parseInt(textfieldYear.getText());</span>
+<span class="nc" id="L220">    	String oReport = AnalyzeNames.getSummary(year);</span>
+<span class="nc" id="L221">    	textAreaConsole.setText(oReport);</span>
+<span class="nc" id="L222">    }</span>
+
+  
+    /**
+     *  Task Zero
+     *  To be triggered by the &quot;Rank (female)&quot; button on the Task Zero Tab
+     *  
+     */
+    @FXML
+    void doRankF() {
+<span class="fc" id="L232">    	String oReport = &quot;&quot;;</span>
+<span class="fc" id="L233">    	String iNameF = textfieldNameF.getText();</span>
+<span class="fc" id="L234">    	int iYear = Integer.parseInt(textfieldYear.getText());</span>
+<span class="fc" id="L235">    	int oRank = AnalyzeNames.getRank(iYear, iNameF, &quot;F&quot;);</span>
+<span class="pc bpc" id="L236" title="1 of 2 branches missed.">    	if (oRank == -1)</span>
+<span class="nc" id="L237">    		oReport = String.format(&quot;The name %s (female) has not been ranked in the year %d.\n&quot;, iNameF, iYear);</span>
+    	else
+<span class="fc" id="L239">    		oReport = String.format(&quot;Rank of %s (female) in year %d is #%d.\n&quot;, iNameF, iYear, oRank);</span>
+<span class="fc" id="L240">    	textAreaConsole.setText(oReport);</span>
+<span class="fc" id="L241">    }</span>
+
+  
+    /**
+     *  Task Zero
+     *  To be triggered by the &quot;Rank (male)&quot; button on the Task Zero Tab
+     *  
+     */
+    @FXML
+    void doRankM() {
+<span class="fc" id="L251">    	String oReport = &quot;&quot;;</span>
+<span class="fc" id="L252">    	String iNameM = textfieldNameM.getText();</span>
+<span class="fc" id="L253">    	int iYear = Integer.parseInt(textfieldYear.getText());</span>
+<span class="fc" id="L254">    	int oRank = AnalyzeNames.getRank(iYear, iNameM, &quot;M&quot;);</span>
+<span class="pc bpc" id="L255" title="1 of 2 branches missed.">    	if (oRank == -1)</span>
+<span class="nc" id="L256">    		oReport = String.format(&quot;The name %s (male) has not been ranked in the year %d.\n&quot;, iNameM, iYear);</span>
+    	else
+<span class="fc" id="L258">    		oReport = String.format(&quot;Rank of %s (male) in year %d is #%d.\n&quot;, iNameM, iYear, oRank);</span>
+<span class="fc" id="L259">    	textAreaConsole.setText(oReport);</span>
+<span class="fc" id="L260">    }</span>
+
+
+    /**
+     *  Task Zero
+     *  To be triggered by the &quot;Top 5 (female)&quot; button on the Task Zero Tab
+     *  
+     */
+    @FXML
+    void doTopF() {
+<span class="nc" id="L270">    	String oReport = &quot;&quot;;</span>
+<span class="nc" id="L271">    	final int topN = 5;</span>
+<span class="nc" id="L272">    	int iYear = Integer.parseInt(textfieldYear.getText());</span>
+<span class="nc" id="L273">    	oReport = String.format(&quot;Top %d most popular names (female) in the year %d:\n&quot;, topN, iYear);</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">    	for (int i=1; i&lt;=topN; i++)</span>
+<span class="nc" id="L275">    		oReport += String.format(&quot;#%d: %s\n&quot;, i, AnalyzeNames.getName(iYear, i, &quot;F&quot;));</span>
+<span class="nc" id="L276">    	textAreaConsole.setText(oReport);</span>
+<span class="nc" id="L277">    }</span>
+
+
+    /**
+     *  Task Zero
+     *  To be triggered by the &quot;Top 5 (male)&quot; button on the Task Zero Tab
+     *  
+     */
+    @FXML
+    void doTopM() {
+<span class="nc" id="L287">    	String oReport = &quot;&quot;;</span>
+<span class="nc" id="L288">    	final int topN = 5;</span>
+<span class="nc" id="L289">    	int iYear = Integer.parseInt(textfieldYear.getText());</span>
+<span class="nc" id="L290">    	oReport = String.format(&quot;Top %d most popular names (male) in the year %d:\n&quot;, topN, iYear);</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">    	for (int i=1; i&lt;=topN; i++)</span>
+<span class="nc" id="L292">    		oReport += String.format(&quot;#%d: %s\n&quot;, i, AnalyzeNames.getName(iYear, i, &quot;M&quot;));</span>
+<span class="nc" id="L293">    	textAreaConsole.setText(oReport);</span>
+<span class="nc" id="L294">    }</span>
+
+
+    /**
+     * Task 1
+     * when report button is clicked
+     * get all values from input fields
+     * then call the query functions
+    */
+    @FXML
+    void doReport(){
+<span class="fc" id="L305">            textAreaConsole.setText(&quot;&quot;);</span>
+<span class="fc" id="L306">            String oReport = &quot;&quot;;</span>
+            String gender;
+<span class="fc bfc" id="L308" title="All 2 branches covered.">            if(inputMale.isSelected()){</span>
+<span class="fc" id="L309">                gender = &quot;M&quot;;</span>
+            }else{
+<span class="fc" id="L311">                gender = &quot;F&quot;;</span>
+            }
+            int topN, startYear, endYear;
+            try{
+<span class="fc" id="L315">                topN = Integer.parseInt(inputTopN.getText());</span>
+<span class="fc" id="L316">                startYear = Integer.parseInt(inputStart.getText());</span>
+<span class="fc" id="L317">                endYear = Integer.parseInt(inputEnd.getText());</span>
+
+<span class="fc" id="L319">            }catch(NumberFormatException e){</span>
+<span class="fc" id="L320">                popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Format of the input is invalid! Please enter a valid period&quot;);</span>
+<span class="fc" id="L321">                return;</span>
+<span class="fc" id="L322">            }</span>
+<span class="pc bpc" id="L323" title="4 of 8 branches missed.">            if (startYear&lt;1880 || startYear&gt;2019 || endYear&lt;1880 || endYear&gt;2019) {</span>
+<span class="nc" id="L324">                popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;The inputted Period is invalid! Please enter a period within the specified range&quot;);</span>
+<span class="nc" id="L325">                return;</span>
+            }
+
+<span class="pc bpc" id="L328" title="1 of 2 branches missed.">            if (topN &lt; 1) {</span>
+<span class="nc" id="L329">                popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;The range of the rank of names is invalid! Please enter a range larger or equal to 1&quot;);</span>
+<span class="nc" id="L330">                return;</span>
+             }
+
+<span class="pc bpc" id="L333" title="1 of 2 branches missed.">            if (endYear &lt; startYear) {</span>
+<span class="nc" id="L334">                popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Period to be Queried is invalid! End of period cannot be earlier than Start of period&quot;);</span>
+<span class="nc" id="L335">                return;</span>
+            }
+<span class="fc" id="L337">            TopNamesQuery query = new TopNamesQuery(topN, gender, startYear,endYear);</span>
+<span class="fc" id="L338">            query.getTopNames();</span>
+            //query.getSummary();
+<span class="fc" id="L340">            oReport = query.getSummary();</span>
+<span class="fc" id="L341">            textAreaConsole.setText(oReport);</span>
+<span class="fc" id="L342">            popTable(query.getTableView(), &quot;Top N names&quot;, null, oReport);</span>
+<span class="fc" id="L343">    }</span>
+
+
+    /**
+     *  Reporting 2 (Task 2) Report the popularity of a particular name over a given period.
+     *
+     *  &lt;p&gt;
+     *  To be triggered by the &quot;REPORT&quot; button on the Reporting 2 Tab.
+     *  Perform input validation on user inputs on Reporting 2 tab,
+     *  pop alert with reason if inputs are invalid.
+     *
+     *  Otherwise, pop out a table to show the popularity of a particular name over a given period,
+     *  and provide a summary in the textAreaConsole.
+     *  &lt;/p&gt;
+     */
+    @FXML
+    void doNamePopularityQuery() {
+<span class="fc" id="L360">        textAreaConsole.setText(&quot;&quot;);</span>
+<span class="fc" id="L361">        String name = task2NameField.getText();</span>
+<span class="fc bfc" id="L362" title="All 2 branches covered.">        if (name.isBlank()) {</span>
+<span class="fc" id="L363">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Name is blank! Please enter a valid name!&quot;);</span>
+<span class="fc" id="L364">            return;</span>
+        }
+
+<span class="fc" id="L367">        String gender = &quot;M&quot;;</span>
+<span class="fc bfc" id="L368" title="All 2 branches covered.">        if (task2Female.isSelected()) {</span>
+<span class="fc" id="L369">            gender = &quot;F&quot;;</span>
+        }
+
+        int  startYear;
+        int endYear;
+        try {
+<span class="fc" id="L375">            startYear = Integer.parseInt(task2StartYear.getText());</span>
+<span class="fc" id="L376">            endYear = Integer.parseInt(task2EndYear.getText());</span>
+<span class="fc bfc" id="L377" title="All 8 branches covered.">            if (startYear&lt;1880 || startYear&gt;2019 || endYear&lt;1880 || endYear&gt;2019) {</span>
+<span class="fc" id="L378">                throw new NumberFormatException();</span>
+            }
+<span class="fc" id="L380">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L381">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;The queried period is invalid! Year inputs must be between 1880 and 2019!&quot;);</span>
+<span class="fc" id="L382">            return;</span>
+<span class="fc" id="L383">        }</span>
+<span class="fc bfc" id="L384" title="All 2 branches covered.">        if (startYear &gt; endYear) {</span>
+<span class="fc" id="L385">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Period to be queried is invalid! Start year must not be greater than end year!&quot;);</span>
+<span class="fc" id="L386">            return;</span>
+        }
+
+<span class="fc" id="L389">        NamePopularityQuery query = new NamePopularityQuery(name, gender, startYear, endYear);</span>
+<span class="fc" id="L390">        String summary = query.getSummary();</span>
+<span class="fc" id="L391">        textAreaConsole.setText(summary);</span>
+<span class="fc" id="L392">        popTable(query.getTableView(), &quot;Reporting 2&quot;, null, summary);</span>
+<span class="fc" id="L393">    }</span>
+
+
+    /**
+     *  Reporting 3 (Task 3) Get trend of Top N names between two years
+     *
+     *  &lt;p&gt;
+     *  To be triggered by the &quot;REPORT&quot; button on the Reporting 3 Tab.
+     *  Perform input validation on user inputs on Reporting 3 tab,
+     *  pop alert with reason if user inputs are invalid.
+     *
+     *  Otherwise, show a summary of the name trend and pop table with detailed data.
+     *  &lt;/p&gt;
+     */
+    @FXML
+    void doNameTrendQuery() {
+<span class="fc" id="L409">        textAreaConsole.setText(&quot;&quot;);</span>
+<span class="fc" id="L410">        String gender = &quot;M&quot;;</span>
+<span class="fc bfc" id="L411" title="All 2 branches covered.">        if (task3_femaleBtn.isSelected()) {</span>
+<span class="fc" id="L412">            gender = &quot;F&quot;;</span>
+        }
+        int startYear, endYear, N;
+        try {
+<span class="fc" id="L416">            startYear = Integer.parseInt(task3_year1Field.getText());</span>
+<span class="fc" id="L417">            endYear = Integer.parseInt(task3_year2Field.getText());</span>
+<span class="fc bfc" id="L418" title="All 8 branches covered.">            if (startYear &lt; 1880 || startYear &gt; 2019 || endYear &lt; 1880 || endYear &gt; 2019) {</span>
+<span class="fc" id="L419">                throw new NumberFormatException();</span>
+            }
+<span class="fc" id="L421">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L422">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Year must be between 1880 and 2019!&quot;);</span>
+<span class="fc" id="L423">            return;</span>
+<span class="fc" id="L424">        }</span>
+<span class="fc bfc" id="L425" title="All 2 branches covered.">        if (startYear &gt; endYear) {</span>
+<span class="fc" id="L426">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Start year must not be greater than end year!&quot;);</span>
+<span class="fc" id="L427">            return;</span>
+        }
+        try {
+<span class="fc" id="L430">            N = Integer.parseInt(task3_topNField.getText());</span>
+<span class="fc bfc" id="L431" title="All 2 branches covered.">            if (N &lt; 1) {</span>
+<span class="fc" id="L432">                throw new NumberFormatException();</span>
+            }
+<span class="fc" id="L434">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L435">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Must query at least top 1!&quot;);</span>
+<span class="fc" id="L436">            return;</span>
+<span class="fc" id="L437">        }</span>
+<span class="fc" id="L438">        NameTrendQuery query = new NameTrendQuery(gender, startYear, endYear, N);</span>
+<span class="fc" id="L439">        String oReport = query.getSummary();</span>
+<span class="fc" id="L440">        textAreaConsole.setText(oReport);</span>
+<span class="fc" id="L441">        popTable(query.getTableView(), &quot;Reporting 3&quot;, null, oReport);</span>
+<span class="fc" id="L442">    }</span>
+
+
+    /**
+     * Task 4
+     * when report button is clicked
+     * get all values from input fields
+     * then call the query functions
+     */
+    @FXML
+    void doBabyNameRecommendation(){
+<span class="fc" id="L453">        textAreaConsole.setText(&quot;&quot;);</span>
+<span class="fc" id="L454">        String dadName = inputFatherName.getText();</span>
+<span class="fc" id="L455">        String mumName = inputMotherName.getText();</span>
+<span class="fc bfc" id="L456" title="All 2 branches covered.">        if(dadName.isBlank()){</span>
+<span class="fc" id="L457">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;The father's name cannot be blank!&quot;);</span>
+<span class="fc" id="L458">            return;</span>
+        }
+<span class="fc bfc" id="L460" title="All 2 branches covered.">        if(mumName.isBlank()){</span>
+<span class="fc" id="L461">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;The mother's name cannot be blank!&quot;);</span>
+<span class="fc" id="L462">            return;</span>
+        }
+        int dadYOB, mumYOB, vintageYear;
+        try{
+<span class="fc" id="L466">            dadYOB = Integer.parseInt(inputDadYOB.getText());</span>
+<span class="fc" id="L467">            mumYOB = Integer.parseInt(inputMumYOB.getText());</span>
+<span class="pc bpc" id="L468" title="2 of 8 branches missed.">            if(dadYOB &lt; 1880 || dadYOB &gt; 2019 || mumYOB &lt; 1880 || mumYOB &gt; 2019){</span>
+<span class="fc" id="L469">                throw new NumberFormatException();</span>
+            }
+<span class="fc" id="L471">        }catch(NumberFormatException e){</span>
+<span class="fc" id="L472">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Invalid date for YOB!&quot;);</span>
+<span class="fc" id="L473">            return;</span>
+<span class="fc" id="L474">        }</span>
+        try{
+<span class="fc" id="L476">            vintageYear = Integer.parseInt(inputVintageYear.getText());</span>
+<span class="fc" id="L477">        }catch(NumberFormatException e){</span>
+<span class="fc" id="L478">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Invalid input for vintage year!&quot;);</span>
+<span class="fc" id="L479">            return;</span>
+<span class="fc" id="L480">        }</span>
+<span class="pc bpc" id="L481" title="2 of 4 branches missed.">        if(vintageYear &lt; 1880 || vintageYear &gt; 2019){</span>
+<span class="nc" id="L482">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Vintage year is out of range!&quot;);</span>
+<span class="nc" id="L483">            return;</span>
+        }
+<span class="fc" id="L485">        BabyNameRecommendation recommendation = new BabyNameRecommendation(dadYOB, mumYOB, dadName, mumName, vintageYear);</span>
+<span class="fc" id="L486">        textAreaConsole.setText(recommendation.getBabiesNames());</span>
+
+<span class="fc" id="L488">    }</span>
+
+
+    /**
+     * Application 2 (Task 5) Predict name of a compatible pairs (soulmate name).
+     *
+     * &lt;p&gt;
+     * To be triggered by the &quot;Get Prediction&quot; button on the Application 2 Tab.
+     * Perform input validation on user inputs on Application 2 tab,
+     * pop alert with reason if user inputs are invalid.
+     *
+     * Otherwise, show a name of a compatible pairs (soulmate) according to the inputs.
+     * &lt;/p&gt;
+     */
+    @FXML
+    void doSoulmateRecommendation() {
+<span class="fc" id="L504">        textAreaConsole.setText(&quot;&quot;);</span>
+<span class="fc" id="L505">        String username = task5NameField.getText();</span>
+<span class="fc bfc" id="L506" title="All 2 branches covered.">        if (username.isBlank()) {</span>
+<span class="fc" id="L507">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Name is blank! Please enter a valid name!&quot;);</span>
+<span class="fc" id="L508">            return;</span>
+        }
+
+<span class="fc" id="L511">        String usergender = &quot;M&quot;;</span>
+<span class="fc bfc" id="L512" title="All 2 branches covered.">        if (task5_femaleBtn.isSelected()) {</span>
+<span class="fc" id="L513">            usergender = &quot;F&quot;;</span>
+        }
+
+        int userYOB;
+        try {
+<span class="fc" id="L518">            userYOB = Integer.parseInt(task5_YOB.getText());</span>
+<span class="fc bfc" id="L519" title="All 4 branches covered.">            if (userYOB &lt; 1880 || userYOB &gt; 2019){</span>
+<span class="fc" id="L520">                throw new NumberFormatException();</span>
+            }
+<span class="fc" id="L522">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L523">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;,</span>
+                    &quot;Year of Birth must be between 1880 and 2019!\n Sorry we cannot make any prediction on name of your compatible pairs(Soulmate)&quot;);
+<span class="fc" id="L525">            return;</span>
+<span class="fc" id="L526">        }</span>
+
+<span class="fc" id="L528">        String mategender = &quot;M&quot;;</span>
+<span class="fc bfc" id="L529" title="All 2 branches covered.">        if (task5_mateFemaleBtn.isSelected()) {</span>
+<span class="fc" id="L530">            mategender = &quot;F&quot;;</span>
+        }
+<span class="fc" id="L532">        String mateAge = &quot;younger&quot;;</span>
+<span class="fc bfc" id="L533" title="All 2 branches covered.">        if (task5_olderBtn.isSelected()) {</span>
+<span class="fc" id="L534">            mateAge = &quot;older&quot;;</span>
+        }
+
+<span class="fc bfc" id="L537" title="All 4 branches covered.">        if (userYOB == 1880 &amp;&amp; mateAge.equals(&quot;younger&quot;)){</span>
+<span class="fc" id="L538">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Unable to Make Prediction&quot;,</span>
+                    &quot;There is no data on names of people younger than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)&quot;);
+<span class="fc" id="L540">            return;</span>
+<span class="fc bfc" id="L541" title="All 4 branches covered.">        }else if (userYOB == 2019 &amp;&amp; mateAge.equals(&quot;older&quot;)){</span>
+<span class="fc" id="L542">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Unable to Make Prediction&quot;,</span>
+                    &quot;There is no data on names of people older than you!\nSorry we cannot make any prediction on name of your compatible pairs(Soulmate)&quot;);
+<span class="fc" id="L544">            return;</span>
+        }
+
+<span class="fc" id="L547">        SoulmateNameRecommendation query = new SoulmateNameRecommendation(username, usergender, userYOB, mategender, mateAge);</span>
+<span class="fc" id="L548">        String soulmateName = query.getSoulmateName();</span>
+<span class="fc" id="L549">        String result = &quot;The result of name prediction for your compatible pairs (i.e. Soulmate) is the following: \n&quot;;</span>
+<span class="fc" id="L550">        result += soulmateName;</span>
+<span class="fc" id="L551">        textAreaConsole.setText(result);</span>
+<span class="fc" id="L552">    }</span>
+
+
+    /**
+     * Application 3 (Task 6) Predict compatibility of a pair
+     *
+     * &lt;p&gt;
+     * To be triggered by the &quot;PREDICT&quot; button on the Application 3 Tab.
+     * Perform input validation on user inputs on Application 3 Tab,
+     * pop alert with reason if user inputs are invalid.
+     *
+     * Otherwise, show the compatibility in percentage (correct to 2 d.p.).
+     * &lt;/p&gt;
+     */
+    @FXML
+    void doCompatibilityPrediction() {
+<span class="fc" id="L568">        textAreaConsole.setText(&quot;&quot;);</span>
+<span class="fc" id="L569">        String gender = &quot;M&quot;;</span>
+<span class="fc bfc" id="L570" title="All 2 branches covered.">        if (task6_femaleBtn.isSelected()) {</span>
+<span class="fc" id="L571">            gender = &quot;F&quot;;</span>
+        }
+<span class="fc" id="L573">        String mateGender = &quot;M&quot;;</span>
+<span class="fc bfc" id="L574" title="All 2 branches covered.">        if (task6_mateFemaleBtn.isSelected()) {</span>
+<span class="fc" id="L575">            mateGender = &quot;F&quot;;</span>
+        }
+        int yob;
+        try {
+<span class="fc" id="L579">            yob = Integer.parseInt(task6_yobField.getText());</span>
+<span class="fc bfc" id="L580" title="All 4 branches covered.">            if (yob &lt; 1880 || yob &gt; 2019) {</span>
+<span class="fc" id="L581">                throw new NumberFormatException();</span>
+            }
+<span class="fc" id="L583">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L584">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Year of birth must be between 1880 and 2019!&quot;);</span>
+<span class="fc" id="L585">            return;</span>
+<span class="fc" id="L586">        }</span>
+<span class="fc" id="L587">        int preference = -1;</span>
+<span class="fc bfc" id="L588" title="All 2 branches covered.">        if (task6_olderBtn.isSelected()) {</span>
+<span class="fc" id="L589">            preference = 1;</span>
+        }
+<span class="fc bfc" id="L591" title="All 4 branches covered.">        if (task6_nameField.getText().isBlank() || task6_mateNameField.getText().isBlank()) {</span>
+<span class="fc" id="L592">            popAlert(AlertType.ERROR, &quot;Error&quot;, &quot;Invalid Input&quot;, &quot;Name must not be empty!&quot;);</span>
+<span class="fc" id="L593">            return;</span>
+        }
+<span class="fc" id="L595">        CompatibilityPrediction query = new CompatibilityPrediction(task6_nameField.getText(), gender, yob</span>
+<span class="fc" id="L596">                , task6_mateNameField.getText(), mateGender , preference);</span>
+<span class="fc" id="L597">        double score = query.getPrediction();</span>
+<span class="fc" id="L598">        textAreaConsole.setText(String.format(&quot;The compatibility is %.2f%%!&quot;, score));</span>
+<span class="fc" id="L599">    }</span>
+
+
+    /**
+     * Common helper function for popping alert
+     *
+     * @param type      type of the alert
+     * @param title     title of the alert
+     * @param header    header of the alert
+     * @param content   content of the alert
+     */
+    public static void popAlert(AlertType type, String title, String header, String content){
+<span class="fc" id="L611">        Alert alert = new Alert(type);</span>
+<span class="fc" id="L612">        alert.setTitle(title);</span>
+<span class="fc" id="L613">        alert.setHeaderText(header);</span>
+<span class="fc" id="L614">        alert.setContentText(content);</span>
+<span class="fc" id="L615">        alert.showAndWait();</span>
+<span class="fc" id="L616">    }</span>
+
+
+    /**
+     * Common helper function for popping table after query
+     *
+     * @param table     table representation of query data
+     * @param title     title of dialog
+     * @param header    header of dialog
+     * @param content   content of dialog
+     */
+    public static void popTable(TableView&lt;?&gt; table, String title, String header, String content) {
+<span class="fc" id="L628">        Alert dialog = new Alert(AlertType.INFORMATION);</span>
+<span class="fc" id="L629">        dialog.setTitle(title);</span>
+<span class="fc" id="L630">        dialog.setHeaderText(header);</span>
+<span class="fc" id="L631">        dialog.setContentText(content);</span>
+<span class="fc" id="L632">        dialog.getDialogPane().setExpandableContent(table);</span>
+<span class="fc" id="L633">        dialog.getDialogPane().setExpanded(true);</span>
+<span class="fc" id="L634">        dialog.showAndWait();</span>
+<span class="fc" id="L635">    }</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

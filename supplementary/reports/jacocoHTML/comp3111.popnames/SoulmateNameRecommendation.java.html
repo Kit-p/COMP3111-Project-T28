@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SoulmateNameRecommendation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PopNames3111</a> &gt; <a href="index.source.html" class="el_package">comp3111.popnames</a> &gt; <span class="el_source">SoulmateNameRecommendation.java</span></div><h1>SoulmateNameRecommendation.java</h1><pre class="source lang-java linenums">package comp3111.popnames;
+
+import javafx.scene.control.Alert;
+
+/**
+ * Task 5 (Application 2) Class that predict the name of the compatible pairs (Soulmate) of the user
+ */
+public class SoulmateNameRecommendation {
+
+	/**
+	 * name of the user
+	 */
+	private final String userName;
+	/**
+	 * gender of the user
+	 */
+	private final String userGender;
+	/**
+	 * year of birth of the user
+	 */
+	private final int userYOB;
+	/**
+	 * the preferred gender of the compatible pair (soulmate)
+	 */
+	private final String soulmateGender;
+	/**
+	 * the preference of having a younger or older soulmate
+	 */
+	private final String soulmateAgePreference;
+
+
+	/**
+	 * Construct a SoulmateNameRecommendation object for soulmate name prediction
+	 *
+	 * @param inputname	the user name
+	 * @param inputuserGender	the user gender
+	 * @param inputuserYOB	the user year of birth
+	 * @param inputsoulmateGender	preferred gender of the soulmate
+	 * @param inputAgePreference	preference of having a younger or older soulmate
+	 */
+<span class="fc" id="L41">	public SoulmateNameRecommendation(String inputname, String inputuserGender, int inputuserYOB, String inputsoulmateGender, String inputAgePreference) {</span>
+<span class="fc" id="L42">		this.userName = inputname;</span>
+<span class="fc" id="L43">		this.userGender = inputuserGender;</span>
+<span class="fc" id="L44">		this.userYOB = inputuserYOB;</span>
+<span class="fc" id="L45">		this.soulmateGender = inputsoulmateGender;</span>
+<span class="fc" id="L46">		this.soulmateAgePreference = inputAgePreference;</span>
+<span class="fc" id="L47">	}</span>
+
+
+	/**
+	 * Predict the name of the compatible pair (Soulmate) given the user input.
+	 *
+	 * &lt;p&gt;
+	 * &lt;strong&gt;Algorithm:&lt;/strong&gt;
+	 * &lt;br&gt;
+	 * The algorithm predict the name of the soulmate of the user by finding the name that have the closest rank to the user's name rank
+	 * with the preferred gender in the calculated soulmate's year of birth.
+	 * &lt;br&gt;
+	 * The algorithm first calculate the rank of the user's name in his/her year of birth.
+	 * &lt;br&gt;
+	 * Then, calculate the year of birth of the soulmate, if the preference is &quot;younger&quot;, the soulmate's year of birth is (user's year of birth - 1),
+	 * else if the perference is &quot;older&quot;, the soulmate's year of birth is (user's year of birth + 1).
+	 * &lt;br&gt;
+	 * Finally, the algorithm finds the name in the soulmate's year of birth that have the same rank as the user's name rank,
+	 * which the closest possible rank to the user's name rank, and returns that name.
+	 * &lt;br&gt;
+	 * If there do not exist that has the same rank as the user's name rank, either due to the user's name is not ranked, or
+	 * the user's name rank is too low that there is not a name in the soulmate's year of birth with that rank,
+	 * the algorithm returns lowest ranked name in the soulmate's year of birth,
+	 * which has the closest possible rank with names that is not ranked.
+	 * &lt;/p&gt;
+	 *
+	 * &lt;p&gt;
+	 * &lt;strong&gt;Justification:&lt;/strong&gt;
+	 * &lt;br&gt;
+	 * This algorithm predicts the soulmate's name by finding a name in the soulmate's year of birth
+	 * with the closest rank to the user's name rank in the user's year of birth.
+	 * &lt;br&gt;
+	 * This is because the rank of the name basically represents the popularity of a name in the year (as higher rank name has larger occurrence).
+	 * With so many possible names, it is very difficult the name of 2 people to be of the same rank and be equally popular in their year of birth.
+	 * &lt;br&gt;
+	 * The closer the ranks of the 2 names are, the lower the possibility is.
+	 * Such rarity resembles the concept of serendipity, which we use as the criteria for predicting the name of the soulmate of the user.
+	 * &lt;br&gt;
+	 * In addition, the soulmate's year of birth (user's year of birth - 1) or (user's year of birth + 1) because
+	 * people in the same generation should have more common knowledge and interest, so age difference of 1 should make 2 people a good pair.
+	 * &lt;br&gt;
+	 * &lt;br&gt;
+	 * The original NK-T5 Algorithm of Universal Compatibility also use the above principle to predicts soulmate's name.
+	 * &lt;br&gt;
+	 * However, if the user's name is not ranked, or user's name rank is too low that there is not a name in the soulmate's year of birth with that rank,
+	 * the original algorithm use the top ranked name in the soulmate's year of birth as the predicted name.
+	 * Thus, the predicted name will not have the closest rank to the user's name,
+	 * but instead having the largest difference in rank and popularity.
+	 * This do not resembles the concept of serendipity, and the name prediction is not coherent in all cases.
+	 * &lt;br&gt;
+	 * &lt;br&gt;
+	 * Therefore, the modified algorithm return the lowest ranked name in the soulmate's year of birth in such case.
+	 * As name that is not ranked is name below the lowest ranked name, the lowest ranked name will have the closest rank
+	 * to the not ranked name.
+	 * Thus, the modified algorithm will always recommend the name with the closest rank to the user's name rank,
+	 * making coherent recommendation in all cases.
+	 * &lt;br&gt;
+	 * Therefore, modified algorithm gives justifiable and coherent prediction of soulmate name in all cases.
+	 * &lt;/p&gt;
+	 *
+	 * @return the predicted name for the soulmate
+	 */
+	public String getSoulmateName() {
+<span class="fc" id="L110">		int oRank = AnalyzeNames.getRankEnhanced(userYOB, userName, userGender);</span>
+
+		int oYOB;
+<span class="fc bfc" id="L113" title="All 2 branches covered.">		if (soulmateAgePreference.equals(&quot;younger&quot;)) {</span>
+<span class="fc" id="L114">			oYOB = userYOB - 1;</span>
+		}else {
+<span class="fc" id="L116">			oYOB = userYOB + 1;</span>
+		}
+
+<span class="fc bfc" id="L119" title="All 2 branches covered.">		if (oRank == -1) {</span>
+<span class="fc" id="L120">			return AnalyzeNames.getLowestName(oYOB, this.soulmateGender);</span>
+		}
+
+<span class="fc" id="L123">		String oName = AnalyzeNames.getNameEnhanced(oYOB, oRank, soulmateGender);</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">		if (oName.contentEquals(&quot;information on the name at the specified rank is not available&quot;)) {</span>
+<span class="fc" id="L125">			return AnalyzeNames.getLowestName(oYOB, this.soulmateGender);</span>
+		}
+
+<span class="fc" id="L128">		return oName;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
