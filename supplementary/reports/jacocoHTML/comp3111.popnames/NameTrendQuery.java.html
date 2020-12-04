@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NameTrendQuery.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PopNames3111</a> &gt; <a href="index.source.html" class="el_package">comp3111.popnames</a> &gt; <span class="el_source">NameTrendQuery.java</span></div><h1>NameTrendQuery.java</h1><pre class="source lang-java linenums">package comp3111.popnames;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
+/**
+ * Task 3 (Reporting 3) Class that generate a report describing trend of names
+ */
+public class NameTrendQuery {
+	/**
+	 * gender queried
+	 */
+	private final String gender;
+	/**
+	 * start year queried
+	 */
+	private final int startYear;
+	/**
+	 * end year queried
+	 */
+	private final int endYear;
+	/**
+	 * level of popularity (top N) queried
+	 */
+	private final int N;
+	/**
+	 * result of query
+	 */
+<span class="fc" id="L38">	private ArrayList&lt;NameTrendQueryDataRow&gt; queryData = null;</span>
+
+
+	/**
+	 * Inner-class to store each row of the query result
+	 */
+	public static class NameTrendQueryDataRow {
+		/**
+		 * name in the current row
+		 */
+		private final StringProperty name;
+		/**
+		 * minimum rank of the name in the current row
+		 */
+		private final IntegerProperty minRank;
+		/**
+		 * year of the minimum rank of the name in the current row
+		 */
+		private final IntegerProperty minRankYear;
+		/**
+		 * maximum rank of the name in the current row
+		 */
+		private final IntegerProperty maxRank;
+		/**
+		 * year of the maximum rank of the name in the current row
+		 */
+		private final IntegerProperty maxRankYear;
+
+
+		/**
+		 * Constructor of a row storing query data
+		 *
+		 * @param name			name in the current row
+		 * @param minRank		minimum rank of the name in the current row
+		 * @param minRankYear	year of the minimum rank of the name in the current row
+		 * @param maxRank		maximum rank of the name in the current row
+		 * @param maxRankYear	year of the maximum rank of the name in the current row
+		 */
+<span class="fc" id="L76">		public NameTrendQueryDataRow(String name, int minRank, int minRankYear, int maxRank, int maxRankYear) {</span>
+<span class="fc" id="L77">			this.name = new SimpleStringProperty(name);</span>
+<span class="fc" id="L78">			this.minRank = new SimpleIntegerProperty(minRank);</span>
+<span class="fc" id="L79">			this.minRankYear = new SimpleIntegerProperty(minRankYear);</span>
+<span class="fc" id="L80">			this.maxRank = new SimpleIntegerProperty(maxRank);</span>
+<span class="fc" id="L81">			this.maxRankYear = new SimpleIntegerProperty(maxRankYear);</span>
+<span class="fc" id="L82">		}</span>
+
+
+		/**
+		 * Get name of row
+		 *
+		 * @return name of row
+		 */
+		public StringProperty nameProperty() {
+<span class="fc" id="L91">			return this.name;</span>
+		}
+
+
+		/**
+		 * Get lowest rank and corresponding year of row
+		 *
+		 * @return lowest rank and corresponding year of row
+		 */
+		public StringProperty minRankProperty() {
+<span class="fc" id="L101">			return new SimpleStringProperty(String.format(&quot;%d\n[in %d]&quot;, minRank.get(), minRankYear.get()));</span>
+		}
+
+
+		/**
+		 * Get lowest rank and corresponding year of row
+		 *
+		 * @return lowest rank and corresponding year of row
+		 */
+		public StringProperty maxRankProperty() {
+<span class="fc" id="L111">			return new SimpleStringProperty(String.format(&quot;%d\n[in %d]&quot;, maxRank.get(), maxRankYear.get()));</span>
+		}
+
+
+		/**
+		 * Get gross trend of row
+		 *
+		 * @return gross trend of row
+		 */
+		public StringProperty trendProperty() {
+<span class="fc bfc" id="L121" title="All 2 branches covered.">			if (minRankYear.get() &lt; maxRankYear.get()) {</span>
+<span class="fc" id="L122">				return new SimpleStringProperty(&quot;UP&quot;);</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">			} else if (minRankYear.get() &gt; maxRankYear.get()) {</span>
+<span class="fc" id="L124">				return new SimpleStringProperty(&quot;DOWN&quot;);</span>
+			} else {
+<span class="fc" id="L126">				return new SimpleStringProperty(&quot;FLAT&quot;);</span>
+			}
+		}
+	}
+
+
+	/**
+	 * Constructor of the query
+	 *
+	 * @param gender	gender queried
+	 * @param startYear	start year queried
+	 * @param endYear	end year queried
+	 * @param N			level of popularity (top N) queried
+	 */
+<span class="fc" id="L140">	public NameTrendQuery(String gender, int startYear, int endYear, int N) {</span>
+<span class="fc" id="L141">		this.gender = gender;</span>
+<span class="fc" id="L142">		this.startYear = startYear;</span>
+<span class="fc" id="L143">		this.endYear = endYear;</span>
+<span class="fc" id="L144">		this.N = N;</span>
+<span class="fc" id="L145">	}</span>
+
+
+	/**
+	 * Get Top N names with gender between startYear and endYear
+	 *
+	 * @return Map of name to [minRank, minRankYear, maxRank, maxRankYear]
+	 */
+	public ArrayList&lt;NameTrendQueryDataRow&gt; getNameTrend() {
+<span class="fc" id="L154">		queryData = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L155">		String[] names = AnalyzeNames.getTopNNamesInRangeYears(gender, startYear, endYear, N);</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">		for (String name : names) {</span>
+<span class="fc" id="L157">			Integer[] minRankYear = AnalyzeNames.getLowestRankInRangeYears(name, gender, startYear, endYear);</span>
+<span class="fc" id="L158">			Integer[] maxRankYear = AnalyzeNames.getHighestRankInRangeYears(name, gender, startYear, endYear);</span>
+<span class="fc" id="L159">			queryData.add(new NameTrendQueryDataRow(name, minRankYear[0], minRankYear[1]</span>
+<span class="fc" id="L160">					, maxRankYear[0], maxRankYear[1]));</span>
+		}
+<span class="fc" id="L162">		return queryData;</span>
+	}
+
+
+	/**
+	 * Get the summary text about the query result
+	 *
+	 * &lt;p&gt;
+	 * If query has not performed, perform the query
+	 * &lt;/p&gt;
+	 *
+	 * @return the summary text
+	 */
+	public String getSummary() {
+<span class="fc bfc" id="L176" title="All 2 branches covered.">		if (queryData == null) {</span>
+<span class="fc" id="L177">			getNameTrend();</span>
+		}
+<span class="fc" id="L179">		int k = queryData.size();</span>
+<span class="fc" id="L180">		String temp = &quot;names are found to be maintained at a high level of popularity within Top&quot;;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">		if (k &lt; 2) {</span>
+<span class="fc" id="L182">			temp = &quot;name is found to be maintained at a high level of popularity within Top&quot;;</span>
+		}
+<span class="fc" id="L184">		return String.format(&quot;%d %s %d over the period from year %d to year %d.&quot;, k, temp, N, startYear, endYear);</span>
+	}
+
+
+	/**
+	 * Get the table representation about the query result
+	 *
+	 * &lt;p&gt;
+	 * If query has not performed, perform the query
+	 * &lt;/p&gt;
+	 *
+	 * @return the table representation
+	 */
+	public TableView&lt;NameTrendQueryDataRow&gt; getTableView() {
+<span class="fc bfc" id="L198" title="All 2 branches covered.">		if (queryData == null) {</span>
+<span class="fc" id="L199">			getNameTrend();</span>
+		}
+<span class="fc" id="L201">		TableView&lt;NameTrendQueryDataRow&gt; table = new TableView&lt;&gt;();</span>
+<span class="fc" id="L202">		table.setEditable(false);</span>
+<span class="fc" id="L203">		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);</span>
+<span class="fc" id="L204">		table.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+<span class="fc" id="L205">		TableColumn&lt;NameTrendQueryDataRow, String&gt; nameCol = new TableColumn&lt;&gt;(&quot;Name&quot;);</span>
+<span class="fc" id="L206">		nameCol.setCellValueFactory(row -&gt; row.getValue().nameProperty());</span>
+<span class="fc" id="L207">		nameCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+<span class="fc" id="L208">		TableColumn&lt;NameTrendQueryDataRow, String&gt; minRankCol = new TableColumn&lt;&gt;(&quot;Lowest Rank\n[in year]&quot;);</span>
+<span class="fc" id="L209">		minRankCol.setCellValueFactory(row -&gt; row.getValue().minRankProperty());</span>
+<span class="fc" id="L210">		minRankCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+<span class="fc" id="L211">		TableColumn&lt;NameTrendQueryDataRow, String&gt; maxRankCol = new TableColumn&lt;&gt;(&quot;Highest Rank\n[in year]&quot;);</span>
+<span class="fc" id="L212">		maxRankCol.setCellValueFactory(row -&gt; row.getValue().maxRankProperty());</span>
+<span class="fc" id="L213">		maxRankCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+<span class="fc" id="L214">		TableColumn&lt;NameTrendQueryDataRow, String&gt; trendCol = new TableColumn&lt;&gt;(&quot;Gross Trend&quot;);</span>
+<span class="fc" id="L215">		trendCol.setCellValueFactory(row -&gt; row.getValue().trendProperty());</span>
+<span class="fc" id="L216">		trendCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+<span class="fc" id="L217">		table.setItems(FXCollections.observableArrayList(queryData));</span>
+<span class="fc" id="L218">		table.getColumns().addAll(Arrays.asList(nameCol, minRankCol, maxRankCol, trendCol));</span>
+<span class="fc" id="L219">		return table;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
