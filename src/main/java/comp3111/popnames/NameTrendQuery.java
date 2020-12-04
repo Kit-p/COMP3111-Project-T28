@@ -11,22 +11,68 @@ import javafx.scene.control.TableView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ * Task 3 (Reporting 3) Class that generate a report describing trend of names
+ */
 public class NameTrendQuery {
+	/**
+	 * gender queried
+	 */
 	private final String gender;
+	/**
+	 * start year queried
+	 */
 	private final int startYear;
+	/**
+	 * end year queried
+	 */
 	private final int endYear;
+	/**
+	 * level of popularity (top N) queried
+	 */
 	private final int N;
+	/**
+	 * result of query
+	 */
 	private ArrayList<NameTrendQueryDataRow> queryData = null;
 
 
+	/**
+	 * Inner-class to store each row of the query result
+	 */
 	public static class NameTrendQueryDataRow {
+		/**
+		 * name in the current row
+		 */
 		private final StringProperty name;
+		/**
+		 * minimum rank of the name in the current row
+		 */
 		private final IntegerProperty minRank;
+		/**
+		 * year of the minimum rank of the name in the current row
+		 */
 		private final IntegerProperty minRankYear;
+		/**
+		 * maximum rank of the name in the current row
+		 */
 		private final IntegerProperty maxRank;
+		/**
+		 * year of the maximum rank of the name in the current row
+		 */
 		private final IntegerProperty maxRankYear;
 
 
+		/**
+		 * Constructor of a row storing query data
+		 *
+		 * @param name			name in the current row
+		 * @param minRank		minimum rank of the name in the current row
+		 * @param minRankYear	year of the minimum rank of the name in the current row
+		 * @param maxRank		maximum rank of the name in the current row
+		 * @param maxRankYear	year of the maximum rank of the name in the current row
+		 */
 		public NameTrendQueryDataRow(String name, int minRank, int minRankYear, int maxRank, int maxRankYear) {
 			this.name = new SimpleStringProperty(name);
 			this.minRank = new SimpleIntegerProperty(minRank);
@@ -38,6 +84,7 @@ public class NameTrendQuery {
 
 		/**
 		 * Get name of row
+		 *
 		 * @return name of row
 		 */
 		public StringProperty nameProperty() {
@@ -47,6 +94,7 @@ public class NameTrendQuery {
 
 		/**
 		 * Get lowest rank and corresponding year of row
+		 *
 		 * @return lowest rank and corresponding year of row
 		 */
 		public StringProperty minRankProperty() {
@@ -56,6 +104,7 @@ public class NameTrendQuery {
 
 		/**
 		 * Get lowest rank and corresponding year of row
+		 *
 		 * @return lowest rank and corresponding year of row
 		 */
 		public StringProperty maxRankProperty() {
@@ -65,6 +114,7 @@ public class NameTrendQuery {
 
 		/**
 		 * Get gross trend of row
+		 *
 		 * @return gross trend of row
 		 */
 		public StringProperty trendProperty() {
@@ -79,6 +129,14 @@ public class NameTrendQuery {
 	}
 
 
+	/**
+	 * Constructor of the query
+	 *
+	 * @param gender	gender queried
+	 * @param startYear	start year queried
+	 * @param endYear	end year queried
+	 * @param N			level of popularity (top N) queried
+	 */
 	public NameTrendQuery(String gender, int startYear, int endYear, int N) {
 		this.gender = gender;
 		this.startYear = startYear;
@@ -89,6 +147,7 @@ public class NameTrendQuery {
 
 	/**
 	 * Get Top N names with gender between startYear and endYear
+	 *
 	 * @return Map of name to [minRank, minRankYear, maxRank, maxRankYear]
 	 */
 	public ArrayList<NameTrendQueryDataRow> getNameTrend() {
@@ -106,7 +165,11 @@ public class NameTrendQuery {
 
 	/**
 	 * Get the summary text about the query result
+	 *
+	 * <p>
 	 * If query has not performed, perform the query
+	 * </p>
+	 *
 	 * @return the summary text
 	 */
 	public String getSummary() {
@@ -124,7 +187,11 @@ public class NameTrendQuery {
 
 	/**
 	 * Get the table representation about the query result
+	 *
+	 * <p>
 	 * If query has not performed, perform the query
+	 * </p>
+	 *
 	 * @return the table representation
 	 */
 	public TableView<NameTrendQueryDataRow> getTableView() {

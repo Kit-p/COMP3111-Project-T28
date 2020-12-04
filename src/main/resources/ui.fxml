@@ -85,6 +85,9 @@
                                     <TextField fx:id="task2StartYear" layoutX="223.0" layoutY="123.0" prefHeight="26.0" prefWidth="43.0" text="1941" />
                                     <Label layoutX="271.0" layoutY="127.0" text="to" />
                                     <Button fx:id="NamePopularityQueryButton" layoutX="108.0" layoutY="169.0" mnemonicParsing="false" onAction="#doNamePopularityQuery" text="REPORT" />
+                                    <Label layoutX="107.0" layoutY="245.0" prefHeight="17.0" prefWidth="514.0" text="1) Percentage representation in the report table and summary is corrected to 3 decimal places" />
+                                    <Label layoutX="107.0" layoutY="225.0" prefHeight="17.0" prefWidth="43.0" text="Note:" />
+                                    <Label layoutX="107.0" layoutY="269.0" prefHeight="17.0" prefWidth="510.0" text="2) Names with same occurrence (count) in a year will have the same rank in that year" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -192,7 +195,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea layoutX="40.0" layoutY="14.0" prefHeight="56.0" prefWidth="642.0" text="Develop and implement an online service using empirical data to help make informed decisions on predicting scores for compatible pairs.  Sample Scenario of Application: (i) A person seeking advices on the chance of engaging in love affairs with someone of a different gender; (ii) A person seeking advices on the chance of engaging in love affairs with someone of the same gender.&#10;&#10;Input&#10;* iName, iGender, iYOB: Particulars of the person seeking advices&#10;* iNameMate, iGenderMate: Specify the name and gender of the person to be matched&#10;* iPreference: Specify the preference on having a younger or older soulmate&#10;&#10;Output&#10;* oScore: Provide a score of compatibility (0%: Not Compatible; 100%: Perfect Match) according to the NK-T6 Algorithm&#10;* plus, WOW factor on user experience and algorithm design!" wrapText="true" />
+                              <TextArea layoutX="40.0" layoutY="14.0" prefHeight="56.0" prefWidth="642.0" text="This is a service using empirical data to help you make informed decisions on predicting the compatibility of you and your partner (i.e. Soulmate). " wrapText="true" />
                               <Label layoutX="60.0" layoutY="117.0" text="Name" />
                               <TextField fx:id="task6_nameField" layoutX="108.0" layoutY="113.0" prefHeight="26.0" prefWidth="88.0" text="David" />
                               <Label layoutX="241.0" layoutY="116.0" text="Gender" />
