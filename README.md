@@ -2,7 +2,7 @@
 > <https://github.com/Kit-p/COMP3111-Project-T28.git>
 
 ## GitHub Page
-> [](https://kit-p.github.io/COMP3111-Project-T28)
+> [https://kit-p.github.io/COMP3111-Project-T28](https://kit-p.github.io/COMP3111-Project-T28)
 
 ---
 
