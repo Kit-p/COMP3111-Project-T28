@@ -579,6 +579,23 @@ public class JavaFXTest extends ApplicationTest {
 		assertTrue(t.getText().isEmpty());
 	}
 
+	@Test
+	public void testTask6InvalidPreference() {
+		clickOn("#tabApp3");
+		TextField yob = (TextField) s.lookup("#task6_yobField");
+		yob.setText("1880");
+		RadioButton preference = (RadioButton) s.lookup("#task6_youngerBtn");
+		preference.setSelected(true);
+		clickOn("#task6_predictBtn");
+		assertTrue(t.getText().isEmpty());
+		clickOn("OK");
+		yob.setText("2019");
+		preference = (RadioButton) s.lookup("#task6_olderBtn");
+		preference.setSelected(true);
+		clickOn("#task6_predictBtn");
+		assertTrue(t.getText().isEmpty());
+	}
+
 
 	@Test
 	public void testTask6BothMaleWithPreferences() {

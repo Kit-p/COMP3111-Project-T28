@@ -57,42 +57,54 @@ public class CompatibilityPrediction {
      *
      * &lt;p&gt;
      * &lt;strong&gt;Algorithm:&lt;/strong&gt;&lt;br&gt;
-     * The algorithm computes the difference between the ranks of the pair in their own year,
-     * and the maximum possible difference between the ranks of the pair in their own year.
+     * The algorithm computes the difference between the ranks of the names of the pair in their own year,
+     * and the maximum possible difference between the ranks of the names of the pair in their own year.
+     * &lt;br&gt;
      * The ratio implies how close their ranks are and is then converted to percentage (corrected to 2 d.p.).
      * The percentage is the predicted compatibility of the pair.
+     * &lt;br&gt;
+     * Exception case is when any of the names of the pair is not ranked on the corresponding year,
+     * the algorithm will substitute it with the lowest possible rank of the corresponding gender of the corresponding year.
      * &lt;/p&gt;
      *
      * &lt;p&gt;
      * &lt;strong&gt;Justification:&lt;/strong&gt;&lt;br&gt;
      * The original NK-T6 Algorithm of Universal Compatibility computes a variation of the percentage difference,
-     * which will result in value that are smaller than 0% or greater than 100%.
+     * which will result in values that are smaller than 0% or greater than 100%.
+     * &lt;br&gt;
      * The modified algorithm uses the rank difference as the numerator and the maximum difference as the denominator.
+     * &lt;br&gt;
      * Since the difference is always greater than or equal to zero,
      * and is always smaller than or equal to the maximum difference,
-     * the result will always be between 0% and 100%, which is consistent to the expected output format.
+     * the result will always be between 0% and 100%, which is consistent with the expected output format.
      * &lt;br&gt;
-     * The algorithm is used because we believe it is difficult for the two names of the pair to have same rank.
+     * The algorithm is used because we believe it is difficult for the two names of the pair to have the same rank.
      * The closer the ranks are, the lower the possibility is.
-     * Such rarity resembles the concept of serendipity, which we use as the criteria for predicting the compatibility.
+     * Such rarity resembles the concept of serendipity,
+     * which we use as the criteria for predicting compatibility.
+     * &lt;br&gt;
+     * The reason why the algorithm substitutes the rank of names that is not ranked with the lowest rank of the corresponding gender of the corresponding year,
+     * is to ensure the user will always see a reasonable output (0% - 100%), no matter what names the input is,
+     * so they will not be disappointed with an error. Choosing the lowest possible rank is because that is the best estimate of the rank,
+     * given that names that are not ranked would be rare and low on occurrence if not none.
      * &lt;/p&gt;
      *
      * @return the compatibility scaled by 100 (for percentage)
      */
     public double getPrediction() {
-<span class="fc" id="L83">        double rank = AnalyzeNames.getRankEnhanced(yob, name, gender);</span>
-<span class="fc" id="L84">        double mateRank = AnalyzeNames.getRankEnhanced(yob + preference, mateName, mateGender);</span>
-<span class="fc" id="L85">        double lowestRank = AnalyzeNames.getGenderLowestRankOfYear(gender, yob);</span>
-<span class="fc" id="L86">        double mateLowestRank = AnalyzeNames.getGenderLowestRankOfYear(mateGender, yob + preference);</span>
-<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (rank &lt; 1) {</span>
-<span class="fc" id="L88">            rank = lowestRank;</span>
+<span class="fc" id="L95">        double rank = AnalyzeNames.getRankEnhanced(yob, name, gender);</span>
+<span class="fc" id="L96">        double mateRank = AnalyzeNames.getRankEnhanced(yob + preference, mateName, mateGender);</span>
+<span class="fc" id="L97">        double lowestRank = AnalyzeNames.getGenderLowestRankOfYear(gender, yob);</span>
+<span class="fc" id="L98">        double mateLowestRank = AnalyzeNames.getGenderLowestRankOfYear(mateGender, yob + preference);</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        if (rank &lt; 1) {</span>
+<span class="fc" id="L100">            rank = lowestRank;</span>
         }
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (mateRank &lt; 1) {</span>
-<span class="fc" id="L91">            mateRank = mateLowestRank;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (mateRank &lt; 1) {</span>
+<span class="fc" id="L103">            mateRank = mateLowestRank;</span>
         }
-<span class="fc" id="L93">        double difference = Math.abs(rank - mateRank);</span>
-<span class="fc" id="L94">        double maxDifference = Math.max(lowestRank, mateLowestRank) - 1;</span>
-<span class="fc" id="L95">        return Math.round((1 - difference / maxDifference) * 10000) / 100.0;</span>
+<span class="fc" id="L105">        double difference = Math.abs(rank - mateRank);</span>
+<span class="fc" id="L106">        double maxDifference = Math.max(lowestRank, mateLowestRank) - 1;</span>
+<span class="fc" id="L107">        return Math.round((1 - difference / maxDifference) * 10000) / 100.0;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
