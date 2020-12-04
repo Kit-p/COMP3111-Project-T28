@@ -10,6 +10,12 @@ import javafx.scene.control.Alert.AlertType;
 public class Controller {
 
     @FXML
+    public Button task1ReportBtn;
+
+    @FXML
+    public Button application1Run;
+
+    @FXML
     private Tab tabTaskZero;
 
     @FXML
@@ -295,11 +301,17 @@ public class Controller {
 
 
     /**
-     * Task 1
-     * when report button is clicked
-     * get all values from input fields
-     * then call the query functions
-    */
+     * Reporting 1 (Task 1) Get the top N most popular names at birth over a given period.
+     *
+     *  <p>
+     *  To be triggered by the "REPORT" button on the Reporting 1 Tab.
+     *  Perform input validation on user inputs on Reporting 1 tab,
+     *  pop alert with reason if inputs are invalid.
+     *
+     *  Otherwise, pop out a table to show the top N most popular names over a given period,
+     *  and provide a summary in the textAreaConsole.
+     *  </p>
+     */
     @FXML
     void doReport(){
             textAreaConsole.setText("");
@@ -443,10 +455,15 @@ public class Controller {
 
 
     /**
-     * Task 4
-     * when report button is clicked
-     * get all values from input fields
-     * then call the query functions
+     * Application 1 (Task 4) Get recommendations on names for newborn babies
+     *
+     * <p>
+     * To be triggered by the "Start Query" button on the Application 1 Tab.
+     * Perform input validation on user inputs on Application 1 tab,
+     * pop alert with reason if user inputs are invalid.
+     *
+     * Otherwise, show recommended name for baby boy and recommended name for baby girl.
+     * </p>
      */
     @FXML
     void doBabyNameRecommendation(){
