@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BabyNameRecommendation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PopNames3111</a> &gt; <a href="index.source.html" class="el_package">comp3111.popnames</a> &gt; <span class="el_source">BabyNameRecommendation.java</span></div><h1>BabyNameRecommendation.java</h1><pre class="source lang-java linenums">package comp3111.popnames;
+
+import com.sun.javafx.binding.StringFormatter;
+
+public class BabyNameRecommendation {
+    private final int dadYOB;
+    private final int mumYOB;
+    private final String dadName;
+    private final String mumName;
+    private final int vintageYear;
+
+<span class="fc" id="L12">    BabyNameRecommendation(int dadYOB, int mumYOB, String dadName, String mumName, int vintageYear){</span>
+<span class="fc" id="L13">        this.dadYOB = dadYOB;</span>
+<span class="fc" id="L14">        this.mumYOB = mumYOB;</span>
+<span class="fc" id="L15">        this.dadName = dadName;</span>
+<span class="fc" id="L16">        this.mumName = mumName;</span>
+<span class="fc" id="L17">        this.vintageYear = vintageYear;</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * getBabiesNames()
+     * First get rank of the father's and mother's name at their YOB
+     * Get a boy's name and a girl's name with the same rank as dadRank and mumRank in vintageYear
+     * @return string with recommendation for boy's name and girl's name
+     */
+    public String getBabiesNames() {
+<span class="fc" id="L27">        int dadRank = AnalyzeNames.getRankEnhanced(dadYOB, dadName, &quot;M&quot;);</span>
+<span class="fc" id="L28">        System.out.println(dadRank);</span>
+<span class="fc" id="L29">        int mumRank = AnalyzeNames.getRankEnhanced(mumYOB, mumName, &quot;F&quot;);</span>
+<span class="fc" id="L30">        System.out.println(mumRank);</span>
+<span class="fc" id="L31">        String boyName = AnalyzeNames.getNameEnhanced(vintageYear, dadRank, &quot;M&quot;);</span>
+<span class="fc" id="L32">        String girlName = AnalyzeNames.getNameEnhanced(vintageYear, mumRank, &quot;F&quot;);</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (boyName == &quot;information on the name at the specified rank is not available&quot;) {</span>
+<span class="fc" id="L34">            boyName = AnalyzeNames.getLowestName(vintageYear, &quot;M&quot;);</span>
+        }
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (girlName == &quot;information on the name at the specified rank is not available&quot;) {</span>
+<span class="fc" id="L37">            girlName = AnalyzeNames.getLowestName(vintageYear, &quot;F&quot;);</span>
+        }
+<span class="fc" id="L39">        String result = String.format(&quot;Recommendation for a boy's name: %s \nRecommendation for a girl's name: %s&quot;, boyName, girlName);</span>
+<span class="fc" id="L40">        return result;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

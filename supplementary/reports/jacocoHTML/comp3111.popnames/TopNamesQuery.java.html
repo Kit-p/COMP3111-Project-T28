@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TopNamesQuery.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PopNames3111</a> &gt; <a href="index.source.html" class="el_package">comp3111.popnames</a> &gt; <span class="el_source">TopNamesQuery.java</span></div><h1>TopNamesQuery.java</h1><pre class="source lang-java linenums">package comp3111.popnames;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
+import java.util.*;
+
+public class TopNamesQuery {
+    private final int numberOfNames;
+    private final String gender;
+    private final int startYear;
+    private final int endYear;
+<span class="fc" id="L18">    private ArrayList&lt;TopNamesQueryRankRow&gt; queryData = null;</span>
+
+    public static class TopNamesQueryRankRow{
+        private final IntegerProperty year;
+        private final StringProperty[] names;
+
+<span class="fc" id="L24">        public IntegerProperty getYear(){ return this.year; }</span>
+<span class="fc" id="L25">        public StringProperty[] getNames(){return names;}</span>
+        /** constructor for TopNamesQueryRankRow instance
+         @param year
+         @param names
+         @param numberOfNames
+         */
+<span class="fc" id="L31">        TopNamesQueryRankRow(int year, String[] names, int numberOfNames){</span>
+<span class="fc" id="L32">            this.year = new SimpleIntegerProperty(year);</span>
+<span class="fc" id="L33">            this.names = new StringProperty[numberOfNames];</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for(int i = 0; i &lt; numberOfNames; i++){</span>
+<span class="fc" id="L35">                this.names[i] = new SimpleStringProperty(names[i]);</span>
+            }
+<span class="fc" id="L37">        }</span>
+
+    }
+    /** constructor for TopNamesQuery instance
+         @param number
+         @param endYear
+         @param gender
+         @param startYear
+     */
+<span class="fc" id="L46">    TopNamesQuery(int number, String gender, int startYear, int endYear){</span>
+<span class="fc" id="L47">        this.numberOfNames = number;</span>
+<span class="fc" id="L48">        this.gender = gender;</span>
+<span class="fc" id="L49">        this.startYear = startYear;</span>
+<span class="fc" id="L50">        this.endYear = endYear;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * get TopNames, using the N given by the user, iterate through all the years to get the topN names
+     */
+    public ArrayList&lt;TopNamesQueryRankRow&gt; getTopNames(){
+<span class="fc" id="L57">        queryData = new ArrayList&lt;&gt;();</span>
+        //iterate through every year
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        for(int currentYear = this.startYear; currentYear &lt;= this.endYear; currentYear++ ){</span>
+<span class="fc" id="L60">            String names[] = new String[numberOfNames];</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            for(int j = 1; j &lt;= numberOfNames; j++){</span>
+<span class="fc" id="L62">                names[j-1] = AnalyzeNames.getName(currentYear, j, this.gender);</span>
+            }
+            //add data row to output ArrayList
+<span class="fc" id="L65">            queryData.add(new TopNamesQuery.TopNamesQueryRankRow(currentYear, names, this.numberOfNames));</span>
+        }
+<span class="fc" id="L67">        return queryData;</span>
+    }
+
+    /**
+     * Create hashmap and store Name and occurrence of the name in rank 1
+     * Iterate thorough hash map and find max occurrence
+     * Get names with max occurrence
+     */
+    public String getSummary(){
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (queryData == null) {</span>
+<span class="fc" id="L77">            getTopNames();</span>
+        }
+<span class="fc" id="L79">        HashMap&lt;String, Integer&gt; count = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for(int i = 0; i &lt; queryData.size(); i++){</span>
+<span class="fc" id="L81">            String currentName = queryData.get(i).getNames()[0].get();</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">            if(count.containsKey(currentName)){</span>
+<span class="fc" id="L83">                count.put(currentName, count.get(currentName)+1);</span>
+            }else{
+<span class="fc" id="L85">                count.put(currentName, 1);</span>
+            }
+        }
+<span class="fc" id="L88">        int max = -999;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for(String name: count.keySet()){</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            if(max &lt; count.get(name)){</span>
+<span class="fc" id="L91">                max = count.get(name);</span>
+            }
+<span class="fc" id="L93">        }</span>
+<span class="fc" id="L94">        ArrayList&lt;String&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        for(String name : count.keySet()){</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">            if(count.get(name) == max){</span>
+<span class="fc" id="L97">                result.add(name);</span>
+            }
+<span class="fc" id="L99">        }</span>
+<span class="fc" id="L100">        String summary = String.format(&quot;Over the period %d to %d&quot;, startYear, endYear);</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        for(int i = 0; i &lt; result.size(); i++){</span>
+<span class="fc" id="L102">            summary +=  String.format(&quot;, %s&quot;, result.get(i));</span>
+        }
+<span class="fc" id="L104">        String outputGender = &quot;Male&quot;;</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        if(gender == &quot;F&quot;){</span>
+<span class="fc" id="L106">            outputGender = &quot;Female&quot;;</span>
+        }
+<span class="fc" id="L108">        summary += String.format(&quot; for %s has hold the top spot most often for a total of %d times&quot;,outputGender, max);</span>
+<span class="fc" id="L109">        System.out.println(summary);</span>
+<span class="fc" id="L110">        return summary;</span>
+    }
+
+    /**
+     * Create new table view, create column for year
+     * For each rank, create a new column
+     */
+    public TableView&lt;TopNamesQuery.TopNamesQueryRankRow&gt; getTableView() {
+        //check if query is done
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        if (queryData == null) {</span>
+<span class="fc" id="L120">            getTopNames();</span>
+        }
+
+<span class="fc" id="L123">        TableView&lt;TopNamesQuery.TopNamesQueryRankRow&gt; table = new TableView&lt;&gt;();</span>
+<span class="fc" id="L124">        table.setItems(FXCollections.observableArrayList(queryData));</span>
+<span class="fc" id="L125">        table.setEditable(false);</span>
+<span class="fc" id="L126">        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);</span>
+<span class="fc" id="L127">        table.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+
+<span class="fc" id="L129">        TableColumn&lt;TopNamesQuery.TopNamesQueryRankRow, String&gt; yearCol = new TableColumn&lt;&gt;(&quot;Name&quot;);</span>
+<span class="fc" id="L130">        yearCol.setCellValueFactory(row -&gt;  new SimpleStringProperty(Integer.toString(row.getValue().getYear().getValue())));</span>
+<span class="fc" id="L131">        yearCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+<span class="fc" id="L132">        table.getColumns().add(yearCol);</span>
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        for(int i = 0; i &lt; numberOfNames; i++){</span>
+<span class="fc" id="L135">            TableColumn&lt;TopNamesQuery.TopNamesQueryRankRow, String&gt; nameCol = new TableColumn&lt;&gt;(&quot;Top&quot; + (i+1));</span>
+<span class="fc" id="L136">            int finalI = i;</span>
+<span class="fc" id="L137">            nameCol.setCellValueFactory(row -&gt; row.getValue().getNames()[finalI]);</span>
+<span class="fc" id="L138">            nameCol.setStyle(&quot;-fx-alignment: CENTER;&quot;);</span>
+<span class="fc" id="L139">            table.getColumns().add(nameCol);</span>
+        }
+<span class="fc" id="L141">        return table;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
