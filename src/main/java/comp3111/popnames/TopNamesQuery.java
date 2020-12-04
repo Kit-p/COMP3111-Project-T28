@@ -57,7 +57,7 @@ public class TopNamesQuery {
         queryData = new ArrayList<>();
         //iterate through every year
         for(int currentYear = this.startYear; currentYear <= this.endYear; currentYear++ ){
-            String names[] = new String[numberOfNames];
+            String[] names = new String[numberOfNames];
             for(int j = 1; j <= numberOfNames; j++){
                 names[j-1] = AnalyzeNames.getName(currentYear, j, this.gender);
             }
@@ -102,11 +102,10 @@ public class TopNamesQuery {
             summary +=  String.format(", %s", result.get(i));
         }
         String outputGender = "Male";
-        if(gender == "F"){
+        if(gender.equals("F")){
             outputGender = "Female";
         }
         summary += String.format(" for %s has hold the top spot most often for a total of %d times",outputGender, max);
-        System.out.println(summary);
         return summary;
     }
 

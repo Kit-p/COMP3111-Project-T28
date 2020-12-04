@@ -25,15 +25,13 @@ public class BabyNameRecommendation {
      */
     public String getBabiesNames() {
         int dadRank = AnalyzeNames.getRankEnhanced(dadYOB, dadName, "M");
-        System.out.println(dadRank);
         int mumRank = AnalyzeNames.getRankEnhanced(mumYOB, mumName, "F");
-        System.out.println(mumRank);
         String boyName = AnalyzeNames.getNameEnhanced(vintageYear, dadRank, "M");
         String girlName = AnalyzeNames.getNameEnhanced(vintageYear, mumRank, "F");
-        if (boyName == "information on the name at the specified rank is not available") {
+        if (boyName.equals("information on the name at the specified rank is not available")) {
             boyName = AnalyzeNames.getLowestName(vintageYear, "M");
         }
-        if (girlName == "information on the name at the specified rank is not available") {
+        if (girlName.equals("information on the name at the specified rank is not available")) {
             girlName = AnalyzeNames.getLowestName(vintageYear, "F");
         }
         String result = String.format("Recommendation for a boy's name: %s \nRecommendation for a girl's name: %s", boyName, girlName);

@@ -10,6 +10,12 @@ import javafx.scene.control.Alert.AlertType;
 public class Controller {
 
     @FXML
+    public Button task1ReportBtn;
+
+    @FXML
+    public Button application1Run;
+
+    @FXML
     private Tab tabTaskZero;
 
     @FXML
