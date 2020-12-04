@@ -29,7 +29,8 @@ All screenshots below can be found [here](supplementary/resources/Screenshots)!
 
 ## Task 1 (Reporting 1)
 > **Description:**  
-> {{placeholder}}
+> Generate a brief report in response to the queries on the most popular names registered at birth over a given period.
+
 
 > **Demonstrations:**
 > 
@@ -88,13 +89,24 @@ All screenshots below can be found [here](supplementary/resources/Screenshots)!
 
 ## Task 4 (Application 1)
 > **Description:**  
-> {{placeholder}}
+> This task will provide 2 recommended names for a child, 1 for a boy 1 for a girl based on the ranking of the names of their parents. The system will generate 2 recommended names based on the ranking of the parents’ names in their year of birth and find 2 names with the same ranks in the given vintage year.
+
 
 > **Algorithm:**  
-> {{placeholder}}
+> The algorithm returns 2 recommended names for the user, 1 for a boy, 1 for a girl based on the
+  the ranks of the names of the parents in their respective birth years. Then the algorithm will
+  choose 2 names with the same rank as the names of the parents and return the recommended names.
+  If the rank of the parents' names are too low or out of bound, the algorithm will return the lowest
+  ranked names in the vintage year
+
 
 > **Justification:**  
-> {{placeholder}}
+> The original NK-T4 algorithm of Universal compatibility will first compute the ranks of the parents,
+  which is the rank of the parents' names' in their respective year of birth. Then it will compute a name for the boy and a name for the girl which has the same rank as the parents' names' ranks in their respective year of birth. However, the given algorithm will be unable to provide a recommendation when the ranks of the parents'
+  names are too low, or when the vintage year does not have a name at that rank.
+  
+> Therefore, we modified the algorithm to make it return the name with the lowest rank in that year,
+  if there are multiple names with the same rank, it will return the first name in that rank.
 
 > **Demonstrations:**
 > 
