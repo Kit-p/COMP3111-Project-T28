@@ -10,23 +10,68 @@ import javafx.scene.control.TableView;
 
 import java.util.*;
 
+
+/**
+ * Task 1 (Reporting 1) Class that generate a report on the top names over a given period
+ */
 public class TopNamesQuery {
+    /**
+     * number of names to be queried
+     */
     private final int numberOfNames;
+    /**
+     * gender queried
+     */
     private final String gender;
+    /**
+     * the year of the start of the queried period
+     */
     private final int startYear;
+    /**
+     * the year of the end of the queried period
+     */
     private final int endYear;
+    /**
+     * arraylist storing the top names in the period
+     */
     private ArrayList<TopNamesQueryRankRow> queryData = null;
 
+
+    /**
+     * Task 1 Inner class storing popularity data of top names in a year for constructing report table
+     */
     public static class TopNamesQueryRankRow{
+        /**
+         * the year of the data retrieved
+         */
         private final IntegerProperty year;
+        /**
+         * the top names of the year retrieved
+         */
         private final StringProperty[] names;
 
+        /**
+         * Get the year of the data corresponds to
+         *
+         * @return year of the data corresponds to
+         */
         public IntegerProperty getYear(){ return this.year; }
-        public StringProperty[] getNames(){return names;}
-        /** constructor for TopNamesQueryRankRow instance
-         @param year
-         @param names
-         @param numberOfNames
+
+
+        /**
+         * Get the top names of the year
+         *
+         * @return top names of the year
+         */
+        public StringProperty[] getNames(){ return names; }
+
+
+        /**
+         * Construct an TopNamesQueryRankRow object storing the top names in a year
+         *
+         * @param year          year queried
+         * @param names         top names of the queried year
+         * @param numberOfNames number of names queried
          */
         TopNamesQueryRankRow(int year, String[] names, int numberOfNames){
             this.year = new SimpleIntegerProperty(year);
@@ -37,11 +82,13 @@ public class TopNamesQuery {
         }
 
     }
-    /** constructor for TopNamesQuery instance
-         @param number
-         @param endYear
-         @param gender
-         @param startYear
+    /**
+     * Construct a TopNamesQuery object for processing the popularity data of the query
+     *
+     * @param number    number of names to be queried
+     * @param gender    gender of the names to be queried
+     * @param startYear start of the period to be queried
+     * @param endYear   end of the period to be queried
      */
     TopNamesQuery(int number, String gender, int startYear, int endYear){
         this.numberOfNames = number;
@@ -51,7 +98,7 @@ public class TopNamesQuery {
     }
 
     /**
-     * get TopNames, using the N given by the user, iterate through all the years to get the topN names
+     * Iterate through all the years to get the top N names
      */
     public ArrayList<TopNamesQueryRankRow> getTopNames(){
         queryData = new ArrayList<>();
@@ -68,9 +115,13 @@ public class TopNamesQuery {
     }
 
     /**
-     * Create hashmap and store Name and occurrence of the name in rank 1
+     * Create hashmap and store name and occurrence of the name in rank 1
+     *
+     * <p>
      * Iterate thorough hash map and find max occurrence
+     * <br>
      * Get names with max occurrence
+     * </p>
      */
     public String getSummary(){
         if (queryData == null) {
@@ -102,16 +153,21 @@ public class TopNamesQuery {
             summary +=  String.format(", %s", result.get(i));
         }
         String outputGender = "Male";
-        if(gender.equals("F")){
+        if(gender == "F"){
             outputGender = "Female";
         }
         summary += String.format(" for %s has hold the top spot most often for a total of %d times",outputGender, max);
+        System.out.println(summary);
         return summary;
     }
 
+
     /**
      * Create new table view, create column for year
+     *
+     * <p>
      * For each rank, create a new column
+     * </p>
      */
     public TableView<TopNamesQuery.TopNamesQueryRankRow> getTableView() {
         //check if query is done
